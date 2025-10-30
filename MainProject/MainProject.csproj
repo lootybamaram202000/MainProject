@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F17A3D57-6F92-4A01-9029-C248A967F46D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>MainProject</RootNamespace>
+    <AssemblyName>MainProject</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config.cs" />
+    <Compile Include="Core\Business\AccountManager.cs" />
+    <Compile Include="Core\Business\BasicItemManager.cs" />
+    <Compile Include="Core\Business\FactorManager.cs" />
+    <Compile Include="Core\Business\InformationsManager.cs" />
+    <Compile Include="Core\Business\ItemManager.cs" />
+    <Compile Include="Core\Business\LoginManager.cs" />
+    <Compile Include="Core\Business\MainMenuManager.cs" />
+    <Compile Include="Core\Business\UserPanelManager.cs" />
+    <Compile Include="Core\Business\OverHeadManager.cs" />
+    <Compile Include="Core\Business\ProductManager.cs" />
+    <Compile Include="Core\Business\SectionManager.cs" />
+    <Compile Include="Core\Business\SellerManager.cs" />
+    <Compile Include="Core\Business\UnitManager.cs" />
+    <Compile Include="Core\Mappers\InformationMapper.cs" />
+    <Compile Include="DataAccess\AccountDAL.cs" />
+    <Compile Include="DataAccess\BasicItemDAL.cs" />
+    <Compile Include="DataAccess\FactorDAL.cs" />
+    <Compile Include="DataAccess\InformationDAL.cs" />
+    <Compile Include="DataAccess\ItemDAL.cs" />
+    <Compile Include="DataAccess\LoginDAL.cs" />
+    <Compile Include="DataAccess\MessageDAL.cs" />
+    <Compile Include="DataAccess\OverHeadDAL.cs" />
+    <Compile Include="DataAccess\ProductDAL.cs" />
+    <Compile Include="DataAccess\SectionDAL.cs" />
+    <Compile Include="DataAccess\SellerDAL.cs" />
+    <Compile Include="DataAccess\UnitDAL.cs" />
+    <Compile Include="DataAccess\UserPanelDAL.cs" />
+    <Compile Include="Entities\AccountModel.cs" />
+    <Compile Include="Entities\BasicItemModel.cs" />
+    <Compile Include="Entities\BasicRecipieModel.cs" />
+    <Compile Include="Entities\FactorModel.cs" />
+    <Compile Include="Entities\InformationDto.cs" />
+    <Compile Include="Entities\InformationModel.cs" />
+    <Compile Include="Entities\ItemModel.cs" />
+    <Compile Include="Entities\ItemRecipieModel.cs" />
+    <Compile Include="Entities\LoginModel.cs" />
+    <Compile Include="Entities\MainMenuInfo.cs" />
+    <Compile Include="Entities\OverHeadModel.cs" />
+    <Compile Include="Entities\ProductModel.cs" />
+    <Compile Include="Entities\SectionModel.cs" />
+    <Compile Include="Entities\SellerModel.cs" />
+    <Compile Include="Entities\SubFactorModel.cs" />
+    <Compile Include="Entities\UnitModel.cs" />
+    <Compile Include="Forms\AccessLayerDeclarationFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\AccessLayerDeclarationFRM.Designer.cs">
+      <DependentUpon>AccessLayerDeclarationFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineCashier.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineCashier.Designer.cs">
+      <DependentUpon>DefineCashier.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\CreatSellFactorFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreatSellFactorFRM.Designer.cs">
+      <DependentUpon>CreatSellFactorFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineAndSubmitOverHead.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineAndSubmitOverHead.Designer.cs">
+      <DependentUpon>DefineAndSubmitOverHead.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineBankAccountFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineBankAccountFRM.Designer.cs">
+      <DependentUpon>DefineBankAccountFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineBasicItemsFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineBasicItemsFRM.Designer.cs">
+      <DependentUpon>DefineBasicItemsFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineBenefitsFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineBenefitsFRM.Designer.cs">
+      <DependentUpon>DefineBenefitsFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineJobsFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineJobsFRM.Designer.cs">
+      <DependentUpon>DefineJobsFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineMenuItemsFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineMenuItemsFRM.Designer.cs">
+      <DependentUpon>DefineMenuItemsFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineNewPersonalFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineNewPersonalFRM.Designer.cs">
+      <DependentUpon>DefineNewPersonalFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefinePaymentStateFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefinePaymentStateFRM.Designer.cs">
+      <DependentUpon>DefinePaymentStateFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineSectionsFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineSectionsFRM.Designer.cs">
+      <DependentUpon>DefineSectionsFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\DefineWareHousesFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\DefineWareHousesFRM.Designer.cs">
+      <DependentUpon>DefineWareHousesFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EditWareHouseFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EditWareHouseFRM.Designer.cs">
+      <DependentUpon>EditWareHouseFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\FinancialReportFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FinancialReportFRM.Designer.cs">
+      <DependentUpon>FinancialReportFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitCostFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitCostFRM.Designer.cs">
+      <DependentUpon>SubmitCostFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitWastagesFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitWastagesFRM.Designer.cs">
+      <DependentUpon>SubmitWastagesFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\WareHouseManagementFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\WareHouseManagementFRM.Designer.cs">
+      <DependentUpon>WareHouseManagementFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\InfoEditorForm .cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\InfoEditorForm .Designer.cs">
+      <DependentUpon>InfoEditorForm .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SelectDateFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SelectDateFRM.Designer.cs">
+      <DependentUpon>SelectDateFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\OverHeadFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\OverHeadFRM.Designer.cs">
+      <DependentUpon>OverHeadFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitMenuRecipieFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitMenuRecipieFRM.Designer.cs">
+      <DependentUpon>SubmitMenuRecipieFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LogInFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LogInFRM.Designer.cs">
+      <DependentUpon>LogInFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\MainMenuFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MainMenuFRM.Designer.cs">
+      <DependentUpon>MainMenuFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitBasicRecipieFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitBasicRecipieFRM.Designer.cs">
+      <DependentUpon>SubmitBasicRecipieFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitDailySellsByImportFileFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitDailySellsByImportFileFRM.Designer.cs">
+      <DependentUpon>SubmitDailySellsByImportFileFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitDailySellsFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitDailySellsFRM.Designer.cs">
+      <DependentUpon>SubmitDailySellsFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitFactorFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitFactorFRM.Designer.cs">
+      <DependentUpon>SubmitFactorFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitProductFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitProductFRM.Designer.cs">
+      <DependentUpon>SubmitProductFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitSalarySlipFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitSalarySlipFRM.Designer.cs">
+      <DependentUpon>SubmitSalarySlipFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitSellerFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitSellerFRM.Designer.cs">
+      <DependentUpon>SubmitSellerFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\SubmitUnitFRM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SubmitUnitFRM.Designer.cs">
+      <DependentUpon>SubmitUnitFRM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\CommonFunctions.cs" />
+    <Compile Include="Helpers\LoginInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\AccessLayerDeclarationFRM.resx">
+      <DependentUpon>AccessLayerDeclarationFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineCashier.resx">
+      <DependentUpon>DefineCashier.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\CreatSellFactorFRM.resx">
+      <DependentUpon>CreatSellFactorFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineAndSubmitOverHead.resx">
+      <DependentUpon>DefineAndSubmitOverHead.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineBankAccountFRM.resx">
+      <DependentUpon>DefineBankAccountFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineBasicItemsFRM.resx">
+      <DependentUpon>DefineBasicItemsFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineBenefitsFRM.resx">
+      <DependentUpon>DefineBenefitsFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineJobsFRM.resx">
+      <DependentUpon>DefineJobsFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineMenuItemsFRM.resx">
+      <DependentUpon>DefineMenuItemsFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineNewPersonalFRM.resx">
+      <DependentUpon>DefineNewPersonalFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefinePaymentStateFRM.resx">
+      <DependentUpon>DefinePaymentStateFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineSectionsFRM.resx">
+      <DependentUpon>DefineSectionsFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\DefineWareHousesFRM.resx">
+      <DependentUpon>DefineWareHousesFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\EditWareHouseFRM.resx">
+      <DependentUpon>EditWareHouseFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FinancialReportFRM.resx">
+      <DependentUpon>FinancialReportFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitCostFRM.resx">
+      <DependentUpon>SubmitCostFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitWastagesFRM.resx">
+      <DependentUpon>SubmitWastagesFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\WareHouseManagementFRM.resx">
+      <DependentUpon>WareHouseManagementFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\InfoEditorForm .resx">
+      <DependentUpon>InfoEditorForm .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SelectDateFRM.resx">
+      <DependentUpon>SelectDateFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\OverHeadFRM.resx">
+      <DependentUpon>OverHeadFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitMenuRecipieFRM.resx">
+      <DependentUpon>SubmitMenuRecipieFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\LogInFRM.resx">
+      <DependentUpon>LogInFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MainMenuFRM.resx">
+      <DependentUpon>MainMenuFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitBasicRecipieFRM.resx">
+      <DependentUpon>SubmitBasicRecipieFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitDailySellsByImportFileFRM.resx">
+      <DependentUpon>SubmitDailySellsByImportFileFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitDailySellsFRM.resx">
+      <DependentUpon>SubmitDailySellsFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitFactorFRM.resx">
+      <DependentUpon>SubmitFactorFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitProductFRM.resx">
+      <DependentUpon>SubmitProductFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitSalarySlipFRM.resx">
+      <DependentUpon>SubmitSalarySlipFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitSellerFRM.resx">
+      <DependentUpon>SubmitSellerFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\SubmitUnitFRM.resx">
+      <DependentUpon>SubmitUnitFRM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
