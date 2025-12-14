@@ -956,7 +956,7 @@
         private System.Windows.Forms.ToolStripMenuItem ویرایشاطلاعاتکاربریToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem تعریفکاربرجدیذToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem تعریفسToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem امورقسمتهاToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineSectionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem امورپرداختهاToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem امورشغلیToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem تنظیماتثبتسیستمیToolStripMenuItem;
