@@ -359,7 +359,7 @@ namespace MainProject.Forms
 
             txtSCode.Text = model.ProductID;
             txtSName.Text = model.ProductName;
-            txtPrice.Text = Convert.ToDecimal(model.PurchasePriceUnit ?? 0).ToString("0");
+            txtPrice.Text = Convert.ToDecimal(model.PurchasePriceUnit ?? 0).ToString("N0");
             txtWastage.Text = model.Wastage?.ToString();
             txtCriticalInventory.Text = model.CriticalInventory?.ToString();
             chkIsDirectUse.Checked = model.IsDirectUse;

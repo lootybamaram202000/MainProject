@@ -28,11 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem41 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem42 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem43 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem44 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem45 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
             this.txtSearchSeller = new System.Windows.Forms.TextBox();
             this.lstSeller = new System.Windows.Forms.ListView();
             this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -72,10 +72,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.txtCardNumb = new System.Windows.Forms.TextBox();
             this.txtBank = new System.Windows.Forms.Label();
-            this.txtBanks = new System.Windows.Forms.TextBox();
             this.txtShabaNumb = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.btnNewCategory = new System.Windows.Forms.Button();
+            this.cmbBank = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // txtSearchSeller
@@ -109,11 +109,11 @@
             this.lstSeller.GridLines = true;
             this.lstSeller.HideSelection = false;
             this.lstSeller.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem41,
-            listViewItem42,
-            listViewItem43,
-            listViewItem44,
-            listViewItem45});
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5});
             this.lstSeller.Location = new System.Drawing.Point(13, 290);
             this.lstSeller.Margin = new System.Windows.Forms.Padding(4);
             this.lstSeller.MultiSelect = false;
@@ -486,7 +486,6 @@
             // txtCardNumb
             // 
             this.txtCardNumb.BackColor = System.Drawing.Color.NavajoWhite;
-            this.txtCardNumb.Enabled = false;
             this.txtCardNumb.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtCardNumb.Location = new System.Drawing.Point(295, 202);
             this.txtCardNumb.Margin = new System.Windows.Forms.Padding(4);
@@ -499,7 +498,7 @@
             // 
             this.txtBank.AutoSize = true;
             this.txtBank.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtBank.Location = new System.Drawing.Point(245, 203);
+            this.txtBank.Location = new System.Drawing.Point(228, 202);
             this.txtBank.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.txtBank.Name = "txtBank";
             this.txtBank.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -507,22 +506,9 @@
             this.txtBank.TabIndex = 71;
             this.txtBank.Text = "بانک";
             // 
-            // txtBanks
-            // 
-            this.txtBanks.BackColor = System.Drawing.Color.NavajoWhite;
-            this.txtBanks.Enabled = false;
-            this.txtBanks.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtBanks.Location = new System.Drawing.Point(14, 201);
-            this.txtBanks.Margin = new System.Windows.Forms.Padding(4);
-            this.txtBanks.Name = "txtBanks";
-            this.txtBanks.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtBanks.Size = new System.Drawing.Size(226, 32);
-            this.txtBanks.TabIndex = 72;
-            // 
             // txtShabaNumb
             // 
             this.txtShabaNumb.BackColor = System.Drawing.Color.NavajoWhite;
-            this.txtShabaNumb.Enabled = false;
             this.txtShabaNumb.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtShabaNumb.Location = new System.Drawing.Point(778, 202);
             this.txtShabaNumb.Margin = new System.Windows.Forms.Padding(4);
@@ -558,13 +544,24 @@
             this.btnNewCategory.UseVisualStyleBackColor = false;
             this.btnNewCategory.Click += new System.EventHandler(this.btnNewCategory_Click);
             // 
+            // cmbBank
+            // 
+            this.cmbBank.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.cmbBank.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.cmbBank.FormattingEnabled = true;
+            this.cmbBank.Location = new System.Drawing.Point(14, 201);
+            this.cmbBank.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbBank.Name = "cmbBank";
+            this.cmbBank.Size = new System.Drawing.Size(207, 34);
+            this.cmbBank.TabIndex = 73;
+            // 
             // SubmitSellerFRM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
             this.ClientSize = new System.Drawing.Size(1099, 767);
-            this.Controls.Add(this.txtBanks);
+            this.Controls.Add(this.cmbBank);
             this.Controls.Add(this.txtShabaNumb);
             this.Controls.Add(this.txtCardNumb);
             this.Controls.Add(this.label13);
@@ -648,9 +645,9 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtCardNumb;
         private System.Windows.Forms.Label txtBank;
-        private System.Windows.Forms.TextBox txtBanks;
         private System.Windows.Forms.TextBox txtShabaNumb;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Button btnNewCategory;
+        private System.Windows.Forms.ComboBox cmbBank;
     }
 }

@@ -16,6 +16,7 @@ namespace MainProject.Entities
         public string Category { get; set; }   // از tblINFORMATIONS لود می‌شود
         public string ACID { get; set; }       // فعلاً فقط نمایش/نگهداری
         public decimal Balance { get; set; }   // نمایشی
+        public AccountModel Account { get; set; }
     }
 
 }

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.cmbState = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.txtPerssonalCode = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -68,18 +67,8 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.btnSubmitPersonal = new System.Windows.Forms.Button();
+            this.cmbState = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
-            // 
-            // cmbState
-            // 
-            this.cmbState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.cmbState.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.cmbState.FormattingEnabled = true;
-            this.cmbState.Location = new System.Drawing.Point(702, 421);
-            this.cmbState.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.cmbState.Name = "cmbState";
-            this.cmbState.Size = new System.Drawing.Size(176, 34);
-            this.cmbState.TabIndex = 62;
             // 
             // label14
             // 
@@ -99,7 +88,7 @@
             this.txtPerssonalCode.Enabled = false;
             this.txtPerssonalCode.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtPerssonalCode.Location = new System.Drawing.Point(701, 6);
-            this.txtPerssonalCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPerssonalCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtPerssonalCode.Name = "txtPerssonalCode";
             this.txtPerssonalCode.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtPerssonalCode.Size = new System.Drawing.Size(227, 32);
@@ -124,7 +113,7 @@
             this.lstPersonals.BackColor = System.Drawing.SystemColors.Info;
             this.lstPersonals.HideSelection = false;
             this.lstPersonals.Location = new System.Drawing.Point(13, 56);
-            this.lstPersonals.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstPersonals.Margin = new System.Windows.Forms.Padding(4);
             this.lstPersonals.Name = "lstPersonals";
             this.lstPersonals.Size = new System.Drawing.Size(528, 401);
             this.lstPersonals.TabIndex = 44;
@@ -136,7 +125,7 @@
             this.cmbJobs.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbJobs.FormattingEnabled = true;
             this.cmbJobs.Location = new System.Drawing.Point(702, 47);
-            this.cmbJobs.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbJobs.Margin = new System.Windows.Forms.Padding(4);
             this.cmbJobs.Name = "cmbJobs";
             this.cmbJobs.Size = new System.Drawing.Size(226, 34);
             this.cmbJobs.TabIndex = 56;
@@ -147,7 +136,7 @@
             this.cmbGrd.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbGrd.FormattingEnabled = true;
             this.cmbGrd.Location = new System.Drawing.Point(701, 377);
-            this.cmbGrd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cmbGrd.Margin = new System.Windows.Forms.Padding(4);
             this.cmbGrd.Name = "cmbGrd";
             this.cmbGrd.Size = new System.Drawing.Size(199, 34);
             this.cmbGrd.TabIndex = 55;
@@ -157,7 +146,7 @@
             this.btnSelectDate.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSelectDate.Font = new System.Drawing.Font("B Nazanin", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnSelectDate.Location = new System.Drawing.Point(701, 253);
-            this.btnSelectDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSelectDate.Margin = new System.Windows.Forms.Padding(4);
             this.btnSelectDate.Name = "btnSelectDate";
             this.btnSelectDate.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnSelectDate.Size = new System.Drawing.Size(117, 34);
@@ -170,7 +159,7 @@
             this.btnFormPatch.BackColor = System.Drawing.SystemColors.Control;
             this.btnFormPatch.Font = new System.Drawing.Font("B Nazanin", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnFormPatch.Location = new System.Drawing.Point(550, 378);
-            this.btnFormPatch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnFormPatch.Margin = new System.Windows.Forms.Padding(4);
             this.btnFormPatch.Name = "btnFormPatch";
             this.btnFormPatch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnFormPatch.Size = new System.Drawing.Size(143, 79);
@@ -183,7 +172,7 @@
             this.btnSubmit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.btnSubmit.Font = new System.Drawing.Font("B Nazanin", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnSubmit.Location = new System.Drawing.Point(-370, 349);
-            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSubmit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnSubmit.Size = new System.Drawing.Size(176, 58);
@@ -196,7 +185,7 @@
             this.btnIDCardNumPatch.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnIDCardNumPatch.Font = new System.Drawing.Font("B Nazanin", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnIDCardNumPatch.Location = new System.Drawing.Point(550, 212);
-            this.btnIDCardNumPatch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIDCardNumPatch.Margin = new System.Windows.Forms.Padding(4);
             this.btnIDCardNumPatch.Name = "btnIDCardNumPatch";
             this.btnIDCardNumPatch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnIDCardNumPatch.Size = new System.Drawing.Size(145, 75);
@@ -209,7 +198,7 @@
             this.btnCertificateNumPatch.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnCertificateNumPatch.Font = new System.Drawing.Font("B Nazanin", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnCertificateNumPatch.Location = new System.Drawing.Point(549, 295);
-            this.btnCertificateNumPatch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCertificateNumPatch.Margin = new System.Windows.Forms.Padding(4);
             this.btnCertificateNumPatch.Name = "btnCertificateNumPatch";
             this.btnCertificateNumPatch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnCertificateNumPatch.Size = new System.Drawing.Size(145, 76);
@@ -222,7 +211,7 @@
             this.btnPImagePatch.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnPImagePatch.Font = new System.Drawing.Font("B Nazanin", 10.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(254)));
             this.btnPImagePatch.Location = new System.Drawing.Point(549, 7);
-            this.btnPImagePatch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnPImagePatch.Margin = new System.Windows.Forms.Padding(4);
             this.btnPImagePatch.Name = "btnPImagePatch";
             this.btnPImagePatch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.btnPImagePatch.Size = new System.Drawing.Size(145, 193);
@@ -236,7 +225,7 @@
             this.txtIDCardNum.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtIDCardNum.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtIDCardNum.Location = new System.Drawing.Point(702, 295);
-            this.txtIDCardNum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIDCardNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtIDCardNum.Name = "txtIDCardNum";
             this.txtIDCardNum.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtIDCardNum.Size = new System.Drawing.Size(242, 32);
@@ -259,7 +248,7 @@
             this.txtCertificateNum.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtCertificateNum.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtCertificateNum.Location = new System.Drawing.Point(701, 336);
-            this.txtCertificateNum.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCertificateNum.Margin = new System.Windows.Forms.Padding(4);
             this.txtCertificateNum.Name = "txtCertificateNum";
             this.txtCertificateNum.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtCertificateNum.Size = new System.Drawing.Size(199, 32);
@@ -282,7 +271,7 @@
             this.txtCity.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtCity.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtCity.Location = new System.Drawing.Point(701, 212);
-            this.txtCity.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCity.Margin = new System.Windows.Forms.Padding(4);
             this.txtCity.Name = "txtCity";
             this.txtCity.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtCity.Size = new System.Drawing.Size(243, 33);
@@ -305,7 +294,7 @@
             this.txtLName.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtLName.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtLName.Location = new System.Drawing.Point(701, 130);
-            this.txtLName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtLName.Margin = new System.Windows.Forms.Padding(4);
             this.txtLName.Name = "txtLName";
             this.txtLName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtLName.Size = new System.Drawing.Size(227, 33);
@@ -329,7 +318,7 @@
             this.txtETitle.BackColor = System.Drawing.Color.Thistle;
             this.txtETitle.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtETitle.Location = new System.Drawing.Point(393, 465);
-            this.txtETitle.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtETitle.Margin = new System.Windows.Forms.Padding(4);
             this.txtETitle.Name = "txtETitle";
             this.txtETitle.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtETitle.Size = new System.Drawing.Size(148, 33);
@@ -352,7 +341,7 @@
             this.txtEPhone.BackColor = System.Drawing.Color.Thistle;
             this.txtEPhone.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtEPhone.Location = new System.Drawing.Point(13, 465);
-            this.txtEPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtEPhone.Name = "txtEPhone";
             this.txtEPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtEPhone.Size = new System.Drawing.Size(214, 32);
@@ -375,7 +364,7 @@
             this.txtPhone.BackColor = System.Drawing.Color.Thistle;
             this.txtPhone.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtPhone.Location = new System.Drawing.Point(702, 463);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtPhone.Size = new System.Drawing.Size(209, 32);
@@ -400,7 +389,7 @@
             this.txtAddress.BackColor = System.Drawing.Color.Thistle;
             this.txtAddress.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtAddress.Location = new System.Drawing.Point(13, 504);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtAddress.Size = new System.Drawing.Size(865, 33);
@@ -450,7 +439,7 @@
             this.txtFatherName.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtFatherName.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtFatherName.Location = new System.Drawing.Point(701, 171);
-            this.txtFatherName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFatherName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFatherName.Name = "txtFatherName";
             this.txtFatherName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFatherName.Size = new System.Drawing.Size(258, 33);
@@ -473,7 +462,7 @@
             this.txtFName.BackColor = System.Drawing.Color.LightSteelBlue;
             this.txtFName.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.txtFName.Location = new System.Drawing.Point(701, 89);
-            this.txtFName.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtFName.Margin = new System.Windows.Forms.Padding(4);
             this.txtFName.Name = "txtFName";
             this.txtFName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.txtFName.Size = new System.Drawing.Size(258, 33);
@@ -553,6 +542,17 @@
             this.btnSubmitPersonal.UseVisualStyleBackColor = true;
             this.btnSubmitPersonal.Click += new System.EventHandler(this.btnSubmitPersonal_Click);
             // 
+            // cmbState
+            // 
+            this.cmbState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.cmbState.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.cmbState.FormattingEnabled = true;
+            this.cmbState.Location = new System.Drawing.Point(702, 421);
+            this.cmbState.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbState.Name = "cmbState";
+            this.cmbState.Size = new System.Drawing.Size(176, 34);
+            this.cmbState.TabIndex = 62;
+            // 
             // DefineNewPersonalFRM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -599,7 +599,7 @@
             this.Controls.Add(this.label7);
             this.Controls.Add(this.txtFName);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DefineNewPersonalFRM";
             this.Text = "تعریف مشخصات پرسنل";
             this.Load += new System.EventHandler(this.DefineNewPersonalFRM_Load);
@@ -609,8 +609,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.ComboBox cmbState;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox txtPerssonalCode;
         private System.Windows.Forms.Label label4;
@@ -650,5 +648,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Button btnSubmitPersonal;
+        private System.Windows.Forms.ComboBox cmbState;
     }
 }

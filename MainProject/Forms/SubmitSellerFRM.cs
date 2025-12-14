@@ -6,6 +6,8 @@ using MainProject.Entities;
 using MainProject.DataAccess;
 using MainProject.Helpers;
 using System.Text.RegularExpressions;
+using System.Reflection;
+using MainProject.Core.Business;
 
 namespace MainProject.Forms
 {
@@ -59,6 +61,7 @@ namespace MainProject.Forms
             SetupSellerListView();
             LoadCategories();
             LoadSellers();
+            LoadBanks();
             UpdateAccountButtonState();
             txtPhone.TextChanged += txtPhone_TextChanged;
             txtBalance.TextChanged += txtBalance_TextChanged;
@@ -79,6 +82,13 @@ namespace MainProject.Forms
             lstSeller.Columns.Add("شماره تماس", 120, HorizontalAlignment.Center);
             lstSeller.Columns.Add("دسته‌بندی", 120, HorizontalAlignment.Center);
             lstSeller.Columns.Add("مانده", 110, HorizontalAlignment.Right);
+        }
+        private void LoadBanks()
+        {
+            cmbBank.Items.Clear();
+            var infoDal = new InformationDAL();
+            var banks = infoDal.GetValuesByContext("Banks"); // فرض بر اینکه type مربوط به بانک‌ها در اطلاعات، "Banks" است
+            cmbBank.Items.AddRange(banks.ToArray());
         }
 
         private void LoadCategories()
@@ -101,30 +111,28 @@ namespace MainProject.Forms
         private void LoadSellers()
         {
             lstSeller.Items.Clear();
-
-            List<SellerModel> list;
+            List<SellerModel> sellerList;
             string msg;
-            if (_sellerManager.GetAllSellers(out list, out msg))
-            {
-                foreach (var s in list)
-                {
-                    var it = new ListViewItem(s.SellerID);
-                    it.SubItems.Add(s.SellerName);
-                    it.SubItems.Add(s.CompanyName);
-                    it.SubItems.Add(s.Phone);
-                    it.SubItems.Add(string.IsNullOrWhiteSpace(s.Category) ? "—" : s.Category);
-                    it.SubItems.Add(s.Balance.ToString("0")); // بدون اعشار در لیست
-
-                    it.Tag = s;
-                    lstSeller.Items.Add(it);
-                }
-                ClearForm();
-            }
-            else
+            if (!_sellerManager.GetAllSellers(out sellerList, out msg))
             {
                 MessageBox.Show(msg);
+                return;
             }
+
+            foreach (var s in sellerList)
+            {
+                var it = new ListViewItem(s.SellerID);
+                it.SubItems.Add(s.SellerName);
+                it.SubItems.Add(s.CompanyName);
+                it.SubItems.Add(s.Phone);
+                it.SubItems.Add(string.IsNullOrWhiteSpace(s.Category) ? "—" : s.Category);
+                it.SubItems.Add(s.Balance.ToString("0"));
+                it.Tag = s;
+                lstSeller.Items.Add(it);
+            }
+            ClearForm();
         }
+
 
         private void ClearForm()
         {
@@ -144,7 +152,7 @@ namespace MainProject.Forms
             // اطلاعات حساب (Shaba/Card/Bank)
             txtShabaNumb.Text = string.Empty;
             txtCardNumb.Text = string.Empty;
-            txtBanks.Text = string.Empty;
+            cmbBank.Text = string.Empty;
             SetBalanceFormattedFromDecimal(0m);
             SetRadiosFromBalance(0m);
             UpdateAccountButtonState();
@@ -179,47 +187,91 @@ namespace MainProject.Forms
 
             model.SellerName = txtSellerName.Text.Trim();
             model.CompanyName = txtCompanyName.Text.Trim();
-            model.Addtress = txtAddress.Text.Trim(); // نام ستون جدول Addtress است
+            model.Addtress = txtAddress.Text.Trim();
             model.Phone = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone.Text.Trim());
             model.Category = cmbCategory.SelectedItem == null ? null : cmbCategory.SelectedItem.ToString();
 
             decimal bal;
             var balRaw = CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Trim()).Replace(",", "");
-            balRaw = Regex.Replace(balRaw, "[^0-9]", ""); // فقط رقم
+            balRaw = Regex.Replace(balRaw, "[^0-9]", "");
             if (!decimal.TryParse(balRaw, out bal)) bal = 0m;
 
-            // اعمال علامت از روی رادیوها
             bal = ApplyBalanceSignFromRadios(bal);
             model.Balance = bal;
+
+            // اطلاعات حساب بانکی
+            string cardNumber = CommonFunctions.ConvertPersianDigitsToEnglish(txtCardNumb.Text.Trim());
+            string shabaNumber = CommonFunctions.ConvertPersianDigitsToEnglish(txtShabaNumb.Text.Trim());
+
+            if (string.IsNullOrWhiteSpace(cardNumber))
+                cardNumber = "0";
+            else if (cardNumber.Length != 16 || !CommonFunctions.IsAllDigits(cardNumber))
+            {
+                MessageBox.Show("شماره کارت باید یک عدد ۱۶ رقمی باشد.");
+                return null;
+            }
+
+            if (string.IsNullOrWhiteSpace(shabaNumber))
+                shabaNumber = "0";
+            else if (shabaNumber.Length != 24 || !CommonFunctions.IsAllDigits(shabaNumber))
+            {
+                MessageBox.Show("شماره شبا باید یک عدد ۲۴ رقمی باشد.");
+                return null;
+            }
+
+            // AccountModel را بساز و به مدل فروشنده بده
+            model.Account = new AccountModel
+            {
+                ACCardNumber = cardNumber,
+                ACshabaNumber = shabaNumber,
+                ACBank = cmbBank.Text.Trim(),
+                // سایر فیلدهای حساب را اینجا مقداردهی کن
+            };
+
             return model;
         }
+
+
         private void btnSubmitNewSeller_Click(object sender, EventArgs e)
         {
+
             if (!ValidateInputs(out var error))
             {
                 MessageBox.Show(error);
                 return;
             }
 
-            var model = ReadFormToModel(forUpdate: false);
+            var model = ReadFormToModel(false);
+            if (model == null) return;
 
-            string message;
-            if (_sellerManager.InsertSeller(model, _userID, _date, _dateValue, _dateDig, out message))
+            // مقادیر اولیه برای حساب (اختیاری اگر در مدل یا فرم مقداردهی نشده)
+            if (model.Account == null)
+                model.Account = new AccountModel();
+            model.Account.isActive = true;
+            model.Account.isPayer = false;
+            model.Account.isDeleted = false;
+
+            string msg;
+            bool result = _sellerManager.InsertSellerAndAccount(model, _userID, _date, _dateValue, _dateDig, out msg);
+
+            if (result)
             {
-                MessageBox.Show("ثبت شد.");
+                MessageBox.Show("ثبت با موفقیت انجام شد.");
                 LoadSellers();
+                ClearForm();
             }
             else
             {
-                MessageBox.Show(string.IsNullOrWhiteSpace(message) ? "خطا در ثبت فروشنده." : message);
+                MessageBox.Show(!string.IsNullOrWhiteSpace(msg) ? msg : "خطا در ثبت فروشنده و حساب!");
             }
         }
 
         private void btnUpdateSeller_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrWhiteSpace(txtISellerCode.Text))
             {
-                MessageBox.Show("ابتدا یک فروشنده را از لیست انتخاب کنید.");
+                MessageBox.Show("ابتدا فروشنده را از لیست انتخاب کنید.");
                 return;
             }
             if (!ValidateInputs(out var error))
@@ -228,34 +280,50 @@ namespace MainProject.Forms
                 return;
             }
 
-            var model = ReadFormToModel(forUpdate: true);
+            var model = ReadFormToModel(true);
+            if (model == null) return;
 
-            string message;
-            if (_sellerManager.UpdateSeller(model, _userID, _date, _dateValue, _dateDig, out message))
+            // مقادیر حساب بانکی (اختیاری اگر در مدل نیست)
+            model.Account.isActive = true;
+            model.Account.isPayer = false;
+            model.Account.isDeleted = false;
+
+            string msg;
+            bool ok = _sellerManager.UpdateSellerAndAccount(model, _userID, _date, _dateValue, _dateDig, out msg);
+
+            if (ok)
             {
-                MessageBox.Show("به‌روزرسانی شد.");
+                MessageBox.Show("ویرایش با موفقیت انجام شد.");
                 LoadSellers();
+                ClearForm();
             }
             else
             {
-                MessageBox.Show(string.IsNullOrWhiteSpace(message) ? "خطا در به‌روزرسانی." : message);
+                MessageBox.Show(!string.IsNullOrWhiteSpace(msg) ? msg : "خطا در ویرایش فروشنده و حساب!");
             }
         }
 
         private void btnDeletSeller_Click(object sender, EventArgs e)
         {
+
             if (string.IsNullOrWhiteSpace(txtISellerCode.Text))
             {
                 MessageBox.Show("ابتدا یک فروشنده را از لیست انتخاب کنید.");
                 return;
             }
-
             if (MessageBox.Show("حذف این فروشنده؟", "تأیید حذف", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
                 return;
 
             string message;
             if (_sellerManager.DeleteSeller(txtISellerCode.Text.Trim(), _userID, _date, _dateValue, _dateDig, out message))
             {
+                // حساب وابسته هم غیرفعال کن (حذف منطقی)
+                var model = lstSeller.SelectedItems[0].Tag as SellerModel;
+                if (model != null && !string.IsNullOrWhiteSpace(model.ACID))
+                {
+                    var accountManager = new AccountManager();
+                    accountManager.DeleteAccount(model.ACID, _userID, _date, _dateValue, _dateDig);
+                }
                 MessageBox.Show("حذف شد.");
                 LoadSellers();
             }
@@ -267,41 +335,43 @@ namespace MainProject.Forms
 
         private void lstSeller_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (lstSeller.SelectedItems.Count == 0) return;
 
-            var model = lstSeller.SelectedItems[0].Tag as SellerModel;
-            if (model == null) return;
+            if (lstSeller.SelectedItems.Count == 0)
+            {
+                ClearForm();
+                return;
+            }
 
-            _selectedSellerID = model.SellerID;
+            var seller = lstSeller.SelectedItems[0].Tag as SellerModel;
+            if (seller == null)
+            {
+                ClearForm();
+                return;
+            }
 
-            txtISellerCode.Text = model.SellerID;
-            txtSellerName.Text = model.SellerName;
-            txtCompanyName.Text = model.CompanyName;
-            txtAddress.Text = model.Addtress;
-            txtPhone.Text = model.Phone;
-            txtBalance.Text = model.Balance.ToString("0");
-            CommonFunctions.FormatTextBoxAsThousandSeparated(txtBalance);
+            txtISellerCode.Text = seller.SellerID;
+            txtSellerName.Text = seller.SellerName;
+            txtCompanyName.Text = seller.CompanyName;
+            txtAddress.Text = seller.Addtress;
+            txtPhone.Text = seller.Phone;
+            txtBalance.Text = seller.Balance.ToString("0");
+            cmbCategory.SelectedItem = string.IsNullOrWhiteSpace(seller.Category) ? null : seller.Category;
 
-            if (!string.IsNullOrWhiteSpace(model.Category))
-                cmbCategory.SelectedItem = model.Category;
-            else
-                cmbCategory.SelectedIndex = -1;
-
-            SetRadiosFromBalance(model.Balance);
-            LoadAccountLabels(model.ACID);
-            SetBalanceFormattedFromDecimal(model.Balance);
-            UpdateAccountButtonState();
+            // اطلاعات حساب بانکی
+            txtShabaNumb.Text = seller.Account?.ACshabaNumber ?? "";
+            txtCardNumb.Text = seller.Account?.ACCardNumber ?? "";
+            cmbBank.Text = seller.Account?.ACBank ?? "";
         }
 
         private void txtSearchSeller_TextChanged(object sender, EventArgs e)
         {
-            lstSeller.Items.Clear();
 
-            List<SellerModel> list;
+            lstSeller.Items.Clear();
+            List<SellerModel> sellers;
             string msg;
-            if (_sellerManager.Search(txtSearchSeller.Text.Trim(), out list, out msg))
+            if (_sellerManager.Search(txtSearchSeller.Text.Trim(), out sellers, out msg))
             {
-                foreach (var s in list)
+                foreach (var s in sellers)
                 {
                     var it = new ListViewItem(s.SellerID);
                     it.SubItems.Add(s.SellerName);
@@ -313,11 +383,6 @@ namespace MainProject.Forms
                     lstSeller.Items.Add(it);
                 }
             }
-            else
-            {
-                // نمایش پیام اختیاری
-                // MessageBox.Show(msg);
-            }
         }
         private void LoadAccountLabels(string acid)
         {
@@ -325,7 +390,7 @@ namespace MainProject.Forms
             {
                 txtShabaNumb.Text = "";
                 txtCardNumb.Text = "";
-                txtBanks.Text = "";
+                cmbBank.Text = "";
                 return;
             }
 
@@ -338,20 +403,20 @@ namespace MainProject.Forms
                 {
                     txtShabaNumb.Text = string.IsNullOrWhiteSpace(acc.ACshabaNumber) ? "" : acc.ACshabaNumber;
                     txtCardNumb.Text = string.IsNullOrWhiteSpace(acc.ACCardNumber) ? "" : acc.ACCardNumber;
-                    txtBanks.Text = string.IsNullOrWhiteSpace(acc.ACBank) ? "" : acc.ACBank;
+                    cmbBank.Text = string.IsNullOrWhiteSpace(acc.ACBank) ? "" : acc.ACBank;
                 }
                 else
                 {
                     txtShabaNumb.Text = "";
                     txtCardNumb.Text = "";
-                    txtBanks.Text = "";
+                    cmbBank.Text = "";
                 }
             }
             catch
             {
                 txtShabaNumb.Text = "";
                 txtCardNumb.Text = "";
-                txtBanks.Text = "";
+                cmbBank.Text = "";
             }
         }
 

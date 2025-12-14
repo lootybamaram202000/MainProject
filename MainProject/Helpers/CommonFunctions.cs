@@ -28,6 +28,11 @@ namespace MainProject.Helpers
             }
         }
 
+        public static bool IsAllDigits(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.All(char.IsDigit);
+        }
+
         public static void FormatTextBoxAsThousandSeparated(TextBox txt)
         {
             if (string.IsNullOrWhiteSpace(txt.Text)) return;

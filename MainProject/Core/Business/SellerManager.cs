@@ -8,93 +8,53 @@ namespace MainProject.Business
 {
     public class SellerManager
     {
-        private readonly SellerDAL _dal = new SellerDAL();
-        
-
-        public bool InsertSeller(SellerModel model, string userID, string date, DateTime dateValue, int dateDig, out string message)
-        {
-            // اعتبارسنجی‌های سبک سمت فرم/منیجر
-            if (model == null)
-            {
-                message = "مدل فروشنده معتبر نیست.";
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(model.SellerName))
-            {
-                message = "نام فروشنده الزامی است.";
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(model.CompanyName))
-            {
-                message = "نام شرکت الزامی است.";
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(model.Phone))
-            {
-                message = "شماره تماس الزامی است.";
-                return false;
-            }
-
-            // Balance نمایشی؛ اگر چیزی نیامده صفر می‌گذاریم
-            message = string.Empty;
-            return _dal.InsertSeller(model, userID, date, dateValue, dateDig, out message);
-        }
-
-        public bool UpdateSeller(SellerModel model, string userID, string date, DateTime dateValue, int dateDig, out string message)
-        {
-            if (model == null || string.IsNullOrWhiteSpace(model.SellerID))
-            {
-                message = "شناسه فروشنده نامعتبر است.";
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(model.SellerName))
-            {
-                message = "نام فروشنده الزامی است.";
-                return false;
-            }
-            if (string.IsNullOrWhiteSpace(model.CompanyName))
-            {
-                message = "نام شرکت الزامی است.";
-                return false;
-            }
-
-            message = string.Empty;
-            return _dal.UpdateSeller(model, userID, date, dateValue, dateDig, out message);
-        }
-
-        public bool DeleteSeller(string sellerID, string userID, string date, DateTime dateValue, int dateDig, out string message)
-        {
-            if (string.IsNullOrWhiteSpace(sellerID))
-            {
-                message = "شناسه فروشنده نامعتبر است.";
-                return false;
-            }
-            return _dal.DeleteSeller(sellerID, userID, date, dateValue, dateDig, out message);
-        }
+        private readonly SellerDAL dal = new SellerDAL();
 
         public bool GetAllSellers(out List<SellerModel> sellers, out string message)
         {
-            return _dal.GetAllSellers(out sellers, out message);
+            return dal.GetAllSellers(out sellers, out message);
         }
 
         public bool Search(string text, out List<SellerModel> sellers, out string message)
         {
-            return _dal.Search(text ?? string.Empty, out sellers, out message);
-        }
-        public List<SellerModel> GetAllSellers()
-        {
-            List<SellerModel> sellers;
-            string msg;
-            _dal.GetAllSellers(out sellers, out msg);
-            return sellers ?? new List<SellerModel>();
+            return dal.Search(text ?? string.Empty, out sellers, out message);
         }
 
-        public List<SellerModel> SearchSellers(string text)
+        public bool InsertSellerAndAccount(SellerModel model, string userID, string date, DateTime dateValue, int dateDig, out string message)
         {
-            List<SellerModel> sellers;
-            string msg;
-            _dal.Search(text ?? string.Empty, out sellers, out msg);
-            return sellers ?? new List<SellerModel>();
+            if (model == null || model.Account == null)
+            {
+                message = "اطلاعات فروشنده یا حساب وارد نشده است.";
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(model.SellerName) || string.IsNullOrWhiteSpace(model.CompanyName))
+            {
+                message = "نام فروشنده یا شرکت وارد نشده است.";
+                return false;
+            }
+            return dal.InsertSellerAndAccount(model, userID, date, dateValue, dateDig, out message);
+        }
+
+        public bool UpdateSellerAndAccount(SellerModel model, string userID, string date, DateTime dateValue, int dateDig, out string message)
+        {
+            if (model == null || model.Account == null || string.IsNullOrWhiteSpace(model.SellerID))
+            {
+                message = "اطلاعات فروشنده یا حساب ناقص.";
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(model.SellerName) || string.IsNullOrWhiteSpace(model.CompanyName))
+            {
+                message = "نام فروشنده یا شرکت وارد نشده است.";
+                return false;
+            }
+            return dal.UpdateSellerAndAccount(model, userID, date, dateValue, dateDig, out message);
+        }
+
+        public bool DeleteSeller(string sellerID, string userID, string date, DateTime dateValue, int dateDig, out string message)
+        {
+            return dal.DeleteSeller(sellerID, userID, date, dateValue, dateDig, out message);
         }
     }
+
+
 }

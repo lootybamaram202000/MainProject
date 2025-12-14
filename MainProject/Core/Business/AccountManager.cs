@@ -22,6 +22,13 @@ namespace MainProject.Core.Business
             return _dal.SearchAccounts(searchText, peridPrefix);
         }
 
+
+        public bool InsertAccount(AccountModel account, string userID, string date, DateTime dateValue, int dateDig)
+        {
+            return _dal.InsertAccount(account, userID, date, dateValue, dateDig);
+        }
+
+
         public bool UpdateAccount(AccountModel account, string userID, string date, DateTime dateValue, int dateDig)
         {
             return _dal.UpdateAccount(account, userID, date, dateValue, dateDig);

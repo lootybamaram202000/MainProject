@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using MainProject.Entities;
+using System.Windows.Forms;
 
 namespace MainProject.DataAccess
 {
@@ -149,6 +150,47 @@ namespace MainProject.DataAccess
                 return rows > 0;
             }
         }
+
+
+
+        public bool InsertAccount(AccountModel account, string userID, string date, DateTime dateValue, int dateDig)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand("sp_InsertAccount", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@ACID", account.ACID);
+                    cmd.Parameters.AddWithValue("@PERID", account.PERID ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ACOwner", account.ACOwner ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ACshabaNumber", account.ACshabaNumber ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ACCardNumber", account.ACCardNumber ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ACNumber", account.ACNumber ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ACBank", account.ACBank ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@ACType", account.ACType ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@isActive", account.isActive);
+                    cmd.Parameters.AddWithValue("@isDeleted", account.isDeleted);
+                    cmd.Parameters.AddWithValue("@isPayer", account.isPayer);
+                    cmd.Parameters.AddWithValue("@USERID", userID);
+                    cmd.Parameters.AddWithValue("@DATE", date);
+                    cmd.Parameters.AddWithValue("@DateValue", dateValue);
+                    cmd.Parameters.AddWithValue("@DATEDIG", dateDig);
+
+                    con.Open();
+                    int rows = cmd.ExecuteNonQuery();
+                    return rows > 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Database error (Account Insert): " + ex.Message);
+                return false;
+            }
+        }
+
+
+
     }
 }
-
