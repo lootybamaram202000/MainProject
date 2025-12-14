@@ -431,7 +431,10 @@ namespace MainProject
             // عملکرد موردنظر بعداً نوشته می‌شود
         }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
     }
 
 }
