@@ -320,7 +320,7 @@ namespace MainProject
             unitFRM.ShowDialog();
         }
 
-        private void امورقسمتهاToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DefineSectionsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DefineSectionsFRM sectionsFRM = new DefineSectionsFRM();
             sectionsFRM.ShowDialog();
@@ -408,7 +408,7 @@ namespace MainProject
             dailySellsFRM.ShowDialog();
         }
 
-        private void دستهبندیهاوگروهبندیهاToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CategoriesAndGroupsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             InfoEditorForm infoEditorForm = new InfoEditorForm();
             infoEditorForm.ShowDialog();
