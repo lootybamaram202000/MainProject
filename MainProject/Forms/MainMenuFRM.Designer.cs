@@ -61,35 +61,35 @@
             this.PreparationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ItemReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.WarehouseReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.گزارشاتفروشدورهایToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.گرارشاتفروشروزانهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.گزارشاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ثبتاموالازردهخارجشدهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ثبتاموالخریداریشدهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.اموالToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.فرToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PeriodSalesReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DailySalesReportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ReportsMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegisterDisposedAssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegisterPurchasedAssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AssetsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DailySalesMenuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.lblCurentDate = new System.Windows.Forms.Label();
             this.lblSystemDate = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.هزینههاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ثبتوویرایشرسپیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.امورآیتمهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفآیتمفروشجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفآیتمفروشجدیدToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ثبتوویرایشرسپیToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.خروجیفایلاکسلفاکتورهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.انباردپوToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.انبارمرکزیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.انبارداریToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.صدورفاکToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.وروددستیاطلاعاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ورودفایلاکسلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ثبتفروشروزانهToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExpensesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SubmitAndEditRecipeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefinePreparationItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefinePreparationItemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ItemManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineSalesItemsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineSalesItemsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.SubmitAndEditRecipeToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ExportExcelInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WarehouseCirculationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CentralWarehouseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.WarehouseManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.IssueSalesInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ManualDataEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImportExcelFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegisterDailySalesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label9 = new System.Windows.Forms.Label();
             this.LinklblPending = new System.Windows.Forms.LinkLabel();
             this.label7 = new System.Windows.Forms.Label();
@@ -97,26 +97,26 @@
             this.lblCurentUser = new System.Windows.Forms.Label();
             this.LinklblNotifications = new System.Windows.Forms.LinkLabel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.حسابداریToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.خریدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ثبتفاکتورخریدToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ورودفایلفاکتورهایخریدToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.امورپرسنلیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفپرسنلToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.فیشحقوقیToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تسهیلاتToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.امورحسابداریToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.محاسباتسربارToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.حسابهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.امورکالاهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفکالایجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفکالایجدیدToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفواحداندازهگیریToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفمشتریجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفمشتریجدیدToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.تعریفحسابجدیدToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.ویرایشاطلاعاتمشتریهاToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AccountingMainToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PurchaseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.RegisterPurchaseInvoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ImportPurchaseInvoicesFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditAndRegisterReturnInvoicesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PersonnelManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefinePersonnelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.SalarySlipToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FacilitiesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.FinancialAccountingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OverheadCalculationsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.AccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ProductManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineProductsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineProductToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineUnitOfMeasureToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineCustomerToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.DefineAccountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.EditCustomerInfoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbcNotification = new System.Windows.Forms.TabControl();
             this.tbpNotifications = new System.Windows.Forms.TabPage();
             this.dgvNotifications = new System.Windows.Forms.DataGridView();
@@ -340,57 +340,57 @@
             this.WarehouseReportsToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
             this.WarehouseReportsToolStripMenuItem.Text = "گزارشات انبار";
             // 
-            // گزارشاتفروشدورهایToolStripMenuItem
+            // PeriodSalesReportsToolStripMenuItem
             // 
-            this.گزارشاتفروشدورهایToolStripMenuItem.Name = "گزارشاتفروشدورهایToolStripMenuItem";
-            this.گزارشاتفروشدورهایToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.گزارشاتفروشدورهایToolStripMenuItem.Text = "گزارشات فروش دوره ای";
+            this.PeriodSalesReportsToolStripMenuItem.Name = "PeriodSalesReportsToolStripMenuItem";
+            this.PeriodSalesReportsToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.PeriodSalesReportsToolStripMenuItem.Text = "گزارشات فروش دوره ای";
             // 
-            // گرارشاتفروشروزانهToolStripMenuItem
+            // DailySalesReportsToolStripMenuItem
             // 
-            this.گرارشاتفروشروزانهToolStripMenuItem.Name = "گرارشاتفروشروزانهToolStripMenuItem";
-            this.گرارشاتفروشروزانهToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
-            this.گرارشاتفروشروزانهToolStripMenuItem.Text = "گرارشات فروش روزانه";
+            this.DailySalesReportsToolStripMenuItem.Name = "DailySalesReportsToolStripMenuItem";
+            this.DailySalesReportsToolStripMenuItem.Size = new System.Drawing.Size(240, 26);
+            this.DailySalesReportsToolStripMenuItem.Text = "گرارشات فروش روزانه";
             // 
-            // گزارشاتToolStripMenuItem
+            // ReportsMainToolStripMenuItem
             // 
-            this.گزارشاتToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.گرارشاتفروشروزانهToolStripMenuItem,
-            this.گزارشاتفروشدورهایToolStripMenuItem,
+            this.ReportsMainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DailySalesReportsToolStripMenuItem,
+            this.PeriodSalesReportsToolStripMenuItem,
             this.WarehouseReportsToolStripMenuItem,
             this.ItemReportsToolStripMenuItem,
             this.ProductReportsToolStripMenuItem,
             this.AccountingReportsToolStripMenuItem});
-            this.گزارشاتToolStripMenuItem.Name = "گزارشاتToolStripMenuItem";
-            this.گزارشاتToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
-            this.گزارشاتToolStripMenuItem.Text = "گزارشات";
+            this.ReportsMainToolStripMenuItem.Name = "ReportsMainToolStripMenuItem";
+            this.ReportsMainToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.ReportsMainToolStripMenuItem.Text = "گزارشات";
             // 
-            // ثبتاموالازردهخارجشدهToolStripMenuItem
+            // RegisterDisposedAssetsToolStripMenuItem
             // 
-            this.ثبتاموالازردهخارجشدهToolStripMenuItem.Name = "ثبتاموالازردهخارجشدهToolStripMenuItem";
-            this.ثبتاموالازردهخارجشدهToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
-            this.ثبتاموالازردهخارجشدهToolStripMenuItem.Text = "ثبت اموال از رده خارج شده";
+            this.RegisterDisposedAssetsToolStripMenuItem.Name = "RegisterDisposedAssetsToolStripMenuItem";
+            this.RegisterDisposedAssetsToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.RegisterDisposedAssetsToolStripMenuItem.Text = "ثبت اموال از رده خارج شده";
             // 
-            // ثبتاموالخریداریشدهToolStripMenuItem
+            // RegisterPurchasedAssetsToolStripMenuItem
             // 
-            this.ثبتاموالخریداریشدهToolStripMenuItem.Name = "ثبتاموالخریداریشدهToolStripMenuItem";
-            this.ثبتاموالخریداریشدهToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
-            this.ثبتاموالخریداریشدهToolStripMenuItem.Text = "ثبت اموال خریداری شده";
+            this.RegisterPurchasedAssetsToolStripMenuItem.Name = "RegisterPurchasedAssetsToolStripMenuItem";
+            this.RegisterPurchasedAssetsToolStripMenuItem.Size = new System.Drawing.Size(260, 26);
+            this.RegisterPurchasedAssetsToolStripMenuItem.Text = "ثبت اموال خریداری شده";
             // 
-            // اموالToolStripMenuItem
+            // AssetsToolStripMenuItem
             // 
-            this.اموالToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ثبتاموالخریداریشدهToolStripMenuItem,
-            this.ثبتاموالازردهخارجشدهToolStripMenuItem});
-            this.اموالToolStripMenuItem.Name = "اموالToolStripMenuItem";
-            this.اموالToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
-            this.اموالToolStripMenuItem.Text = "اموال";
+            this.AssetsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RegisterPurchasedAssetsToolStripMenuItem,
+            this.RegisterDisposedAssetsToolStripMenuItem});
+            this.AssetsToolStripMenuItem.Name = "AssetsToolStripMenuItem";
+            this.AssetsToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.AssetsToolStripMenuItem.Text = "اموال";
             // 
-            // فرToolStripMenuItem
+            // DailySalesMenuToolStripMenuItem
             // 
-            this.فرToolStripMenuItem.Name = "فرToolStripMenuItem";
-            this.فرToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
-            this.فرToolStripMenuItem.Text = "فروش روزانه";
+            this.DailySalesMenuToolStripMenuItem.Name = "DailySalesMenuToolStripMenuItem";
+            this.DailySalesMenuToolStripMenuItem.Size = new System.Drawing.Size(170, 26);
+            this.DailySalesMenuToolStripMenuItem.Text = "فروش روزانه";
             // 
             // label1
             // 
@@ -453,127 +453,127 @@
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // هزینههاToolStripMenuItem
+            // ExpensesToolStripMenuItem
             // 
-            this.هزینههاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.فرToolStripMenuItem,
+            this.ExpensesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DailySalesMenuToolStripMenuItem,
             this.RecordLossesToolStripMenuItem});
-            this.هزینههاToolStripMenuItem.Name = "هزینههاToolStripMenuItem";
-            this.هزینههاToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
-            this.هزینههاToolStripMenuItem.Text = "هزینه‌ها";
+            this.ExpensesToolStripMenuItem.Name = "ExpensesToolStripMenuItem";
+            this.ExpensesToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.ExpensesToolStripMenuItem.Text = "هزینه‌ها";
             // 
-            // ثبتوویرایشرسپیToolStripMenuItem
+            // SubmitAndEditRecipeToolStripMenuItem
             // 
-            this.ثبتوویرایشرسپیToolStripMenuItem.Name = "ثبتوویرایشرسپیToolStripMenuItem";
-            this.ثبتوویرایشرسپیToolStripMenuItem.Size = new System.Drawing.Size(296, 26);
-            this.ثبتوویرایشرسپیToolStripMenuItem.Text = "ثبت و ویرایش رسپی";
-            this.ثبتوویرایشرسپیToolStripMenuItem.Click += new System.EventHandler(this.ثبتوویرایشرسپیToolStripMenuItem_Click);
+            this.SubmitAndEditRecipeToolStripMenuItem.Name = "SubmitAndEditRecipeToolStripMenuItem";
+            this.SubmitAndEditRecipeToolStripMenuItem.Size = new System.Drawing.Size(296, 26);
+            this.SubmitAndEditRecipeToolStripMenuItem.Text = "ثبت و ویرایش رسپی";
+            this.SubmitAndEditRecipeToolStripMenuItem.Click += new System.EventHandler(this.SubmitAndEditRecipeToolStripMenuItem_Click);
             // 
-            // تعریفآیتمآمادهسازیجدیدToolStripMenuItem
+            // DefinePreparationItemsToolStripMenuItem
             // 
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1,
-            this.ثبتوویرایشرسپیToolStripMenuItem});
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem.Name = "تعریفآیتمآمادهسازیجدیدToolStripMenuItem";
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem.Text = "آیتم های آماده سازی";
+            this.DefinePreparationItemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefinePreparationItemsToolStripMenuItem1,
+            this.SubmitAndEditRecipeToolStripMenuItem});
+            this.DefinePreparationItemsToolStripMenuItem.Name = "DefinePreparationItemsToolStripMenuItem";
+            this.DefinePreparationItemsToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.DefinePreparationItemsToolStripMenuItem.Text = "آیتم های آماده سازی";
             // 
-            // تعریفآیتمآمادهسازیجدیدToolStripMenuItem1
+            // DefinePreparationItemsToolStripMenuItem1
             // 
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1.Name = "تعریفآیتمآمادهسازیجدیدToolStripMenuItem1";
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1.Size = new System.Drawing.Size(296, 26);
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1.Text = "تعریف و ویرایش  آیتم آماده‌سازی";
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1.Click += new System.EventHandler(this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1_Click);
+            this.DefinePreparationItemsToolStripMenuItem1.Name = "DefinePreparationItemsToolStripMenuItem1";
+            this.DefinePreparationItemsToolStripMenuItem1.Size = new System.Drawing.Size(296, 26);
+            this.DefinePreparationItemsToolStripMenuItem1.Text = "تعریف و ویرایش  آیتم آماده‌سازی";
+            this.DefinePreparationItemsToolStripMenuItem1.Click += new System.EventHandler(this.DefinePreparationItemsToolStripMenuItem1_Click);
             // 
-            // امورآیتمهاToolStripMenuItem
+            // ItemManagementToolStripMenuItem
             // 
-            this.امورآیتمهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem,
-            this.تعریفآیتمفروشجدیدToolStripMenuItem});
-            this.امورآیتمهاToolStripMenuItem.Name = "امورآیتمهاToolStripMenuItem";
-            this.امورآیتمهاToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
-            this.امورآیتمهاToolStripMenuItem.Text = "امور آیتم‌ها";
+            this.ItemManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefinePreparationItemsToolStripMenuItem,
+            this.DefineSalesItemsToolStripMenuItem});
+            this.ItemManagementToolStripMenuItem.Name = "ItemManagementToolStripMenuItem";
+            this.ItemManagementToolStripMenuItem.Size = new System.Drawing.Size(91, 24);
+            this.ItemManagementToolStripMenuItem.Text = "امور آیتم‌ها";
             // 
-            // تعریفآیتمفروشجدیدToolStripMenuItem
+            // DefineSalesItemsToolStripMenuItem
             // 
-            this.تعریفآیتمفروشجدیدToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفآیتمفروشجدیدToolStripMenuItem1,
-            this.ثبتوویرایشرسپیToolStripMenuItem1});
-            this.تعریفآیتمفروشجدیدToolStripMenuItem.Name = "تعریفآیتمفروشجدیدToolStripMenuItem";
-            this.تعریفآیتمفروشجدیدToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
-            this.تعریفآیتمفروشجدیدToolStripMenuItem.Text = "آیتم های فروش";
+            this.DefineSalesItemsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefineSalesItemsToolStripMenuItem1,
+            this.SubmitAndEditRecipeToolStripMenuItem1});
+            this.DefineSalesItemsToolStripMenuItem.Name = "DefineSalesItemsToolStripMenuItem";
+            this.DefineSalesItemsToolStripMenuItem.Size = new System.Drawing.Size(218, 26);
+            this.DefineSalesItemsToolStripMenuItem.Text = "آیتم های فروش";
             // 
-            // تعریفآیتمفروشجدیدToolStripMenuItem1
+            // DefineSalesItemsToolStripMenuItem1
             // 
-            this.تعریفآیتمفروشجدیدToolStripMenuItem1.Name = "تعریفآیتمفروشجدیدToolStripMenuItem1";
-            this.تعریفآیتمفروشجدیدToolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
-            this.تعریفآیتمفروشجدیدToolStripMenuItem1.Text = "تعریف و ویرایش آیتم فروش";
-            this.تعریفآیتمفروشجدیدToolStripMenuItem1.Click += new System.EventHandler(this.تعریفآیتمفروشجدیدToolStripMenuItem1_Click);
+            this.DefineSalesItemsToolStripMenuItem1.Name = "DefineSalesItemsToolStripMenuItem1";
+            this.DefineSalesItemsToolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
+            this.DefineSalesItemsToolStripMenuItem1.Text = "تعریف و ویرایش آیتم فروش";
+            this.DefineSalesItemsToolStripMenuItem1.Click += new System.EventHandler(this.DefineSalesItemsToolStripMenuItem1_Click);
             // 
-            // ثبتوویرایشرسپیToolStripMenuItem1
+            // SubmitAndEditRecipeToolStripMenuItem1
             // 
-            this.ثبتوویرایشرسپیToolStripMenuItem1.Name = "ثبتوویرایشرسپیToolStripMenuItem1";
-            this.ثبتوویرایشرسپیToolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
-            this.ثبتوویرایشرسپیToolStripMenuItem1.Text = "ثبت و ویرایش رسپی";
-            this.ثبتوویرایشرسپیToolStripMenuItem1.Click += new System.EventHandler(this.ثبتوویرایشرسپیToolStripMenuItem1_Click);
+            this.SubmitAndEditRecipeToolStripMenuItem1.Name = "SubmitAndEditRecipeToolStripMenuItem1";
+            this.SubmitAndEditRecipeToolStripMenuItem1.Size = new System.Drawing.Size(265, 26);
+            this.SubmitAndEditRecipeToolStripMenuItem1.Text = "ثبت و ویرایش رسپی";
+            this.SubmitAndEditRecipeToolStripMenuItem1.Click += new System.EventHandler(this.SubmitAndEditRecipeToolStripMenuItem1_Click);
             // 
-            // خروجیفایلاکسلفاکتورهاToolStripMenuItem
+            // ExportExcelInvoicesToolStripMenuItem
             // 
-            this.خروجیفایلاکسلفاکتورهاToolStripMenuItem.Name = "خروجیفایلاکسلفاکتورهاToolStripMenuItem";
-            this.خروجیفایلاکسلفاکتورهاToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
-            this.خروجیفایلاکسلفاکتورهاToolStripMenuItem.Text = "خروجی فایل اکسل فاکتور‌‌ها";
+            this.ExportExcelInvoicesToolStripMenuItem.Name = "ExportExcelInvoicesToolStripMenuItem";
+            this.ExportExcelInvoicesToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
+            this.ExportExcelInvoicesToolStripMenuItem.Text = "خروجی فایل اکسل فاکتور‌‌ها";
             // 
-            // انباردپوToolStripMenuItem
+            // WarehouseCirculationToolStripMenuItem
             // 
-            this.انباردپوToolStripMenuItem.Name = "انباردپوToolStripMenuItem";
-            this.انباردپوToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
-            this.انباردپوToolStripMenuItem.Text = "انبار گردانی";
+            this.WarehouseCirculationToolStripMenuItem.Name = "WarehouseCirculationToolStripMenuItem";
+            this.WarehouseCirculationToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
+            this.WarehouseCirculationToolStripMenuItem.Text = "انبار گردانی";
             // 
-            // انبارمرکزیToolStripMenuItem
+            // CentralWarehouseToolStripMenuItem
             // 
-            this.انبارمرکزیToolStripMenuItem.Name = "انبارمرکزیToolStripMenuItem";
-            this.انبارمرکزیToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
-            this.انبارمرکزیToolStripMenuItem.Text = "انبارها";
-            this.انبارمرکزیToolStripMenuItem.Click += new System.EventHandler(this.انبارمرکزیToolStripMenuItem_Click);
+            this.CentralWarehouseToolStripMenuItem.Name = "CentralWarehouseToolStripMenuItem";
+            this.CentralWarehouseToolStripMenuItem.Size = new System.Drawing.Size(263, 26);
+            this.CentralWarehouseToolStripMenuItem.Text = "انبارها";
+            this.CentralWarehouseToolStripMenuItem.Click += new System.EventHandler(this.CentralWarehouseToolStripMenuItem_Click);
             // 
-            // انبارداریToolStripMenuItem
+            // WarehouseManagementToolStripMenuItem
             // 
-            this.انبارداریToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.انبارمرکزیToolStripMenuItem,
-            this.انباردپوToolStripMenuItem,
-            this.خروجیفایلاکسلفاکتورهاToolStripMenuItem});
-            this.انبارداریToolStripMenuItem.Name = "انبارداریToolStripMenuItem";
-            this.انبارداریToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.انبارداریToolStripMenuItem.Text = "انبارداری";
+            this.WarehouseManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CentralWarehouseToolStripMenuItem,
+            this.WarehouseCirculationToolStripMenuItem,
+            this.ExportExcelInvoicesToolStripMenuItem});
+            this.WarehouseManagementToolStripMenuItem.Name = "WarehouseManagementToolStripMenuItem";
+            this.WarehouseManagementToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.WarehouseManagementToolStripMenuItem.Text = "انبارداری";
             // 
-            // صدورفاکToolStripMenuItem
+            // IssueSalesInvoiceToolStripMenuItem
             // 
-            this.صدورفاکToolStripMenuItem.Name = "صدورفاکToolStripMenuItem";
-            this.صدورفاکToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
-            this.صدورفاکToolStripMenuItem.Text = "ثبت فاکتور فروش";
-            this.صدورفاکToolStripMenuItem.Click += new System.EventHandler(this.صدورفاکToolStripMenuItem_Click);
+            this.IssueSalesInvoiceToolStripMenuItem.Name = "IssueSalesInvoiceToolStripMenuItem";
+            this.IssueSalesInvoiceToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.IssueSalesInvoiceToolStripMenuItem.Text = "ثبت فاکتور فروش";
+            this.IssueSalesInvoiceToolStripMenuItem.Click += new System.EventHandler(this.IssueSalesInvoiceToolStripMenuItem_Click);
             // 
-            // وروددستیاطلاعاتToolStripMenuItem
+            // ManualDataEntryToolStripMenuItem
             // 
-            this.وروددستیاطلاعاتToolStripMenuItem.Name = "وروددستیاطلاعاتToolStripMenuItem";
-            this.وروددستیاطلاعاتToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
-            this.وروددستیاطلاعاتToolStripMenuItem.Text = "ورود دستی اطلاعات";
+            this.ManualDataEntryToolStripMenuItem.Name = "ManualDataEntryToolStripMenuItem";
+            this.ManualDataEntryToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.ManualDataEntryToolStripMenuItem.Text = "ورود دستی اطلاعات";
             // 
-            // ورودفایلاکسلToolStripMenuItem
+            // ImportExcelFileToolStripMenuItem
             // 
-            this.ورودفایلاکسلToolStripMenuItem.Name = "ورودفایلاکسلToolStripMenuItem";
-            this.ورودفایلاکسلToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
-            this.ورودفایلاکسلToolStripMenuItem.Text = "ورود فایل اکسل";
+            this.ImportExcelFileToolStripMenuItem.Name = "ImportExcelFileToolStripMenuItem";
+            this.ImportExcelFileToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
+            this.ImportExcelFileToolStripMenuItem.Text = "ورود فایل اکسل";
             // 
-            // ثبتفروشروزانهToolStripMenuItem
+            // RegisterDailySalesToolStripMenuItem
             // 
-            this.ثبتفروشروزانهToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ورودفایلاکسلToolStripMenuItem,
-            this.وروددستیاطلاعاتToolStripMenuItem,
-            this.صدورفاکToolStripMenuItem});
-            this.ثبتفروشروزانهToolStripMenuItem.Name = "ثبتفروشروزانهToolStripMenuItem";
-            this.ثبتفروشروزانهToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
-            this.ثبتفروشروزانهToolStripMenuItem.Text = "ثبت فروش روزانه";
+            this.RegisterDailySalesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ImportExcelFileToolStripMenuItem,
+            this.ManualDataEntryToolStripMenuItem,
+            this.IssueSalesInvoiceToolStripMenuItem});
+            this.RegisterDailySalesToolStripMenuItem.Name = "RegisterDailySalesToolStripMenuItem";
+            this.RegisterDailySalesToolStripMenuItem.Size = new System.Drawing.Size(129, 24);
+            this.RegisterDailySalesToolStripMenuItem.Text = "ثبت فروش روزانه";
             // 
             // label9
             // 
@@ -654,12 +654,12 @@
             // 
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ثبتفروشروزانهToolStripMenuItem,
-            this.حسابداریToolStripMenuItem,
-            this.انبارداریToolStripMenuItem,
-            this.امورآیتمهاToolStripMenuItem,
-            this.امورکالاهاToolStripMenuItem,
-            this.گزارشاتToolStripMenuItem,
+            this.RegisterDailySalesToolStripMenuItem,
+            this.AccountingMainToolStripMenuItem,
+            this.WarehouseManagementToolStripMenuItem,
+            this.ItemManagementToolStripMenuItem,
+            this.ProductManagementToolStripMenuItem,
+            this.ReportsMainToolStripMenuItem,
             this.SystemManagementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -669,160 +669,160 @@
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
-            // حسابداریToolStripMenuItem
+            // AccountingMainToolStripMenuItem
             // 
-            this.حسابداریToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.خریدToolStripMenuItem,
-            this.امورپرسنلیToolStripMenuItem,
-            this.امورحسابداریToolStripMenuItem,
-            this.حسابهاToolStripMenuItem});
-            this.حسابداریToolStripMenuItem.Name = "حسابداریToolStripMenuItem";
-            this.حسابداریToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
-            this.حسابداریToolStripMenuItem.Text = "حسابداری";
+            this.AccountingMainToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.PurchaseToolStripMenuItem,
+            this.PersonnelManagementToolStripMenuItem,
+            this.FinancialAccountingToolStripMenuItem,
+            this.AccountsToolStripMenuItem});
+            this.AccountingMainToolStripMenuItem.Name = "AccountingMainToolStripMenuItem";
+            this.AccountingMainToolStripMenuItem.Size = new System.Drawing.Size(82, 24);
+            this.AccountingMainToolStripMenuItem.Text = "حسابداری";
             // 
-            // خریدToolStripMenuItem
+            // PurchaseToolStripMenuItem
             // 
-            this.خریدToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.ثبتفاکتورخریدToolStripMenuItem2,
-            this.ورودفایلفاکتورهایخریدToolStripMenuItem2,
-            this.اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem});
-            this.خریدToolStripMenuItem.Name = "خریدToolStripMenuItem";
-            this.خریدToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.خریدToolStripMenuItem.Text = "خرید";
+            this.PurchaseToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.RegisterPurchaseInvoiceToolStripMenuItem,
+            this.ImportPurchaseInvoicesFileToolStripMenuItem,
+            this.EditAndRegisterReturnInvoicesToolStripMenuItem});
+            this.PurchaseToolStripMenuItem.Name = "PurchaseToolStripMenuItem";
+            this.PurchaseToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.PurchaseToolStripMenuItem.Text = "خرید";
             // 
-            // ثبتفاکتورخریدToolStripMenuItem2
+            // RegisterPurchaseInvoiceToolStripMenuItem
             // 
-            this.ثبتفاکتورخریدToolStripMenuItem2.Name = "ثبتفاکتورخریدToolStripMenuItem2";
-            this.ثبتفاکتورخریدToolStripMenuItem2.Size = new System.Drawing.Size(283, 26);
-            this.ثبتفاکتورخریدToolStripMenuItem2.Text = "ثبت فاکتور خرید";
-            this.ثبتفاکتورخریدToolStripMenuItem2.Click += new System.EventHandler(this.ثبتفاکتورخریدToolStripMenuItem2_Click);
+            this.RegisterPurchaseInvoiceToolStripMenuItem.Name = "RegisterPurchaseInvoiceToolStripMenuItem";
+            this.RegisterPurchaseInvoiceToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.RegisterPurchaseInvoiceToolStripMenuItem.Text = "ثبت فاکتور خرید";
+            this.RegisterPurchaseInvoiceToolStripMenuItem.Click += new System.EventHandler(this.RegisterPurchaseInvoiceToolStripMenuItem_Click);
             // 
-            // ورودفایلفاکتورهایخریدToolStripMenuItem2
+            // ImportPurchaseInvoicesFileToolStripMenuItem
             // 
-            this.ورودفایلفاکتورهایخریدToolStripMenuItem2.Name = "ورودفایلفاکتورهایخریدToolStripMenuItem2";
-            this.ورودفایلفاکتورهایخریدToolStripMenuItem2.Size = new System.Drawing.Size(283, 26);
-            this.ورودفایلفاکتورهایخریدToolStripMenuItem2.Text = "ورود فایل فاکتورهای خرید";
+            this.ImportPurchaseInvoicesFileToolStripMenuItem.Name = "ImportPurchaseInvoicesFileToolStripMenuItem";
+            this.ImportPurchaseInvoicesFileToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.ImportPurchaseInvoicesFileToolStripMenuItem.Text = "ورود فایل فاکتورهای خرید";
             // 
-            // اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem
+            // EditAndRegisterReturnInvoicesToolStripMenuItem
             // 
-            this.اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem.Name = "اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem";
-            this.اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
-            this.اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem.Text = "اصلاح و ثبت مرجوعی‌ فاکتورها";
+            this.EditAndRegisterReturnInvoicesToolStripMenuItem.Name = "EditAndRegisterReturnInvoicesToolStripMenuItem";
+            this.EditAndRegisterReturnInvoicesToolStripMenuItem.Size = new System.Drawing.Size(283, 26);
+            this.EditAndRegisterReturnInvoicesToolStripMenuItem.Text = "اصلاح و ثبت مرجوعی‌ فاکتورها";
             // 
-            // امورپرسنلیToolStripMenuItem
+            // PersonnelManagementToolStripMenuItem
             // 
-            this.امورپرسنلیToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفپرسنلToolStripMenuItem,
-            this.فیشحقوقیToolStripMenuItem,
-            this.تسهیلاتToolStripMenuItem});
-            this.امورپرسنلیToolStripMenuItem.Name = "امورپرسنلیToolStripMenuItem";
-            this.امورپرسنلیToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.امورپرسنلیToolStripMenuItem.Text = "امور پرسنلی";
+            this.PersonnelManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefinePersonnelToolStripMenuItem,
+            this.SalarySlipToolStripMenuItem,
+            this.FacilitiesToolStripMenuItem});
+            this.PersonnelManagementToolStripMenuItem.Name = "PersonnelManagementToolStripMenuItem";
+            this.PersonnelManagementToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.PersonnelManagementToolStripMenuItem.Text = "امور پرسنلی";
             // 
-            // تعریفپرسنلToolStripMenuItem
+            // DefinePersonnelToolStripMenuItem
             // 
-            this.تعریفپرسنلToolStripMenuItem.Name = "تعریفپرسنلToolStripMenuItem";
-            this.تعریفپرسنلToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
-            this.تعریفپرسنلToolStripMenuItem.Text = "تعریف پرسنل";
-            this.تعریفپرسنلToolStripMenuItem.Click += new System.EventHandler(this.تعریفپرسنلToolStripMenuItem_Click);
+            this.DefinePersonnelToolStripMenuItem.Name = "DefinePersonnelToolStripMenuItem";
+            this.DefinePersonnelToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.DefinePersonnelToolStripMenuItem.Text = "تعریف پرسنل";
+            this.DefinePersonnelToolStripMenuItem.Click += new System.EventHandler(this.DefinePersonnelToolStripMenuItem_Click);
             // 
-            // فیشحقوقیToolStripMenuItem
+            // SalarySlipToolStripMenuItem
             // 
-            this.فیشحقوقیToolStripMenuItem.Name = "فیشحقوقیToolStripMenuItem";
-            this.فیشحقوقیToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
-            this.فیشحقوقیToolStripMenuItem.Text = "فیش حقوقی";
-            this.فیشحقوقیToolStripMenuItem.Click += new System.EventHandler(this.فیشحقوقیToolStripMenuItem_Click);
+            this.SalarySlipToolStripMenuItem.Name = "SalarySlipToolStripMenuItem";
+            this.SalarySlipToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.SalarySlipToolStripMenuItem.Text = "فیش حقوقی";
+            this.SalarySlipToolStripMenuItem.Click += new System.EventHandler(this.SalarySlipToolStripMenuItem_Click);
             // 
-            // تسهیلاتToolStripMenuItem
+            // FacilitiesToolStripMenuItem
             // 
-            this.تسهیلاتToolStripMenuItem.Name = "تسهیلاتToolStripMenuItem";
-            this.تسهیلاتToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
-            this.تسهیلاتToolStripMenuItem.Text = "تسهیلات";
+            this.FacilitiesToolStripMenuItem.Name = "FacilitiesToolStripMenuItem";
+            this.FacilitiesToolStripMenuItem.Size = new System.Drawing.Size(175, 26);
+            this.FacilitiesToolStripMenuItem.Text = "تسهیلات";
             // 
-            // امورحسابداریToolStripMenuItem
+            // FinancialAccountingToolStripMenuItem
             // 
-            this.امورحسابداریToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.محاسباتسربارToolStripMenuItem,
-            this.هزینههاToolStripMenuItem,
-            this.اموالToolStripMenuItem});
-            this.امورحسابداریToolStripMenuItem.Name = "امورحسابداریToolStripMenuItem";
-            this.امورحسابداریToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.امورحسابداریToolStripMenuItem.Text = "امور مالی و حسابداری";
+            this.FinancialAccountingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.OverheadCalculationsToolStripMenuItem,
+            this.ExpensesToolStripMenuItem,
+            this.AssetsToolStripMenuItem});
+            this.FinancialAccountingToolStripMenuItem.Name = "FinancialAccountingToolStripMenuItem";
+            this.FinancialAccountingToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.FinancialAccountingToolStripMenuItem.Text = "امور مالی و حسابداری";
             // 
-            // محاسباتسربارToolStripMenuItem
+            // OverheadCalculationsToolStripMenuItem
             // 
-            this.محاسباتسربارToolStripMenuItem.Name = "محاسباتسربارToolStripMenuItem";
-            this.محاسباتسربارToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
-            this.محاسباتسربارToolStripMenuItem.Text = "محاسبات سربار";
-            this.محاسباتسربارToolStripMenuItem.Click += new System.EventHandler(this.محاسباتسربارToolStripMenuItem_Click);
+            this.OverheadCalculationsToolStripMenuItem.Name = "OverheadCalculationsToolStripMenuItem";
+            this.OverheadCalculationsToolStripMenuItem.Size = new System.Drawing.Size(186, 26);
+            this.OverheadCalculationsToolStripMenuItem.Text = "محاسبات سربار";
+            this.OverheadCalculationsToolStripMenuItem.Click += new System.EventHandler(this.OverheadCalculationsToolStripMenuItem_Click);
             // 
-            // حسابهاToolStripMenuItem
+            // AccountsToolStripMenuItem
             // 
-            this.حسابهاToolStripMenuItem.Name = "حسابهاToolStripMenuItem";
-            this.حسابهاToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
-            this.حسابهاToolStripMenuItem.Text = "حساب ها";
-            this.حسابهاToolStripMenuItem.Click += new System.EventHandler(this.حسابهاToolStripMenuItem_Click);
+            this.AccountsToolStripMenuItem.Name = "AccountsToolStripMenuItem";
+            this.AccountsToolStripMenuItem.Size = new System.Drawing.Size(229, 26);
+            this.AccountsToolStripMenuItem.Text = "حساب ها";
+            this.AccountsToolStripMenuItem.Click += new System.EventHandler(this.AccountsToolStripMenuItem_Click);
             // 
-            // امورکالاهاToolStripMenuItem
+            // ProductManagementToolStripMenuItem
             // 
-            this.امورکالاهاToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفکالایجدیدToolStripMenuItem,
-            this.تعریفمشتریجدیدToolStripMenuItem});
-            this.امورکالاهاToolStripMenuItem.Name = "امورکالاهاToolStripMenuItem";
-            this.امورکالاهاToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
-            this.امورکالاهاToolStripMenuItem.Text = "امور کالاها";
+            this.ProductManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefineProductsToolStripMenuItem,
+            this.DefineCustomersToolStripMenuItem});
+            this.ProductManagementToolStripMenuItem.Name = "ProductManagementToolStripMenuItem";
+            this.ProductManagementToolStripMenuItem.Size = new System.Drawing.Size(89, 24);
+            this.ProductManagementToolStripMenuItem.Text = "امور کالاها";
             // 
-            // تعریفکالایجدیدToolStripMenuItem
+            // DefineProductsToolStripMenuItem
             // 
-            this.تعریفکالایجدیدToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفکالایجدیدToolStripMenuItem1,
-            this.تعریفواحداندازهگیریToolStripMenuItem});
-            this.تعریفکالایجدیدToolStripMenuItem.Name = "تعریفکالایجدیدToolStripMenuItem";
-            this.تعریفکالایجدیدToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
-            this.تعریفکالایجدیدToolStripMenuItem.Text = "کالا ها";
+            this.DefineProductsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefineProductToolStripMenuItem1,
+            this.DefineUnitOfMeasureToolStripMenuItem});
+            this.DefineProductsToolStripMenuItem.Name = "DefineProductsToolStripMenuItem";
+            this.DefineProductsToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.DefineProductsToolStripMenuItem.Text = "کالا ها";
             // 
-            // تعریفکالایجدیدToolStripMenuItem1
+            // DefineProductToolStripMenuItem1
             // 
-            this.تعریفکالایجدیدToolStripMenuItem1.Name = "تعریفکالایجدیدToolStripMenuItem1";
-            this.تعریفکالایجدیدToolStripMenuItem1.Size = new System.Drawing.Size(299, 26);
-            this.تعریفکالایجدیدToolStripMenuItem1.Text = "تعریف و ویرایش کالا";
-            this.تعریفکالایجدیدToolStripMenuItem1.Click += new System.EventHandler(this.تعریفکالایجدیدToolStripMenuItem1_Click);
+            this.DefineProductToolStripMenuItem1.Name = "DefineProductToolStripMenuItem1";
+            this.DefineProductToolStripMenuItem1.Size = new System.Drawing.Size(299, 26);
+            this.DefineProductToolStripMenuItem1.Text = "تعریف و ویرایش کالا";
+            this.DefineProductToolStripMenuItem1.Click += new System.EventHandler(this.DefineProductToolStripMenuItem1_Click);
             // 
-            // تعریفواحداندازهگیریToolStripMenuItem
+            // DefineUnitOfMeasureToolStripMenuItem
             // 
-            this.تعریفواحداندازهگیریToolStripMenuItem.Name = "تعریفواحداندازهگیریToolStripMenuItem";
-            this.تعریفواحداندازهگیریToolStripMenuItem.Size = new System.Drawing.Size(299, 26);
-            this.تعریفواحداندازهگیریToolStripMenuItem.Text = "تعریف  و ویرایش واحد اندازه‌گیری";
-            this.تعریفواحداندازهگیریToolStripMenuItem.Click += new System.EventHandler(this.تعریفواحداندازهگیریToolStripMenuItem_Click);
+            this.DefineUnitOfMeasureToolStripMenuItem.Name = "DefineUnitOfMeasureToolStripMenuItem";
+            this.DefineUnitOfMeasureToolStripMenuItem.Size = new System.Drawing.Size(299, 26);
+            this.DefineUnitOfMeasureToolStripMenuItem.Text = "تعریف  و ویرایش واحد اندازه‌گیری";
+            this.DefineUnitOfMeasureToolStripMenuItem.Click += new System.EventHandler(this.DefineUnitOfMeasureToolStripMenuItem_Click);
             // 
-            // تعریفمشتریجدیدToolStripMenuItem
+            // DefineCustomersToolStripMenuItem
             // 
-            this.تعریفمشتریجدیدToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.تعریفمشتریجدیدToolStripMenuItem1,
-            this.تعریفحسابجدیدToolStripMenuItem,
-            this.ویرایشاطلاعاتمشتریهاToolStripMenuItem});
-            this.تعریفمشتریجدیدToolStripMenuItem.Name = "تعریفمشتریجدیدToolStripMenuItem";
-            this.تعریفمشتریجدیدToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
-            this.تعریفمشتریجدیدToolStripMenuItem.Text = "فروشنده‌ها";
+            this.DefineCustomersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.DefineCustomerToolStripMenuItem1,
+            this.DefineAccountToolStripMenuItem,
+            this.EditCustomerInfoToolStripMenuItem});
+            this.DefineCustomersToolStripMenuItem.Name = "DefineCustomersToolStripMenuItem";
+            this.DefineCustomersToolStripMenuItem.Size = new System.Drawing.Size(161, 26);
+            this.DefineCustomersToolStripMenuItem.Text = "فروشنده‌ها";
             // 
-            // تعریفمشتریجدیدToolStripMenuItem1
+            // DefineCustomerToolStripMenuItem1
             // 
-            this.تعریفمشتریجدیدToolStripMenuItem1.Name = "تعریفمشتریجدیدToolStripMenuItem1";
-            this.تعریفمشتریجدیدToolStripMenuItem1.Size = new System.Drawing.Size(268, 26);
-            this.تعریفمشتریجدیدToolStripMenuItem1.Text = "تعریف فروشنده جدید";
-            this.تعریفمشتریجدیدToolStripMenuItem1.Click += new System.EventHandler(this.تعریفمشتریجدیدToolStripMenuItem1_Click);
+            this.DefineCustomerToolStripMenuItem1.Name = "DefineCustomerToolStripMenuItem1";
+            this.DefineCustomerToolStripMenuItem1.Size = new System.Drawing.Size(268, 26);
+            this.DefineCustomerToolStripMenuItem1.Text = "تعریف فروشنده جدید";
+            this.DefineCustomerToolStripMenuItem1.Click += new System.EventHandler(this.DefineCustomerToolStripMenuItem1_Click);
             // 
-            // تعریفحسابجدیدToolStripMenuItem
+            // DefineAccountToolStripMenuItem
             // 
-            this.تعریفحسابجدیدToolStripMenuItem.Name = "تعریفحسابجدیدToolStripMenuItem";
-            this.تعریفحسابجدیدToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.تعریفحسابجدیدToolStripMenuItem.Text = "تعریف حساب جدید";
+            this.DefineAccountToolStripMenuItem.Name = "DefineAccountToolStripMenuItem";
+            this.DefineAccountToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.DefineAccountToolStripMenuItem.Text = "تعریف حساب جدید";
             // 
-            // ویرایشاطلاعاتمشتریهاToolStripMenuItem
+            // EditCustomerInfoToolStripMenuItem
             // 
-            this.ویرایشاطلاعاتمشتریهاToolStripMenuItem.Name = "ویرایشاطلاعاتمشتریهاToolStripMenuItem";
-            this.ویرایشاطلاعاتمشتریهاToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
-            this.ویرایشاطلاعاتمشتریهاToolStripMenuItem.Text = "ویرایش اطلاعات فروشنده‌ها";
+            this.EditCustomerInfoToolStripMenuItem.Name = "EditCustomerInfoToolStripMenuItem";
+            this.EditCustomerInfoToolStripMenuItem.Size = new System.Drawing.Size(268, 26);
+            this.EditCustomerInfoToolStripMenuItem.Text = "ویرایش اطلاعات فروشنده‌ها";
             // 
             // tbcNotification
             // 
@@ -979,61 +979,61 @@
         private System.Windows.Forms.ToolStripMenuItem PreparationsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem ItemReportsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem WarehouseReportsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem گزارشاتفروشدورهایToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem گرارشاتفروشروزانهToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem گزارشاتToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ثبتاموالازردهخارجشدهToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ثبتاموالخریداریشدهToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem اموالToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem فرToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PeriodSalesReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DailySalesReportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ReportsMainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegisterDisposedAssetsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegisterPurchasedAssetsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AssetsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DailySalesMenuToolStripMenuItem;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblCurentDate;
         private System.Windows.Forms.Label lblSystemDate;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem هزینههاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ثبتوویرایشرسپیToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفآیتمآمادهسازیجدیدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفآیتمآمادهسازیجدیدToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem امورآیتمهاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفآیتمفروشجدیدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفآیتمفروشجدیدToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ثبتوویرایشرسپیToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem خروجیفایلاکسلفاکتورهاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem انباردپوToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem انبارمرکزیToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem انبارداریToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem صدورفاکToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem وروددستیاطلاعاتToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ورودفایلاکسلToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ثبتفروشروزانهToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ExpensesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SubmitAndEditRecipeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefinePreparationItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefinePreparationItemsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ItemManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineSalesItemsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineSalesItemsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem SubmitAndEditRecipeToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ExportExcelInvoicesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem WarehouseCirculationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CentralWarehouseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem WarehouseManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem IssueSalesInvoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ManualDataEntryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportExcelFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegisterDailySalesToolStripMenuItem;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.LinkLabel LinklblPending;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblCurentUser;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem امورکالاهاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفکالایجدیدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفکالایجدیدToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem تعریفواحداندازهگیریToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفمشتریجدیدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفمشتریجدیدToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem تعریفحسابجدیدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ویرایشاطلاعاتمشتریهاToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem حسابداریToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem امورپرسنلیToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تعریفپرسنلToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem فیشحقوقیToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem تسهیلاتToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem امورحسابداریToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem محاسباتسربارToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ProductManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineProductsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineProductToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem DefineUnitOfMeasureToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineCustomersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefineCustomerToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem DefineAccountToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditCustomerInfoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AccountingMainToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PersonnelManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem DefinePersonnelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem SalarySlipToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FacilitiesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem FinancialAccountingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem OverheadCalculationsToolStripMenuItem;
         private System.Windows.Forms.LinkLabel LinklblNotifications;
-        private System.Windows.Forms.ToolStripMenuItem خریدToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem ثبتفاکتورخریدToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem ورودفایلفاکتورهایخریدToolStripMenuItem2;
-        private System.Windows.Forms.ToolStripMenuItem حسابهاToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem PurchaseToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem RegisterPurchaseInvoiceToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ImportPurchaseInvoicesFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem AccountsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem CategoriesAndGroupsToolStripMenuItem;
         private System.Windows.Forms.TabControl tbcNotification;
         private System.Windows.Forms.TabPage tbpNotifications;
@@ -1042,7 +1042,7 @@
         private System.Windows.Forms.DataGridView dgvNotifications;
         private System.Windows.Forms.DataGridView dgvMessages;
         private System.Windows.Forms.DataGridView dgvPending;
-        private System.Windows.Forms.ToolStripMenuItem اصلاحوثبتمرجوعیفاکتورهاToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem EditAndRegisterReturnInvoicesToolStripMenuItem;
     }
 }
 

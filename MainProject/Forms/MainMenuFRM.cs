@@ -314,7 +314,7 @@ namespace MainProject
             }
         }
 
-        private void تعریفواحداندازهگیریToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DefineUnitOfMeasureToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubmitUnitFRM unitFRM = new SubmitUnitFRM();
             unitFRM.ShowDialog();
@@ -326,44 +326,44 @@ namespace MainProject
             sectionsFRM.ShowDialog();
         }
 
-        private void تعریفکالایجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void DefineProductToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SubmitProductFRM productFRM = new SubmitProductFRM();
             productFRM.ShowDialog();
         }
 
-        private void تعریفمشتریجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void DefineCustomerToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SubmitSellerFRM sellerFRM = new SubmitSellerFRM();
             sellerFRM.ShowDialog();
         }
 
-        private void تعریفآیتمآمادهسازیجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void DefinePreparationItemsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             DefineBasicItemsFRM defineBasic = new DefineBasicItemsFRM();
             defineBasic.ShowDialog();
 
         }
 
-        private void ثبتوویرایشرسپیToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SubmitAndEditRecipeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubmitBasicRecipieFRM submitBasicRecipieFRM = new SubmitBasicRecipieFRM();
             submitBasicRecipieFRM.ShowDialog();
         }
 
-        private void تعریفآیتمفروشجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void DefineSalesItemsToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             DefineMenuItemsFRM defineMenuItemsFRM = new DefineMenuItemsFRM();
             defineMenuItemsFRM.ShowDialog();
         }
 
-        private void ثبتوویرایشرسپیToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void SubmitAndEditRecipeToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             SubmitMenuRecipieFRM submitMenuRecipieFRM = new SubmitMenuRecipieFRM();
             submitMenuRecipieFRM.ShowDialog();
         }
 
-        private void ثبتفاکتورخریدToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void RegisterPurchaseInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubmitFactorFRM submitFactorFRM = new SubmitFactorFRM();
             submitFactorFRM.ShowDialog();
@@ -384,25 +384,25 @@ namespace MainProject
 
         }
 
-        private void تعریفپرسنلToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DefinePersonnelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DefineNewPersonalFRM newPersonalFRM = new DefineNewPersonalFRM();
             newPersonalFRM.ShowDialog();
         }
 
-        private void فیشحقوقیToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SalarySlipToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubmitSalarySlipFRM salarySlipFRM = new SubmitSalarySlipFRM();
             salarySlipFRM.ShowDialog();
         }
 
-        private void حسابهاToolStripMenuItem_Click(object sender, EventArgs e)
+        private void AccountsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DefineBankAccountFRM bankAccountFRM = new DefineBankAccountFRM();
             bankAccountFRM.ShowDialog();
         }
 
-        private void صدورفاکToolStripMenuItem_Click(object sender, EventArgs e)
+        private void IssueSalesInvoiceToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SubmitDailySellsFRM dailySellsFRM = new SubmitDailySellsFRM();
             dailySellsFRM.ShowDialog();
@@ -414,13 +414,13 @@ namespace MainProject
             infoEditorForm.ShowDialog();
         }
 
-        private void محاسباتسربارToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OverheadCalculationsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OverHeadFRM overHeadFRM = new OverHeadFRM();
             overHeadFRM.ShowDialog();
         }
 
-        private void انبارمرکزیToolStripMenuItem_Click(object sender, EventArgs e)
+        private void CentralWarehouseToolStripMenuItem_Click(object sender, EventArgs e)
         {
             WareHouseManagementFRM wareHouse = new WareHouseManagementFRM();
             wareHouse.ShowDialog();
