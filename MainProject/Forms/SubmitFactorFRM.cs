@@ -48,10 +48,17 @@ namespace MainProject.Forms
             private void LoadSellers()
             {
                 var sellerDAL = new SellerDAL();
-                sellers = sellerDAL.GetAllSellers();
                 cmbSellers.Items.Clear();
-                foreach (var s in sellers)
-                    cmbSellers.Items.Add(s.SellerName);
+                if (sellerDAL.GetAllSellers(out var sellersList, out string message))
+                {
+                    sellers = sellersList;
+                    foreach (var s in sellers)
+                        cmbSellers.Items.Add(s.SellerName);
+                }
+                else
+                {
+                    MessageBox.Show("خطا در بارگذاری فروشندگان: " + message);
+                }
             }
 
 

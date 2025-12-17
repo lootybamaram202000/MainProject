@@ -38,11 +38,17 @@ namespace MainProject.Forms
         private void LoadSellers()
         {
             cmbSeller.Items.Clear();
-            var sellers = _sellerManager.GetAllSellers();
             cmbSeller.DisplayMember = "SellerName";
             cmbSeller.ValueMember = "SellerID";
-            foreach (var sel in sellers)
-                cmbSeller.Items.Add(sel);
+            if (_sellerManager.GetAllSellers(out var sellers, out string message))
+            {
+                foreach (var sel in sellers)
+                    cmbSeller.Items.Add(sel);
+            }
+            else
+            {
+                MessageBox.Show("خطا در بارگذاری فروشندگان: " + message);
+            }
         }
 
         private void LoadMeasurementUnits()
