@@ -1,0 +1,57 @@
+# .copilotignore - Files and directories to exclude from documentation
+
+# Build outputs
+bin/
+obj/
+*.exe
+*.dll
+*.pdb
+
+# User-specific files
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Visual Studio cache/options directory
+.vs/
+
+# Package files
+packages/
+*.nupkg
+
+# Test results
+TestResults/
+*.trx
+*.coverage
+
+# Temporary files
+*.tmp
+*.temp
+*.log
+*.swp
+*~
+
+# Designer generated files
+*.Designer.cs
+*.designer.cs
+
+# Resource files (binary)
+*.resx
+
+# Git files
+.git/
+.gitignore
+.gitattributes
+
+# IDE configurations
+.vscode/
+.idea/
+
+# Documentation drafts and work in progress
+Documentation/drafts/
+Documentation/wip/
+
+# Backup files
+*.bak
+*.backup
