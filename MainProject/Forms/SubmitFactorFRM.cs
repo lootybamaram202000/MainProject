@@ -48,10 +48,10 @@ namespace MainProject.Forms
             private void LoadSellers()
             {
                 var sellerDAL = new SellerDAL();
+                cmbSellers.Items.Clear();
                 if (sellerDAL.GetAllSellers(out var sellersList, out string message))
                 {
                     sellers = sellersList;
-                    cmbSellers.Items.Clear();
                     foreach (var s in sellers)
                         cmbSellers.Items.Add(s.SellerName);
                 }

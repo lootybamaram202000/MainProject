@@ -38,10 +38,10 @@ namespace MainProject.Forms
         private void LoadSellers()
         {
             cmbSeller.Items.Clear();
+            cmbSeller.DisplayMember = "SellerName";
+            cmbSeller.ValueMember = "SellerID";
             if (_sellerManager.GetAllSellers(out var sellers, out string message))
             {
-                cmbSeller.DisplayMember = "SellerName";
-                cmbSeller.ValueMember = "SellerID";
                 foreach (var sel in sellers)
                     cmbSeller.Items.Add(sel);
             }
