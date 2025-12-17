@@ -47,7 +47,9 @@
             this.label10 = new System.Windows.Forms.Label();
             this.lstUnits = new System.Windows.Forms.ListView();
             this.pictureBoxInfo = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // rdbProductUnit
@@ -80,7 +82,7 @@
             // 
             this.btnUpdateUnit.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnUpdateUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnUpdateUnit.Location = new System.Drawing.Point(125, 131);
+            this.btnUpdateUnit.Location = new System.Drawing.Point(176, 10);
             this.btnUpdateUnit.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateUnit.Name = "btnUpdateUnit";
             this.btnUpdateUnit.Size = new System.Drawing.Size(85, 42);
@@ -93,7 +95,7 @@
             // 
             this.btnSubmitNewUnit.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnSubmitNewUnit.ForeColor = System.Drawing.Color.Green;
-            this.btnSubmitNewUnit.Location = new System.Drawing.Point(231, 131);
+            this.btnSubmitNewUnit.Location = new System.Drawing.Point(269, 10);
             this.btnSubmitNewUnit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitNewUnit.Name = "btnSubmitNewUnit";
             this.btnSubmitNewUnit.Size = new System.Drawing.Size(85, 42);
@@ -106,7 +108,7 @@
             // 
             this.btnDeletUnit.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnDeletUnit.ForeColor = System.Drawing.Color.Red;
-            this.btnDeletUnit.Location = new System.Drawing.Point(13, 131);
+            this.btnDeletUnit.Location = new System.Drawing.Point(7, 10);
             this.btnDeletUnit.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeletUnit.Name = "btnDeletUnit";
             this.btnDeletUnit.Size = new System.Drawing.Size(85, 42);
@@ -260,18 +262,27 @@
             this.pictureBoxInfo.TabIndex = 50;
             this.pictureBoxInfo.TabStop = false;
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btnSubmitNewUnit);
+            this.groupBox1.Controls.Add(this.btnUpdateUnit);
+            this.groupBox1.Controls.Add(this.btnDeletUnit);
+            this.groupBox1.Location = new System.Drawing.Point(13, 121);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(374, 58);
+            this.groupBox1.TabIndex = 51;
+            this.groupBox1.TabStop = false;
+            // 
             // SubmitUnitFRM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(881, 569);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxInfo);
             this.Controls.Add(this.rdbProductUnit);
             this.Controls.Add(this.rdbPurchaseUnit);
-            this.Controls.Add(this.btnUpdateUnit);
-            this.Controls.Add(this.btnSubmitNewUnit);
-            this.Controls.Add(this.btnDeletUnit);
             this.Controls.Add(this.txtMeasurmentUnitTitle);
             this.Controls.Add(this.txtMeasurmentUnitQuantity);
             this.Controls.Add(this.label3);
@@ -289,6 +300,7 @@
             this.Text = "تعریف و ثبت واحد‌های اندازه‌گیری";
             this.Load += new System.EventHandler(this.SubmitUnitFRM_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).EndInit();
+            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -314,5 +326,6 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.ListView lstUnits;
         private System.Windows.Forms.PictureBox pictureBoxInfo;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

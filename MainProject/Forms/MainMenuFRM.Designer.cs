@@ -123,7 +123,7 @@
             // tsmRecordDamages
             // 
             this.tsmRecordDamages.Name = "tsmRecordDamages";
-            this.tsmRecordDamages.Size = new System.Drawing.Size(224, 26);
+            this.tsmRecordDamages.Size = new System.Drawing.Size(170, 26);
             this.tsmRecordDamages.Text = "ثبت خسارات";
             // 
             // tsmSystemManagement
@@ -178,7 +178,7 @@
             this.tsmSectionManagement.Name = "tsmSectionManagement";
             this.tsmSectionManagement.Size = new System.Drawing.Size(257, 26);
             this.tsmSectionManagement.Text = "امور قسمت‌ها";
-            this.tsmSectionManagement.Click += new System.EventHandler(this.امورقسمتهاToolStripMenuItem_Click);
+            this.tsmSectionManagement.Click += new System.EventHandler(this.tsmSectionManagement_Click);
             // 
             // tsmPaisManagement
             // 
@@ -216,13 +216,13 @@
             // tsmSysBasicItemManagement
             // 
             this.tsmSysBasicItemManagement.Name = "tsmSysBasicItemManagement";
-            this.tsmSysBasicItemManagement.Size = new System.Drawing.Size(224, 26);
+            this.tsmSysBasicItemManagement.Size = new System.Drawing.Size(210, 26);
             this.tsmSysBasicItemManagement.Text = "آیتم‌های آماده‌سازی";
             // 
             // tsmSysMainItemManagement
             // 
             this.tsmSysMainItemManagement.Name = "tsmSysMainItemManagement";
-            this.tsmSysMainItemManagement.Size = new System.Drawing.Size(224, 26);
+            this.tsmSysMainItemManagement.Size = new System.Drawing.Size(210, 26);
             this.tsmSysMainItemManagement.Text = "آیتم‌های منو";
             // 
             // tsmSysAccountingManagement
@@ -254,7 +254,7 @@
             this.tsmSysCategoraisManagement.Name = "tsmSysCategoraisManagement";
             this.tsmSysCategoraisManagement.Size = new System.Drawing.Size(257, 26);
             this.tsmSysCategoraisManagement.Text = "دسته‌بندی‌ها و گروه‌بندی‌ها";
-            this.tsmSysCategoraisManagement.Click += new System.EventHandler(this.دستهبندیهاوگروهبندیهاToolStripMenuItem_Click);
+            this.tsmSysCategoraisManagement.Click += new System.EventHandler(this.tsmSysCategoraisManagement_Click);
             // 
             // tsmReports
             // 
@@ -280,13 +280,13 @@
             this.tsmRecordNewProperty,
             this.tsmRecordPropertOut});
             this.tsmPropertyManagement.Name = "tsmPropertyManagement";
-            this.tsmPropertyManagement.Size = new System.Drawing.Size(224, 26);
+            this.tsmPropertyManagement.Size = new System.Drawing.Size(186, 26);
             this.tsmPropertyManagement.Text = "اموال";
             // 
             // tsmRecordDailyCost
             // 
             this.tsmRecordDailyCost.Name = "tsmRecordDailyCost";
-            this.tsmRecordDailyCost.Size = new System.Drawing.Size(224, 26);
+            this.tsmRecordDailyCost.Size = new System.Drawing.Size(170, 26);
             this.tsmRecordDailyCost.Text = "فروش روزانه";
             // 
             // label1
@@ -356,7 +356,7 @@
             this.tsmRecordDailyCost,
             this.tsmRecordDamages});
             this.tsmCostManagement.Name = "tsmCostManagement";
-            this.tsmCostManagement.Size = new System.Drawing.Size(224, 26);
+            this.tsmCostManagement.Size = new System.Drawing.Size(186, 26);
             this.tsmCostManagement.Text = "هزینه‌ها";
             // 
             // tsmRecordBasicItemRecepies
@@ -364,7 +364,7 @@
             this.tsmRecordBasicItemRecepies.Name = "tsmRecordBasicItemRecepies";
             this.tsmRecordBasicItemRecepies.Size = new System.Drawing.Size(296, 26);
             this.tsmRecordBasicItemRecepies.Text = "ثبت و ویرایش رسپی";
-            this.tsmRecordBasicItemRecepies.Click += new System.EventHandler(this.ثبتوویرایشرسپیToolStripMenuItem_Click);
+            this.tsmRecordBasicItemRecepies.Click += new System.EventHandler(this.tsmRecordBasicItemRecepies_Click);
             // 
             // tsmBasicItems
             // 
@@ -372,7 +372,7 @@
             this.tsmDefineBasicItemRecepies,
             this.tsmRecordBasicItemRecepies});
             this.tsmBasicItems.Name = "tsmBasicItems";
-            this.tsmBasicItems.Size = new System.Drawing.Size(224, 26);
+            this.tsmBasicItems.Size = new System.Drawing.Size(218, 26);
             this.tsmBasicItems.Text = "آیتم های آماده سازی";
             // 
             // tsmDefineBasicItemRecepies
@@ -380,7 +380,7 @@
             this.tsmDefineBasicItemRecepies.Name = "tsmDefineBasicItemRecepies";
             this.tsmDefineBasicItemRecepies.Size = new System.Drawing.Size(296, 26);
             this.tsmDefineBasicItemRecepies.Text = "تعریف و ویرایش  آیتم آماده‌سازی";
-            this.tsmDefineBasicItemRecepies.Click += new System.EventHandler(this.تعریفآیتمآمادهسازیجدیدToolStripMenuItem1_Click);
+            this.tsmDefineBasicItemRecepies.Click += new System.EventHandler(this.tsmDefineBasicItemRecepies_Click);
             // 
             // tsmItems
             // 
@@ -397,7 +397,7 @@
             this.tsmDefineMainItemRecepies,
             this.tsmRecordMainItemRecepies});
             this.tsmMainItems.Name = "tsmMainItems";
-            this.tsmMainItems.Size = new System.Drawing.Size(224, 26);
+            this.tsmMainItems.Size = new System.Drawing.Size(218, 26);
             this.tsmMainItems.Text = "آیتم های فروش";
             // 
             // tsmDefineMainItemRecepies
@@ -405,27 +405,27 @@
             this.tsmDefineMainItemRecepies.Name = "tsmDefineMainItemRecepies";
             this.tsmDefineMainItemRecepies.Size = new System.Drawing.Size(265, 26);
             this.tsmDefineMainItemRecepies.Text = "تعریف و ویرایش آیتم فروش";
-            this.tsmDefineMainItemRecepies.Click += new System.EventHandler(this.تعریفآیتمفروشجدیدToolStripMenuItem1_Click);
+            this.tsmDefineMainItemRecepies.Click += new System.EventHandler(this.tsmDefineMainItemRecepies_Click);
             // 
             // tsmRecordMainItemRecepies
             // 
             this.tsmRecordMainItemRecepies.Name = "tsmRecordMainItemRecepies";
             this.tsmRecordMainItemRecepies.Size = new System.Drawing.Size(265, 26);
             this.tsmRecordMainItemRecepies.Text = "ثبت و ویرایش رسپی";
-            this.tsmRecordMainItemRecepies.Click += new System.EventHandler(this.ثبتوویرایشرسپیToolStripMenuItem1_Click);
+            this.tsmRecordMainItemRecepies.Click += new System.EventHandler(this.tsmRecordMainItemRecepies_Click);
             // 
             // tsmCount
             // 
             this.tsmCount.Name = "tsmCount";
-            this.tsmCount.Size = new System.Drawing.Size(224, 26);
+            this.tsmCount.Size = new System.Drawing.Size(163, 26);
             this.tsmCount.Text = "انبار گردانی";
             // 
             // tsmDepots
             // 
             this.tsmDepots.Name = "tsmDepots";
-            this.tsmDepots.Size = new System.Drawing.Size(224, 26);
+            this.tsmDepots.Size = new System.Drawing.Size(163, 26);
             this.tsmDepots.Text = "انبارها";
-            this.tsmDepots.Click += new System.EventHandler(this.انبارمرکزیToolStripMenuItem_Click);
+            this.tsmDepots.Click += new System.EventHandler(this.tsmDepots_Click);
             // 
             // tsmWareHousing
             // 
@@ -439,20 +439,20 @@
             // tsmRecordSellFactor
             // 
             this.tsmRecordSellFactor.Name = "tsmRecordSellFactor";
-            this.tsmRecordSellFactor.Size = new System.Drawing.Size(224, 26);
+            this.tsmRecordSellFactor.Size = new System.Drawing.Size(221, 26);
             this.tsmRecordSellFactor.Text = "ثبت فاکتور فروش";
-            this.tsmRecordSellFactor.Click += new System.EventHandler(this.صدورفاکToolStripMenuItem_Click);
+            this.tsmRecordSellFactor.Click += new System.EventHandler(this.tsmRecordSellFactor_Click);
             // 
             // tsmManualRecord
             // 
             this.tsmManualRecord.Name = "tsmManualRecord";
-            this.tsmManualRecord.Size = new System.Drawing.Size(224, 26);
+            this.tsmManualRecord.Size = new System.Drawing.Size(221, 26);
             this.tsmManualRecord.Text = "ورود دستی اطلاعات";
             // 
             // tsmUploadExcelFile
             // 
             this.tsmUploadExcelFile.Name = "tsmUploadExcelFile";
-            this.tsmUploadExcelFile.Size = new System.Drawing.Size(224, 26);
+            this.tsmUploadExcelFile.Size = new System.Drawing.Size(221, 26);
             this.tsmUploadExcelFile.Text = "ورود فایل اکسل";
             // 
             // tsmRecordDailySell
@@ -516,6 +516,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(886, 745);
             this.panel1.TabIndex = 16;
+            this.panel1.Paint += new System.Windows.Forms.PaintEventHandler(this.panel1_Paint);
             // 
             // lblCurentUser
             // 
@@ -585,7 +586,7 @@
             this.tsmRecordBuyFactors.Name = "tsmRecordBuyFactors";
             this.tsmRecordBuyFactors.Size = new System.Drawing.Size(283, 26);
             this.tsmRecordBuyFactors.Text = "ثبت فاکتور خرید";
-            this.tsmRecordBuyFactors.Click += new System.EventHandler(this.ثبتفاکتورخریدToolStripMenuItem2_Click);
+            this.tsmRecordBuyFactors.Click += new System.EventHandler(this.tsmRecordBuyFactors_Click);
             // 
             // tsmImportBuyFactorExcelFile
             // 
@@ -614,14 +615,14 @@
             this.tsmDefinePersonal.Name = "tsmDefinePersonal";
             this.tsmDefinePersonal.Size = new System.Drawing.Size(224, 26);
             this.tsmDefinePersonal.Text = "تعریف پرسنل";
-            this.tsmDefinePersonal.Click += new System.EventHandler(this.تعریفپرسنلToolStripMenuItem_Click);
+            this.tsmDefinePersonal.Click += new System.EventHandler(this.tsmDefinePersonal_Click);
             // 
             // tsmRecordSalarySlip
             // 
             this.tsmRecordSalarySlip.Name = "tsmRecordSalarySlip";
             this.tsmRecordSalarySlip.Size = new System.Drawing.Size(224, 26);
             this.tsmRecordSalarySlip.Text = "فیش حقوقی";
-            this.tsmRecordSalarySlip.Click += new System.EventHandler(this.فیشحقوقیToolStripMenuItem_Click);
+            this.tsmRecordSalarySlip.Click += new System.EventHandler(this.tsmRecordSalarySlip_Click);
             // 
             // tsmFacilitiesManagement
             // 
@@ -642,16 +643,16 @@
             // tsmOverHeadCalculating
             // 
             this.tsmOverHeadCalculating.Name = "tsmOverHeadCalculating";
-            this.tsmOverHeadCalculating.Size = new System.Drawing.Size(224, 26);
+            this.tsmOverHeadCalculating.Size = new System.Drawing.Size(186, 26);
             this.tsmOverHeadCalculating.Text = "محاسبات سربار";
-            this.tsmOverHeadCalculating.Click += new System.EventHandler(this.محاسباتسربارToolStripMenuItem_Click);
+            this.tsmOverHeadCalculating.Click += new System.EventHandler(this.tsmOverHeadCalculating_Click);
             // 
             // tsmBankAccounts
             // 
             this.tsmBankAccounts.Name = "tsmBankAccounts";
             this.tsmBankAccounts.Size = new System.Drawing.Size(229, 26);
             this.tsmBankAccounts.Text = "حساب ها";
-            this.tsmBankAccounts.Click += new System.EventHandler(this.حسابهاToolStripMenuItem_Click);
+            this.tsmBankAccounts.Click += new System.EventHandler(this.tsmBankAccounts_Click);
             // 
             // tsmProductManagement
             // 
@@ -668,7 +669,7 @@
             this.tsmDefineProduct,
             this.tsmDefineUnit});
             this.tsmProducts.Name = "tsmProducts";
-            this.tsmProducts.Size = new System.Drawing.Size(224, 26);
+            this.tsmProducts.Size = new System.Drawing.Size(161, 26);
             this.tsmProducts.Text = "کالا ها";
             // 
             // tsmDefineProduct
@@ -676,21 +677,21 @@
             this.tsmDefineProduct.Name = "tsmDefineProduct";
             this.tsmDefineProduct.Size = new System.Drawing.Size(299, 26);
             this.tsmDefineProduct.Text = "تعریف و ویرایش کالا";
-            this.tsmDefineProduct.Click += new System.EventHandler(this.تعریفکالایجدیدToolStripMenuItem1_Click);
+            this.tsmDefineProduct.Click += new System.EventHandler(this.tsmDefineProduct_Click);
             // 
             // tsmDefineUnit
             // 
             this.tsmDefineUnit.Name = "tsmDefineUnit";
             this.tsmDefineUnit.Size = new System.Drawing.Size(299, 26);
             this.tsmDefineUnit.Text = "تعریف  و ویرایش واحد اندازه‌گیری";
-            this.tsmDefineUnit.Click += new System.EventHandler(this.تعریفواحداندازهگیریToolStripMenuItem_Click);
+            this.tsmDefineUnit.Click += new System.EventHandler(this.tsmDefineUnit_Click);
             // 
             // tsmSellers
             // 
             this.tsmSellers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsmDefineSeller});
             this.tsmSellers.Name = "tsmSellers";
-            this.tsmSellers.Size = new System.Drawing.Size(224, 26);
+            this.tsmSellers.Size = new System.Drawing.Size(161, 26);
             this.tsmSellers.Text = "فروشنده‌ها";
             // 
             // tsmDefineSeller
@@ -698,7 +699,7 @@
             this.tsmDefineSeller.Name = "tsmDefineSeller";
             this.tsmDefineSeller.Size = new System.Drawing.Size(226, 26);
             this.tsmDefineSeller.Text = "تعریف فروشنده جدید";
-            this.tsmDefineSeller.Click += new System.EventHandler(this.تعریفمشتریجدیدToolStripMenuItem1_Click);
+            this.tsmDefineSeller.Click += new System.EventHandler(this.tsmDefineSeller_Click);
             // 
             // tbcNotification
             // 
@@ -745,7 +746,7 @@
             this.tbpMeesages.Location = new System.Drawing.Point(4, 25);
             this.tbpMeesages.Name = "tbpMeesages";
             this.tbpMeesages.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpMeesages.Size = new System.Drawing.Size(746, 714);
+            this.tbpMeesages.Size = new System.Drawing.Size(746, 716);
             this.tbpMeesages.TabIndex = 1;
             this.tbpMeesages.Text = "Messages";
             this.tbpMeesages.UseVisualStyleBackColor = true;
@@ -773,7 +774,7 @@
             this.tbpPendingList.Location = new System.Drawing.Point(4, 25);
             this.tbpPendingList.Name = "tbpPendingList";
             this.tbpPendingList.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPendingList.Size = new System.Drawing.Size(746, 714);
+            this.tbpPendingList.Size = new System.Drawing.Size(746, 716);
             this.tbpPendingList.TabIndex = 2;
             this.tbpPendingList.Text = "Pending List";
             this.tbpPendingList.UseVisualStyleBackColor = true;

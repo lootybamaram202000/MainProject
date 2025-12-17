@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using MainProject.Core.Business;
 using MainProject.Entities;
@@ -314,56 +308,56 @@ namespace MainProject
             }
         }
 
-        private void تعریفواحداندازهگیریToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmDefineUnit_Click(object sender, EventArgs e)
         {
             SubmitUnitFRM unitFRM = new SubmitUnitFRM();
             unitFRM.ShowDialog();
         }
 
-        private void امورقسمتهاToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmSectionManagement_Click(object sender, EventArgs e)
         {
             DefineSectionsFRM sectionsFRM = new DefineSectionsFRM();
             sectionsFRM.ShowDialog();
         }
 
-        private void تعریفکالایجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void tsmDefineProduct_Click(object sender, EventArgs e)
         {
             SubmitProductFRM productFRM = new SubmitProductFRM();
             productFRM.ShowDialog();
         }
 
-        private void تعریفمشتریجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void tsmDefineSeller_Click(object sender, EventArgs e)
         {
             SubmitSellerFRM sellerFRM = new SubmitSellerFRM();
             sellerFRM.ShowDialog();
         }
 
-        private void تعریفآیتمآمادهسازیجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void tsmDefineBasicItemRecepies_Click(object sender, EventArgs e)
         {
             DefineBasicItemsFRM defineBasic = new DefineBasicItemsFRM();
             defineBasic.ShowDialog();
 
         }
 
-        private void ثبتوویرایشرسپیToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRecordBasicItemRecepies_Click(object sender, EventArgs e)
         {
             SubmitBasicRecipieFRM submitBasicRecipieFRM = new SubmitBasicRecipieFRM();
             submitBasicRecipieFRM.ShowDialog();
         }
 
-        private void تعریفآیتمفروشجدیدToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void tsmDefineMainItemRecepies_Click(object sender, EventArgs e)
         {
             DefineMenuItemsFRM defineMenuItemsFRM = new DefineMenuItemsFRM();
             defineMenuItemsFRM.ShowDialog();
         }
 
-        private void ثبتوویرایشرسپیToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void tsmRecordMainItemRecepies_Click(object sender, EventArgs e)
         {
             SubmitMenuRecipieFRM submitMenuRecipieFRM = new SubmitMenuRecipieFRM();
             submitMenuRecipieFRM.ShowDialog();
         }
 
-        private void ثبتفاکتورخریدToolStripMenuItem2_Click(object sender, EventArgs e)
+        private void tsmRecordBuyFactors_Click(object sender, EventArgs e)
         {
             SubmitFactorFRM submitFactorFRM = new SubmitFactorFRM();
             submitFactorFRM.ShowDialog();
@@ -384,43 +378,43 @@ namespace MainProject
 
         }
 
-        private void تعریفپرسنلToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmDefinePersonal_Click(object sender, EventArgs e)
         {
             DefineNewPersonalFRM newPersonalFRM = new DefineNewPersonalFRM();
             newPersonalFRM.ShowDialog();
         }
 
-        private void فیشحقوقیToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRecordSalarySlip_Click(object sender, EventArgs e)
         {
             SubmitSalarySlipFRM salarySlipFRM = new SubmitSalarySlipFRM();
             salarySlipFRM.ShowDialog();
         }
 
-        private void حسابهاToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmBankAccounts_Click(object sender, EventArgs e)
         {
             DefineBankAccountFRM bankAccountFRM = new DefineBankAccountFRM();
             bankAccountFRM.ShowDialog();
         }
 
-        private void صدورفاکToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmRecordSellFactor_Click(object sender, EventArgs e)
         {
             SubmitDailySellsFRM dailySellsFRM = new SubmitDailySellsFRM();
             dailySellsFRM.ShowDialog();
         }
 
-        private void دستهبندیهاوگروهبندیهاToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmSysCategoraisManagement_Click(object sender, EventArgs e)
         {
             InfoEditorForm infoEditorForm = new InfoEditorForm();
             infoEditorForm.ShowDialog();
         }
 
-        private void محاسباتسربارToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmOverHeadCalculating_Click(object sender, EventArgs e)
         {
             OverHeadFRM overHeadFRM = new OverHeadFRM();
             overHeadFRM.ShowDialog();
         }
 
-        private void انبارمرکزیToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tsmDepots_Click(object sender, EventArgs e)
         {
             WareHouseManagementFRM wareHouse = new WareHouseManagementFRM();
             wareHouse.ShowDialog();
@@ -432,6 +426,11 @@ namespace MainProject
         }
 
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
         {
 
         }
