@@ -62,6 +62,7 @@
     <Compile Include="Core\Business\UnitManager.cs" />
     <Compile Include="Core\Mappers\InformationMapper.cs" />
     <Compile Include="DataAccess\AccountDAL.cs" />
+    <Compile Include="DataAccess\AccountOwnerDAL.cs" />
     <Compile Include="DataAccess\BasicItemDAL.cs" />
     <Compile Include="DataAccess\FactorDAL.cs" />
     <Compile Include="DataAccess\InformationDAL.cs" />

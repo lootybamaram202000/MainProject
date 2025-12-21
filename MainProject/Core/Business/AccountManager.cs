@@ -25,18 +25,20 @@ namespace MainProject.Core.Business
 
         public bool InsertAccount(AccountModel account, string userID, string date, DateTime dateValue, int dateDig)
         {
-            return _dal.InsertAccount(account, userID, date, dateValue, dateDig);
+            string msg;
+            return _dal.InsertAccount(account, userID, date, dateValue, dateDig, out string newACID, out msg);
         }
-
 
         public bool UpdateAccount(AccountModel account, string userID, string date, DateTime dateValue, int dateDig)
         {
-            return _dal.UpdateAccount(account, userID, date, dateValue, dateDig);
+            string msg;
+            return _dal.UpdateAccount(account, userID, date, dateValue, dateDig, out msg);
         }
 
         public bool DeleteAccount(string acid, string userID, string date, DateTime dateValue, int dateDig)
         {
-            return _dal.DeleteAccount(acid, userID, date, dateValue, dateDig);
+            string msg;
+            return _dal.DeleteAccount(acid, userID, date, dateValue, dateDig, out msg);
         }
 
         #region Wrapper Methods (برای سازگاری با SellerManager جدید)
