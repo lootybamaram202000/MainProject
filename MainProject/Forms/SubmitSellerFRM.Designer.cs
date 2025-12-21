@@ -28,23 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
+
             this.txtSearchSeller = new System.Windows.Forms.TextBox();
             this.lstSeller = new System.Windows.Forms.ListView();
-            this.Number = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SCode = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SPrice = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.SellerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.MUnit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.PUnit = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.CI = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.Wastage = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.isActive = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSellerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colSellerName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCompanyName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colCategory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colBalance = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnUpdateSeller = new System.Windows.Forms.Button();
             this.btnSubmitNewSeller = new System.Windows.Forms.Button();
             this.btnDeletSeller = new System.Windows.Forms.Button();
@@ -99,26 +91,17 @@
             // 
             this.lstSeller.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.lstSeller.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.Number,
-            this.SCode,
-            this.SName,
-            this.SPrice,
-            this.SellerName,
-            this.MUnit,
-            this.PUnit,
-            this.CI,
-            this.Wastage,
-            this.isActive});
+            this.colSellerID,
+            this.colSellerName,
+            this.colCompanyName,
+            this.colPhone,
+            this.colCategory,
+            this.colBalance});
             this.lstSeller.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.lstSeller.FullRowSelect = true;
             this.lstSeller.GridLines = true;
             this.lstSeller.HideSelection = false;
-            this.lstSeller.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2,
-            listViewItem3,
-            listViewItem4,
-            listViewItem5});
+
             this.lstSeller.Location = new System.Drawing.Point(13, 467);
             this.lstSeller.Margin = new System.Windows.Forms.Padding(4);
             this.lstSeller.MultiSelect = false;
@@ -128,60 +111,40 @@
             this.lstSeller.UseCompatibleStateImageBehavior = false;
             this.lstSeller.SelectedIndexChanged += new System.EventHandler(this.lstSeller_SelectedIndexChanged);
             // 
-            // Number
+            // colSellerID
             // 
-            this.Number.DisplayIndex = 9;
-            this.Number.Text = "ردیف";
+            this.colSellerID.Text = "کد فروشنده";
+            this.colSellerID.Width = 110;
             // 
-            // SCode
+            // colSellerName
             // 
-            this.SCode.DisplayIndex = 0;
-            this.SCode.Text = "کد کالا";
+            this.colSellerName.Text = "نام فروشنده";
+            this.colSellerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colSellerName.Width = 160;
             // 
-            // SName
+            // colCompanyName
             // 
-            this.SName.DisplayIndex = 1;
-            this.SName.Text = "نام کالا";
-            this.SName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colCompanyName.Text = "نام شرکت";
+            this.colCompanyName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colCompanyName.Width = 160;
             // 
-            // SPrice
+            // colPhone
             // 
-            this.SPrice.DisplayIndex = 2;
-            this.SPrice.Text = "قیمت خرید";
-            this.SPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colPhone.Text = "شماره تماس";
+            this.colPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colPhone.Width = 120;
             // 
-            // SellerName
+            // colCategory
             // 
-            this.SellerName.DisplayIndex = 3;
-            this.SellerName.Text = "فروشنده";
-            this.SellerName.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colCategory.Text = "دسته‌بندی";
+            this.colCategory.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colCategory.Width = 120;
             // 
-            // MUnit
+            // colBalance
             // 
-            this.MUnit.DisplayIndex = 4;
-            this.MUnit.Text = "واحد خرید";
-            this.MUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // PUnit
-            // 
-            this.PUnit.DisplayIndex = 5;
-            this.PUnit.Text = "واحد خرید";
-            this.PUnit.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // CI
-            // 
-            this.CI.DisplayIndex = 6;
-            this.CI.Text = "مکوجودی بحرانی";
-            // 
-            // Wastage
-            // 
-            this.Wastage.DisplayIndex = 7;
-            this.Wastage.Text = "دورریز";
-            // 
-            // isActive
-            // 
-            this.isActive.DisplayIndex = 8;
-            this.isActive.Text = "وضعیت";
+            this.colBalance.Text = "مانده";
+            this.colBalance.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.colBalance.Width = 110;
             // 
             // btnUpdateSeller
             // 
@@ -437,7 +400,7 @@
             this.btnDefineBankAccouant.TabIndex = 66;
             this.btnDefineBankAccouant.Text = "تعریف حساب بانکی";
             this.btnDefineBankAccouant.UseVisualStyleBackColor = true;
-            this.btnDefineBankAccouant.Click += new System.EventHandler(this.btnSubmitNewSeller_Click);
+            this.btnDefineBankAccouant.Click += new System.EventHandler(this.btnDefineBankAccouant_Click);
             // 
             // label13
             // 
@@ -671,16 +634,12 @@
 
         private System.Windows.Forms.TextBox txtSearchSeller;
         private System.Windows.Forms.ListView lstSeller;
-        public System.Windows.Forms.ColumnHeader Number;
-        private System.Windows.Forms.ColumnHeader SCode;
-        private System.Windows.Forms.ColumnHeader SName;
-        private System.Windows.Forms.ColumnHeader SPrice;
-        private System.Windows.Forms.ColumnHeader SellerName;
-        private System.Windows.Forms.ColumnHeader MUnit;
-        private System.Windows.Forms.ColumnHeader PUnit;
-        private System.Windows.Forms.ColumnHeader CI;
-        private System.Windows.Forms.ColumnHeader Wastage;
-        private System.Windows.Forms.ColumnHeader isActive;
+        private System.Windows.Forms.ColumnHeader colSellerID;
+        private System.Windows.Forms.ColumnHeader colSellerName;
+        private System.Windows.Forms.ColumnHeader colCompanyName;
+        private System.Windows.Forms.ColumnHeader colPhone;
+        private System.Windows.Forms.ColumnHeader colCategory;
+        private System.Windows.Forms.ColumnHeader colBalance;
         private System.Windows.Forms.Button btnUpdateSeller;
         private System.Windows.Forms.Button btnSubmitNewSeller;
         private System.Windows.Forms.Button btnDeletSeller;

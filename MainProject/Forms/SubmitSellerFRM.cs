@@ -14,6 +14,7 @@ namespace MainProject.Forms
     public partial class SubmitSellerFRM : Form
     {
         private bool _suppressBalanceEvents;
+        private ToolTip sellerToolTip;
         // --- Services / Managers ---
         private SellerManager _sellerManager;
 
@@ -58,40 +59,62 @@ namespace MainProject.Forms
         // === Form Events ===
         private void SubmitSellerFRM_Load(object sender, EventArgs e)
         {
-            SetupSellerListView();
+            // Columns are defined in Designer
             LoadCategories();
+            LoadSellerTypes();
             LoadSellers();
             UpdateAccountButtonState();
             txtPhone1.TextChanged += txtPhone_TextChanged;
+            txtPhone2.TextChanged += txtPhone_TextChanged;
+            txtPhone3.TextChanged += txtPhone_TextChanged;
             txtBalance.TextChanged += txtBalance_TextChanged;
             txtBalance.Leave += txtBalance_Leave;
+
+            InitializeToolTips();
+
+            this.KeyPreview = true;
+            this.KeyDown += SubmitSellerFRM_KeyDown;
         }
 
         // === UI Setup ===
-        private void SetupSellerListView()
-        {
-            lstSeller.View = View.Details;
-            lstSeller.FullRowSelect = true;
-            lstSeller.GridLines = true;
-            lstSeller.Columns.Clear();
-
-            lstSeller.Columns.Add("کد", 110, HorizontalAlignment.Center);
-            lstSeller.Columns.Add("نام فروشنده", 160, HorizontalAlignment.Left);
-            lstSeller.Columns.Add("نام شرکت", 160, HorizontalAlignment.Left);
-            lstSeller.Columns.Add("شماره تماس", 120, HorizontalAlignment.Center);
-            lstSeller.Columns.Add("دسته‌بندی", 120, HorizontalAlignment.Center);
-            lstSeller.Columns.Add("مانده", 110, HorizontalAlignment.Right);
-        }
         private void LoadCategories()
         {
             cmbCategory1.Items.Clear();
+            cmbCategory2.Items.Clear();
+            cmbCategory3.Items.Clear();
             try
             {
                 var infoDal = new InformationDAL();
                 List<string> cats = infoDal.GetValuesByContext("SellerCategories");
                 if (cats != null && cats.Count > 0)
+                {
                     cmbCategory1.Items.AddRange(cats.ToArray());
+                    cmbCategory2.Items.AddRange(cats.ToArray());
+                    cmbCategory3.Items.AddRange(cats.ToArray());
+                }
                 cmbCategory1.SelectedIndex = -1;
+                cmbCategory2.SelectedIndex = -1;
+                cmbCategory3.SelectedIndex = -1;
+            }
+            catch
+            {
+                // نذار فرم کرش کنه
+            }
+        }
+
+        private void LoadSellerTypes()
+        {
+            cmbSellerType.Items.Clear();
+
+            try
+            {
+                var infoDal = new InformationDAL();
+                List<string> types = infoDal.GetValuesByContext("SellerTypes");
+                if (types != null && types.Count > 0)
+                {
+                    cmbSellerType.Items.AddRange(types.ToArray());
+                }
+                cmbSellerType.SelectedIndex = -1;
             }
             catch
             {
@@ -134,7 +157,12 @@ namespace MainProject.Forms
             txtCompanyName.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtPhone1.Text = string.Empty;
+            txtPhone2.Text = string.Empty;
+            txtPhone3.Text = string.Empty;
             cmbCategory1.SelectedIndex = -1;
+            cmbCategory2.SelectedIndex = -1;
+            cmbCategory3.SelectedIndex = -1;
+            cmbSellerType.SelectedIndex = -1;
 
             txtBalance.Text = "0";
             CommonFunctions.FormatTextBoxAsThousandSeparated(txtBalance);
@@ -172,14 +200,13 @@ namespace MainProject.Forms
             model.CompanyName = txtCompanyName.Text.Trim();
             model.Address = txtAddress.Text.Trim();
             model.Phone1 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone1.Text.Trim());
-            // اگر فیلدهای Phone2 و Phone3 وجود دارن، اینا رو uncomment کن:
-            // model.Phone2 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone2.Text.Trim());
-            // model.Phone3 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone3.Text.Trim());
+            model.Phone2 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone2.Text.Trim());
+            model.Phone3 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone3.Text.Trim());
 
             model.SellerCategory1 = cmbCategory1.SelectedItem == null ? null : cmbCategory1.SelectedItem.ToString();
-            // اگر فیلدهای Category2 و Category3 وجود دارن، اینا رو uncomment کن:
-            // model.SellerCategory2 = cmbCategory2.SelectedItem == null ? null : cmbCategory2.SelectedItem.ToString();
-            // model.SellerCategory3 = cmbCategory3.SelectedItem == null ? null : cmbCategory3.SelectedItem.ToString();
+            model.SellerCategory2 = cmbCategory2.SelectedItem == null ? null : cmbCategory2.SelectedItem.ToString();
+            model.SellerCategory3 = cmbCategory3.SelectedItem == null ? null : cmbCategory3.SelectedItem.ToString();
+            model.SellerType = cmbSellerType.SelectedItem == null ? null : cmbSellerType.SelectedItem.ToString();
 
             // محاسبه Balance
             decimal bal;
@@ -314,8 +341,13 @@ namespace MainProject.Forms
             txtCompanyName.Text = seller.CompanyName;
             txtAddress.Text = seller.Address ??  "";
             txtPhone1.Text = seller.Phone1 ?? "";
+            txtPhone2.Text = seller.Phone2 ?? "";
+            txtPhone3.Text = seller.Phone3 ?? "";
             txtBalance.Text = seller.Balance.ToString("0");
             cmbCategory1.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory1) ? null : seller.SellerCategory1;
+            cmbCategory2.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory2) ? null : seller.SellerCategory2;
+            cmbCategory3.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory3) ? null : seller.SellerCategory3;
+            cmbSellerType.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerType) ? null : seller.SellerType;
         }
 
         private void txtSearchSeller_TextChanged(object sender, EventArgs e)
@@ -338,7 +370,58 @@ namespace MainProject.Forms
                     lstSeller.Items.Add(it);
                 }
             }
+
         }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            ClearForm();
+            txtSellerName.Focus();
+        }
+
+        private void SubmitSellerFRM_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.F2:
+                    if (btnSubmitNewSeller.Enabled)
+                        btnSubmitNewSeller_Click(sender, e);
+                    break;
+                case Keys.F3:
+                    if (btnUpdateSeller.Enabled)
+                        btnUpdateSeller_Click(sender, e);
+                    break;
+                case Keys.F4:
+                    if (btnDeletSeller.Enabled)
+                        btnDeletSeller_Click(sender, e);
+                    break;
+                case Keys.Escape:
+                    ClearForm();
+                    break;
+            }
+        }
+
+        private void InitializeToolTips()
+        {
+            sellerToolTip = new ToolTip
+            {
+                AutoPopDelay = 5000,
+                InitialDelay = 300,
+                ReshowDelay = 200,
+                ShowAlways = true
+            };
+
+            sellerToolTip.SetToolTip(txtSellerName, "نام فروشنده (اجباری)");
+            sellerToolTip.SetToolTip(txtCompanyName, "نام شرکت (اجباری)");
+            sellerToolTip.SetToolTip(txtPhone1, "شماره تماس اصلی (اجباری) - 11 رقم");
+            sellerToolTip.SetToolTip(txtPhone2, "شماره تماس دوم (اختیاری)");
+            sellerToolTip.SetToolTip(txtPhone3, "شماره تماس سوم (اختیاری)");
+            sellerToolTip.SetToolTip(txtBalance, "مانده اولیه حساب فروشنده");
+            sellerToolTip.SetToolTip(rdbdebtor, "بدهکار: فروشنده به ما پول بدهکار است");
+            sellerToolTip.SetToolTip(rdbcreditor, "بستانکار: ما به فروشنده پول بدهکاریم");
+            sellerToolTip.SetToolTip(btnDefineBankAccouant, "برای مدیریت حساب‌های بانکی این فروشنده کلیک کنید");
+        }
+
         private void UpdateAccountButtonState()
         {
             btnDefineBankAccouant.Enabled = !string.IsNullOrWhiteSpace(txtISellerCode.Text);
@@ -444,18 +527,21 @@ namespace MainProject.Forms
 
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
+            var tb = sender as TextBox;
+            if (tb == null) return;
+
             // 1) تبدیل اعداد فارسی → انگلیسی
-            string t = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone1.Text);
+            string t = CommonFunctions.ConvertPersianDigitsToEnglish(tb.Text);
 
             // 2) حذف هر چیزی جز 0-9
             string cleaned = Regex.Replace(t, "[^0-9]", "");
 
-            if (txtPhone1.Text != cleaned)
+            if (tb.Text != cleaned)
             {
-                int oldSel = txtPhone1.SelectionStart;
-                txtPhone1.Text = cleaned;
+                int oldSel = tb.SelectionStart;
+                tb.Text = cleaned;
                 // حفظ تقریبی موقعیت کرسر
-                txtPhone1.SelectionStart = Math.Min(oldSel, txtPhone1.Text.Length);
+                tb.SelectionStart = Math.Min(oldSel, tb.Text.Length);
             }
         }
 
