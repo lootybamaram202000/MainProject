@@ -344,6 +344,15 @@ namespace MainProject.DataAccess
         }
 
         /// <summary>
+        /// دریافت یک فروشنده بر اساس شناسه (با Owner و Accounts)
+        /// </summary>
+        public bool GetSellerByID(string sellerID, out SellerModel seller, out string message)
+        {
+            // استفاده از متد موجود GetSellerWithOwnerAndAccounts
+            return GetSellerWithOwnerAndAccounts(sellerID, out seller, out message);
+        }
+
+        /// <summary>
         /// Load کردن Owner و Accounts برای یک Seller
         /// </summary>
         private void LoadSellerOwnerAndAccounts(SellerModel seller)
