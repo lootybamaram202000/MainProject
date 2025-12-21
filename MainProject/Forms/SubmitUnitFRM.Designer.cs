@@ -48,6 +48,8 @@
             this.lstUnits = new System.Windows.Forms.ListView();
             this.pictureBoxInfo = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkIsActive = new System.Windows.Forms.CheckBox();
+            this.btnNew = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxInfo)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -82,12 +84,12 @@
             // 
             this.btnUpdateUnit.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnUpdateUnit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnUpdateUnit.Location = new System.Drawing.Point(176, 10);
+            this.btnUpdateUnit.Location = new System.Drawing.Point(115, 10);
             this.btnUpdateUnit.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateUnit.Name = "btnUpdateUnit";
-            this.btnUpdateUnit.Size = new System.Drawing.Size(85, 42);
+            this.btnUpdateUnit.Size = new System.Drawing.Size(120, 42);
             this.btnUpdateUnit.TabIndex = 44;
-            this.btnUpdateUnit.Text = "ویرایش";
+            this.btnUpdateUnit.Text = "ویرایش (F3)";
             this.btnUpdateUnit.UseVisualStyleBackColor = true;
             this.btnUpdateUnit.Click += new System.EventHandler(this.btnUpdateUnit_Click);
             // 
@@ -95,12 +97,12 @@
             // 
             this.btnSubmitNewUnit.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnSubmitNewUnit.ForeColor = System.Drawing.Color.Green;
-            this.btnSubmitNewUnit.Location = new System.Drawing.Point(269, 10);
+            this.btnSubmitNewUnit.Location = new System.Drawing.Point(240, 10);
             this.btnSubmitNewUnit.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitNewUnit.Name = "btnSubmitNewUnit";
-            this.btnSubmitNewUnit.Size = new System.Drawing.Size(85, 42);
+            this.btnSubmitNewUnit.Size = new System.Drawing.Size(110, 42);
             this.btnSubmitNewUnit.TabIndex = 45;
-            this.btnSubmitNewUnit.Text = "ثبت";
+            this.btnSubmitNewUnit.Text = "ثبت (F2)";
             this.btnSubmitNewUnit.UseVisualStyleBackColor = true;
             this.btnSubmitNewUnit.Click += new System.EventHandler(this.btnSubmitNewUnit_Click);
             // 
@@ -111,9 +113,9 @@
             this.btnDeletUnit.Location = new System.Drawing.Point(7, 10);
             this.btnDeletUnit.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeletUnit.Name = "btnDeletUnit";
-            this.btnDeletUnit.Size = new System.Drawing.Size(85, 42);
+            this.btnDeletUnit.Size = new System.Drawing.Size(100, 42);
             this.btnDeletUnit.TabIndex = 47;
-            this.btnDeletUnit.Text = "حذف";
+            this.btnDeletUnit.Text = "حذف (F4)";
             this.btnDeletUnit.UseVisualStyleBackColor = true;
             this.btnDeletUnit.Click += new System.EventHandler(this.btnDeletUnit_Click);
             // 
@@ -273,12 +275,39 @@
             this.groupBox1.TabIndex = 51;
             this.groupBox1.TabStop = false;
             // 
+            // chkIsActive
+            // 
+            this.chkIsActive.AutoSize = true;
+            this.chkIsActive.Checked = true;
+            this.chkIsActive.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIsActive.Font = new System.Drawing.Font("B Nazanin", 12F);
+            this.chkIsActive.Location = new System.Drawing.Point(222, 7);
+            this.chkIsActive.Name = "chkIsActive";
+            this.chkIsActive.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chkIsActive.Size = new System.Drawing.Size(63, 33);
+            this.chkIsActive.TabIndex = 46;
+            this.chkIsActive.Text = "فعال";
+            this.chkIsActive.UseVisualStyleBackColor = true;
+            // 
+            // btnNew
+            // 
+            this.btnNew.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold);
+            this.btnNew.Location = new System.Drawing.Point(394, 131);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(120, 42);
+            this.btnNew.TabIndex = 52;
+            this.btnNew.Text = "جدید (Esc)";
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
             // SubmitUnitFRM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlDark;
             this.ClientSize = new System.Drawing.Size(881, 569);
+            this.Controls.Add(this.btnNew);
+            this.Controls.Add(this.chkIsActive);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.pictureBoxInfo);
             this.Controls.Add(this.rdbProductUnit);
@@ -327,5 +356,7 @@
         private System.Windows.Forms.ListView lstUnits;
         private System.Windows.Forms.PictureBox pictureBoxInfo;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.CheckBox chkIsActive;
+        private System.Windows.Forms.Button btnNew;
     }
 }

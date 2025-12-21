@@ -613,21 +613,21 @@
             // tsmDefinePersonal
             // 
             this.tsmDefinePersonal.Name = "tsmDefinePersonal";
-            this.tsmDefinePersonal.Size = new System.Drawing.Size(224, 26);
+            this.tsmDefinePersonal.Size = new System.Drawing.Size(175, 26);
             this.tsmDefinePersonal.Text = "تعریف پرسنل";
             this.tsmDefinePersonal.Click += new System.EventHandler(this.tsmDefinePersonal_Click);
             // 
             // tsmRecordSalarySlip
             // 
             this.tsmRecordSalarySlip.Name = "tsmRecordSalarySlip";
-            this.tsmRecordSalarySlip.Size = new System.Drawing.Size(224, 26);
+            this.tsmRecordSalarySlip.Size = new System.Drawing.Size(175, 26);
             this.tsmRecordSalarySlip.Text = "فیش حقوقی";
             this.tsmRecordSalarySlip.Click += new System.EventHandler(this.tsmRecordSalarySlip_Click);
             // 
             // tsmFacilitiesManagement
             // 
             this.tsmFacilitiesManagement.Name = "tsmFacilitiesManagement";
-            this.tsmFacilitiesManagement.Size = new System.Drawing.Size(224, 26);
+            this.tsmFacilitiesManagement.Size = new System.Drawing.Size(175, 26);
             this.tsmFacilitiesManagement.Text = "تسهیلات";
             // 
             // tsmFinancial

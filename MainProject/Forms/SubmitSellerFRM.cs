@@ -63,7 +63,7 @@ namespace MainProject.Forms
             LoadSellers();
             LoadBanks();
             UpdateAccountButtonState();
-            txtPhone.TextChanged += txtPhone_TextChanged;
+            txtPhone1.TextChanged += txtPhone_TextChanged;
             txtBalance.TextChanged += txtBalance_TextChanged;
             txtBalance.Leave += txtBalance_Leave;
         }
@@ -93,14 +93,14 @@ namespace MainProject.Forms
 
         private void LoadCategories()
         {
-            cmbCategory.Items.Clear();
+            cmbCategory1.Items.Clear();
             try
             {
                 var infoDal = new InformationDAL();
                 List<string> cats = infoDal.GetValuesByContext("SellerCategories");
                 if (cats != null && cats.Count > 0)
-                    cmbCategory.Items.AddRange(cats.ToArray());
-                cmbCategory.SelectedIndex = -1;
+                    cmbCategory1.Items.AddRange(cats.ToArray());
+                cmbCategory1.SelectedIndex = -1;
             }
             catch
             {
@@ -142,8 +142,8 @@ namespace MainProject.Forms
             txtSellerName.Text = string.Empty;
             txtCompanyName.Text = string.Empty;
             txtAddress.Text = string.Empty;
-            txtPhone.Text = string.Empty;
-            cmbCategory.SelectedIndex = -1;
+            txtPhone1.Text = string.Empty;
+            cmbCategory1.SelectedIndex = -1;
 
             txtBalance.Text = "0";
             CommonFunctions.FormatTextBoxAsThousandSeparated(txtBalance);
@@ -171,7 +171,7 @@ namespace MainProject.Forms
                 errorMessage = "نام شرکت نباید خالی باشد.";
                 return false;
             }
-            if (string.IsNullOrWhiteSpace(txtPhone.Text))
+            if (string.IsNullOrWhiteSpace(txtPhone1.Text))
             {
                 errorMessage = "شماره تماس نباید خالی باشد.";
                 return false;
@@ -188,8 +188,8 @@ namespace MainProject.Forms
             model.SellerName = txtSellerName.Text.Trim();
             model.CompanyName = txtCompanyName.Text.Trim();
             model.Addtress = txtAddress.Text.Trim();
-            model.Phone = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone.Text.Trim());
-            model.Category = cmbCategory.SelectedItem == null ? null : cmbCategory.SelectedItem.ToString();
+            model.Phone = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone1.Text.Trim());
+            model.Category = cmbCategory1.SelectedItem == null ? null : cmbCategory1.SelectedItem.ToString();
 
             decimal bal;
             var balRaw = CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Trim()).Replace(",", "");
@@ -353,9 +353,9 @@ namespace MainProject.Forms
             txtSellerName.Text = seller.SellerName;
             txtCompanyName.Text = seller.CompanyName;
             txtAddress.Text = seller.Addtress;
-            txtPhone.Text = seller.Phone;
+            txtPhone1.Text = seller.Phone;
             txtBalance.Text = seller.Balance.ToString("0");
-            cmbCategory.SelectedItem = string.IsNullOrWhiteSpace(seller.Category) ? null : seller.Category;
+            cmbCategory1.SelectedItem = string.IsNullOrWhiteSpace(seller.Category) ? null : seller.Category;
 
             // اطلاعات حساب بانکی
             txtShabaNumb.Text = seller.Account?.ACshabaNumber ?? "";
@@ -526,17 +526,17 @@ namespace MainProject.Forms
         private void txtPhone_TextChanged(object sender, EventArgs e)
         {
             // 1) تبدیل اعداد فارسی → انگلیسی
-            string t = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone.Text);
+            string t = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone1.Text);
 
             // 2) حذف هر چیزی جز 0-9
             string cleaned = Regex.Replace(t, "[^0-9]", "");
 
-            if (txtPhone.Text != cleaned)
+            if (txtPhone1.Text != cleaned)
             {
-                int oldSel = txtPhone.SelectionStart;
-                txtPhone.Text = cleaned;
+                int oldSel = txtPhone1.SelectionStart;
+                txtPhone1.Text = cleaned;
                 // حفظ تقریبی موقعیت کرسر
-                txtPhone.SelectionStart = Math.Min(oldSel, txtPhone.Text.Length);
+                txtPhone1.SelectionStart = Math.Min(oldSel, txtPhone1.Text.Length);
             }
         }
 

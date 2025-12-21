@@ -48,5 +48,20 @@ namespace MainProject.Forms
         {
 
         }
+
+        private void txtAccountOwner_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeletBankAccount_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdateBankAccount_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

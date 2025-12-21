@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("");
             this.cmbAccountState = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtAccountCard = new System.Windows.Forms.TextBox();
@@ -59,7 +64,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtAccountOwner = new System.Windows.Forms.TextBox();
+            this.txtAccountOwnerSearch = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtBACode = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -67,6 +72,24 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.chbPayer = new System.Windows.Forms.CheckBox();
+            this.lstOwners = new System.Windows.Forms.ListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader10 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chbDefault = new System.Windows.Forms.CheckBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtOwnnerCode = new System.Windows.Forms.TextBox();
+            this.gbxBankAccouant = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.gbxBankAccouant.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // cmbAccountState
@@ -98,18 +121,18 @@
             // 
             this.txtAccountCard.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtAccountCard.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtAccountCard.Location = new System.Drawing.Point(16, 58);
+            this.txtAccountCard.Location = new System.Drawing.Point(480, 111);
             this.txtAccountCard.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccountCard.Name = "txtAccountCard";
             this.txtAccountCard.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtAccountCard.Size = new System.Drawing.Size(389, 32);
+            this.txtAccountCard.Size = new System.Drawing.Size(397, 32);
             this.txtAccountCard.TabIndex = 57;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label6.Location = new System.Drawing.Point(408, 58);
+            this.label6.Location = new System.Drawing.Point(880, 111);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(84, 30);
@@ -120,18 +143,18 @@
             // 
             this.txtAccountNumber.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.txtAccountNumber.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtAccountNumber.Location = new System.Drawing.Point(500, 57);
+            this.txtAccountNumber.Location = new System.Drawing.Point(7, 110);
             this.txtAccountNumber.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccountNumber.Name = "txtAccountNumber";
             this.txtAccountNumber.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.txtAccountNumber.Size = new System.Drawing.Size(378, 32);
+            this.txtAccountNumber.Size = new System.Drawing.Size(373, 32);
             this.txtAccountNumber.TabIndex = 56;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label5.Location = new System.Drawing.Point(880, 57);
+            this.label5.Location = new System.Drawing.Point(378, 111);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(94, 30);
@@ -157,16 +180,16 @@
             this.lstBankAccount.GridLines = true;
             this.lstBankAccount.HideSelection = false;
             this.lstBankAccount.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem6,
-            listViewItem7,
-            listViewItem8,
-            listViewItem9,
-            listViewItem10});
-            this.lstBankAccount.Location = new System.Drawing.Point(4, 188);
+            listViewItem21,
+            listViewItem22,
+            listViewItem23,
+            listViewItem24,
+            listViewItem25});
+            this.lstBankAccount.Location = new System.Drawing.Point(4, 524);
             this.lstBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.lstBankAccount.MultiSelect = false;
             this.lstBankAccount.Name = "lstBankAccount";
-            this.lstBankAccount.Size = new System.Drawing.Size(970, 376);
+            this.lstBankAccount.Size = new System.Drawing.Size(1041, 336);
             this.lstBankAccount.TabIndex = 53;
             this.lstBankAccount.UseCompatibleStateImageBehavior = false;
             // 
@@ -229,19 +252,20 @@
             // 
             this.btnUpdateBankAccount.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnUpdateBankAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnUpdateBankAccount.Location = new System.Drawing.Point(219, 138);
+            this.btnUpdateBankAccount.Location = new System.Drawing.Point(207, 474);
             this.btnUpdateBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateBankAccount.Name = "btnUpdateBankAccount";
             this.btnUpdateBankAccount.Size = new System.Drawing.Size(100, 42);
             this.btnUpdateBankAccount.TabIndex = 50;
             this.btnUpdateBankAccount.Text = "ویرایش";
             this.btnUpdateBankAccount.UseVisualStyleBackColor = true;
+            this.btnUpdateBankAccount.Click += new System.EventHandler(this.btnUpdateBankAccount_Click);
             // 
             // btnSubmitNewBankAccount
             // 
             this.btnSubmitNewBankAccount.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnSubmitNewBankAccount.ForeColor = System.Drawing.Color.Green;
-            this.btnSubmitNewBankAccount.Location = new System.Drawing.Point(485, 138);
+            this.btnSubmitNewBankAccount.Location = new System.Drawing.Point(945, 475);
             this.btnSubmitNewBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitNewBankAccount.Name = "btnSubmitNewBankAccount";
             this.btnSubmitNewBankAccount.Size = new System.Drawing.Size(100, 42);
@@ -254,24 +278,25 @@
             // 
             this.btnDeletBankAccount.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnDeletBankAccount.ForeColor = System.Drawing.Color.Red;
-            this.btnDeletBankAccount.Location = new System.Drawing.Point(16, 138);
+            this.btnDeletBankAccount.Location = new System.Drawing.Point(4, 474);
             this.btnDeletBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeletBankAccount.Name = "btnDeletBankAccount";
             this.btnDeletBankAccount.Size = new System.Drawing.Size(195, 42);
             this.btnDeletBankAccount.TabIndex = 52;
             this.btnDeletBankAccount.Text = "حذف و غیرفعال‌سازی";
             this.btnDeletBankAccount.UseVisualStyleBackColor = true;
+            this.btnDeletBankAccount.Click += new System.EventHandler(this.btnDeletBankAccount_Click);
             // 
             // cmbBankName
             // 
             this.cmbBankName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cmbBankName.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbBankName.FormattingEnabled = true;
-            this.cmbBankName.Location = new System.Drawing.Point(16, 15);
+            this.cmbBankName.Location = new System.Drawing.Point(480, 62);
             this.cmbBankName.Margin = new System.Windows.Forms.Padding(4);
             this.cmbBankName.Name = "cmbBankName";
             this.cmbBankName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.cmbBankName.Size = new System.Drawing.Size(192, 32);
+            this.cmbBankName.Size = new System.Drawing.Size(180, 32);
             this.cmbBankName.TabIndex = 47;
             // 
             // cmbAccCategory
@@ -279,7 +304,7 @@
             this.cmbAccCategory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cmbAccCategory.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbAccCategory.FormattingEnabled = true;
-            this.cmbAccCategory.Location = new System.Drawing.Point(16, 95);
+            this.cmbAccCategory.Location = new System.Drawing.Point(480, 154);
             this.cmbAccCategory.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAccCategory.Name = "cmbAccCategory";
             this.cmbAccCategory.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -292,7 +317,7 @@
             this.cmbAccountType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cmbAccountType.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbAccountType.FormattingEnabled = true;
-            this.cmbAccountType.Location = new System.Drawing.Point(245, 95);
+            this.cmbAccountType.Location = new System.Drawing.Point(717, 153);
             this.cmbAccountType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbAccountType.Name = "cmbAccountType";
             this.cmbAccountType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -303,7 +328,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label8.Location = new System.Drawing.Point(155, 97);
+            this.label8.Location = new System.Drawing.Point(619, 153);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(82, 30);
@@ -315,7 +340,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label4.Location = new System.Drawing.Point(211, 17);
+            this.label4.Location = new System.Drawing.Point(661, 63);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 30);
@@ -326,29 +351,30 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label3.Location = new System.Drawing.Point(408, 97);
+            this.label3.Location = new System.Drawing.Point(880, 153);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(83, 30);
             this.label3.TabIndex = 44;
             this.label3.Text = "نوع حساب";
             // 
-            // txtAccountOwner
+            // txtAccountOwnerSearch
             // 
-            this.txtAccountOwner.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
-            this.txtAccountOwner.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtAccountOwner.Location = new System.Drawing.Point(262, 15);
-            this.txtAccountOwner.Margin = new System.Windows.Forms.Padding(4);
-            this.txtAccountOwner.Name = "txtAccountOwner";
-            this.txtAccountOwner.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.txtAccountOwner.Size = new System.Drawing.Size(397, 32);
-            this.txtAccountOwner.TabIndex = 43;
+            this.txtAccountOwnerSearch.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
+            this.txtAccountOwnerSearch.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.txtAccountOwnerSearch.Location = new System.Drawing.Point(25, 97);
+            this.txtAccountOwnerSearch.Margin = new System.Windows.Forms.Padding(4);
+            this.txtAccountOwnerSearch.Name = "txtAccountOwnerSearch";
+            this.txtAccountOwnerSearch.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.txtAccountOwnerSearch.Size = new System.Drawing.Size(234, 32);
+            this.txtAccountOwnerSearch.TabIndex = 43;
+            this.txtAccountOwnerSearch.TextChanged += new System.EventHandler(this.txtAccountOwner_TextChanged);
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label2.Location = new System.Drawing.Point(655, 17);
+            this.label2.Location = new System.Drawing.Point(267, 97);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 30);
@@ -359,17 +385,17 @@
             // 
             this.txtBACode.Enabled = false;
             this.txtBACode.Font = new System.Drawing.Font("Square721 BT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBACode.Location = new System.Drawing.Point(766, 17);
+            this.txtBACode.Location = new System.Drawing.Point(707, 62);
             this.txtBACode.Margin = new System.Windows.Forms.Padding(4);
             this.txtBACode.Name = "txtBACode";
-            this.txtBACode.Size = new System.Drawing.Size(112, 32);
+            this.txtBACode.Size = new System.Drawing.Size(170, 32);
             this.txtBACode.TabIndex = 41;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label1.Location = new System.Drawing.Point(881, 20);
+            this.label1.Location = new System.Drawing.Point(880, 63);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(78, 30);
@@ -380,7 +406,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label9.Location = new System.Drawing.Point(881, 97);
+            this.label9.Location = new System.Drawing.Point(378, 153);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(78, 30);
@@ -391,18 +417,18 @@
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.textBox1.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.textBox1.Location = new System.Drawing.Point(536, 97);
+            this.textBox1.Location = new System.Drawing.Point(36, 151);
             this.textBox1.Margin = new System.Windows.Forms.Padding(4);
             this.textBox1.Name = "textBox1";
             this.textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.textBox1.Size = new System.Drawing.Size(342, 32);
+            this.textBox1.Size = new System.Drawing.Size(344, 32);
             this.textBox1.TabIndex = 57;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label10.Location = new System.Drawing.Point(502, 102);
+            this.label10.Location = new System.Drawing.Point(7, 151);
             this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(33, 30);
@@ -413,48 +439,201 @@
             // 
             this.chbPayer.AutoSize = true;
             this.chbPayer.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.chbPayer.Location = new System.Drawing.Point(618, 145);
+            this.chbPayer.Location = new System.Drawing.Point(7, 72);
             this.chbPayer.Name = "chbPayer";
             this.chbPayer.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.chbPayer.Size = new System.Drawing.Size(349, 31);
+            this.chbPayer.Size = new System.Drawing.Size(114, 31);
             this.chbPayer.TabIndex = 60;
-            this.chbPayer.Text = "از این حساب، خریدها و تراکنش‌های مالی انجام می‌شود";
+            this.chbPayer.Text = "حساب تنخواه";
             this.chbPayer.UseVisualStyleBackColor = true;
+            // 
+            // lstOwners
+            // 
+            this.lstOwners.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.lstOwners.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5,
+            this.columnHeader6,
+            this.columnHeader7,
+            this.columnHeader8,
+            this.columnHeader9,
+            this.columnHeader10});
+            this.lstOwners.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.lstOwners.FullRowSelect = true;
+            this.lstOwners.GridLines = true;
+            this.lstOwners.HideSelection = false;
+            this.lstOwners.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem26,
+            listViewItem27,
+            listViewItem28,
+            listViewItem29,
+            listViewItem30});
+            this.lstOwners.Location = new System.Drawing.Point(13, 10);
+            this.lstOwners.Margin = new System.Windows.Forms.Padding(4);
+            this.lstOwners.MultiSelect = false;
+            this.lstOwners.Name = "lstOwners";
+            this.lstOwners.Size = new System.Drawing.Size(581, 249);
+            this.lstOwners.TabIndex = 61;
+            this.lstOwners.UseCompatibleStateImageBehavior = false;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.DisplayIndex = 9;
+            this.columnHeader1.Text = "ردیف";
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.DisplayIndex = 0;
+            this.columnHeader2.Text = "کد کالا";
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.DisplayIndex = 1;
+            this.columnHeader3.Text = "نام کالا";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.DisplayIndex = 2;
+            this.columnHeader4.Text = "قیمت خرید";
+            this.columnHeader4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.DisplayIndex = 3;
+            this.columnHeader5.Text = "فروشنده";
+            this.columnHeader5.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.DisplayIndex = 4;
+            this.columnHeader6.Text = "واحد خرید";
+            this.columnHeader6.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeader7
+            // 
+            this.columnHeader7.DisplayIndex = 5;
+            this.columnHeader7.Text = "واحد خرید";
+            this.columnHeader7.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
+            // columnHeader8
+            // 
+            this.columnHeader8.DisplayIndex = 6;
+            this.columnHeader8.Text = "مکوجودی بحرانی";
+            // 
+            // columnHeader9
+            // 
+            this.columnHeader9.DisplayIndex = 7;
+            this.columnHeader9.Text = "دورریز";
+            // 
+            // columnHeader10
+            // 
+            this.columnHeader10.DisplayIndex = 8;
+            this.columnHeader10.Text = "وضعیت";
+            // 
+            // chbDefault
+            // 
+            this.chbDefault.AutoSize = true;
+            this.chbDefault.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.chbDefault.Location = new System.Drawing.Point(247, 72);
+            this.chbDefault.Name = "chbDefault";
+            this.chbDefault.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.chbDefault.Size = new System.Drawing.Size(133, 31);
+            this.chbDefault.TabIndex = 60;
+            this.chbDefault.Text = "حساب پیش‌فرض";
+            this.chbDefault.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.label11.Location = new System.Drawing.Point(262, 63);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(125, 30);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "کد صاحب حساب";
+            // 
+            // txtOwnnerCode
+            // 
+            this.txtOwnnerCode.Enabled = false;
+            this.txtOwnnerCode.Font = new System.Drawing.Font("Square721 BT", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtOwnnerCode.Location = new System.Drawing.Point(25, 60);
+            this.txtOwnnerCode.Margin = new System.Windows.Forms.Padding(4);
+            this.txtOwnnerCode.Name = "txtOwnnerCode";
+            this.txtOwnnerCode.Size = new System.Drawing.Size(234, 32);
+            this.txtOwnnerCode.TabIndex = 41;
+            // 
+            // gbxBankAccouant
+            // 
+            this.gbxBankAccouant.BackColor = System.Drawing.SystemColors.AppWorkspace;
+            this.gbxBankAccouant.Controls.Add(this.chbPayer);
+            this.gbxBankAccouant.Controls.Add(this.chbDefault);
+            this.gbxBankAccouant.Controls.Add(this.textBox1);
+            this.gbxBankAccouant.Controls.Add(this.label10);
+            this.gbxBankAccouant.Controls.Add(this.label9);
+            this.gbxBankAccouant.Controls.Add(this.txtAccountCard);
+            this.gbxBankAccouant.Controls.Add(this.label6);
+            this.gbxBankAccouant.Controls.Add(this.txtAccountNumber);
+            this.gbxBankAccouant.Controls.Add(this.label5);
+            this.gbxBankAccouant.Controls.Add(this.cmbBankName);
+            this.gbxBankAccouant.Controls.Add(this.cmbAccCategory);
+            this.gbxBankAccouant.Controls.Add(this.cmbAccountType);
+            this.gbxBankAccouant.Controls.Add(this.label8);
+            this.gbxBankAccouant.Controls.Add(this.label4);
+            this.gbxBankAccouant.Controls.Add(this.label3);
+            this.gbxBankAccouant.Controls.Add(this.txtBACode);
+            this.gbxBankAccouant.Controls.Add(this.label1);
+            this.gbxBankAccouant.Font = new System.Drawing.Font("B Nazanin", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.gbxBankAccouant.Location = new System.Drawing.Point(12, 266);
+            this.gbxBankAccouant.Name = "gbxBankAccouant";
+            this.gbxBankAccouant.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.gbxBankAccouant.Size = new System.Drawing.Size(1025, 202);
+            this.gbxBankAccouant.TabIndex = 62;
+            this.gbxBankAccouant.TabStop = false;
+            this.gbxBankAccouant.Text = "ثبت و ویرایش حساب های اشخاص";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.txtAccountOwnerSearch);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.txtOwnnerCode);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Font = new System.Drawing.Font("B Nazanin", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.groupBox1.Location = new System.Drawing.Point(606, 21);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.groupBox1.Size = new System.Drawing.Size(424, 205);
+            this.groupBox1.TabIndex = 63;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "جستجو در لیست صاحبان حساب";
             // 
             // DefineBankAccountFRM
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(979, 570);
-            this.Controls.Add(this.chbPayer);
+            this.ClientSize = new System.Drawing.Size(1050, 868);
+            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbxBankAccouant);
+            this.Controls.Add(this.lstOwners);
             this.Controls.Add(this.cmbAccountState);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.label10);
-            this.Controls.Add(this.label9);
-            this.Controls.Add(this.txtAccountCard);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtAccountNumber);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.lstBankAccount);
             this.Controls.Add(this.btnUpdateBankAccount);
             this.Controls.Add(this.btnSubmitNewBankAccount);
             this.Controls.Add(this.btnDeletBankAccount);
-            this.Controls.Add(this.cmbBankName);
-            this.Controls.Add(this.cmbAccCategory);
-            this.Controls.Add(this.cmbAccountType);
-            this.Controls.Add(this.label8);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.txtAccountOwner);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.txtBACode);
-            this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DefineBankAccountFRM";
             this.Text = "تعریف حساب و پوز بانکی";
             this.Load += new System.EventHandler(this.DefineBankAccountFRM_Load);
+            this.gbxBankAccouant.ResumeLayout(false);
+            this.gbxBankAccouant.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -488,7 +667,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtAccountOwner;
+        private System.Windows.Forms.TextBox txtAccountOwnerSearch;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtBACode;
         private System.Windows.Forms.Label label1;
@@ -496,5 +675,21 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox chbPayer;
+        private System.Windows.Forms.ListView lstOwners;
+        public System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
+        private System.Windows.Forms.ColumnHeader columnHeader7;
+        private System.Windows.Forms.ColumnHeader columnHeader8;
+        private System.Windows.Forms.ColumnHeader columnHeader9;
+        private System.Windows.Forms.ColumnHeader columnHeader10;
+        private System.Windows.Forms.CheckBox chbDefault;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtOwnnerCode;
+        private System.Windows.Forms.GroupBox gbxBankAccouant;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

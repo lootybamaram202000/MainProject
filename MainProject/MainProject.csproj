@@ -75,6 +75,7 @@
     <Compile Include="DataAccess\UnitDAL.cs" />
     <Compile Include="DataAccess\UserPanelDAL.cs" />
     <Compile Include="Entities\AccountModel.cs" />
+    <Compile Include="Entities\AccountOwnerModel.cs" />
     <Compile Include="Entities\BasicItemModel.cs" />
     <Compile Include="Entities\BasicRecipieModel.cs" />
     <Compile Include="Entities\FactorModel.cs" />
@@ -90,6 +91,12 @@
     <Compile Include="Entities\SellerModel.cs" />
     <Compile Include="Entities\SubFactorModel.cs" />
     <Compile Include="Entities\UnitModel.cs" />
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AccessLayerDeclarationFRM.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -286,6 +293,9 @@
     <Compile Include="Helpers\LoginInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AccessLayerDeclarationFRM.resx">
       <DependentUpon>AccessLayerDeclarationFRM.cs</DependentUpon>
     </EmbeddedResource>
