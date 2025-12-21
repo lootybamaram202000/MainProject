@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using MainProject.Entities;
 using MainProject.DataAccess;
+using MainProject.Core.Business;
 
 namespace MainProject.Business
 {
