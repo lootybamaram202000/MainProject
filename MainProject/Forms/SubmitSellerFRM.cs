@@ -187,46 +187,28 @@ namespace MainProject.Forms
 
             model.SellerName = txtSellerName.Text.Trim();
             model.CompanyName = txtCompanyName.Text.Trim();
-            model.Addtress = txtAddress.Text.Trim();
-            model.Phone = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone1.Text.Trim());
-            model.Category = cmbCategory1.SelectedItem == null ? null : cmbCategory1.SelectedItem.ToString();
+            model.Address = txtAddress.Text.Trim();
+            model.Phone1 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone1.Text.Trim());
+            // اگر فیلدهای Phone2 و Phone3 وجود دارن، اینا رو uncomment کن:
+            // model.Phone2 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone2.Text.Trim());
+            // model.Phone3 = CommonFunctions.ConvertPersianDigitsToEnglish(txtPhone3.Text.Trim());
 
+            model.SellerCategory1 = cmbCategory1.SelectedItem == null ? null : cmbCategory1.SelectedItem.ToString();
+            // اگر فیلدهای Category2 و Category3 وجود دارن، اینا رو uncomment کن:
+            // model.SellerCategory2 = cmbCategory2.SelectedItem == null ? null : cmbCategory2.SelectedItem.ToString();
+            // model.SellerCategory3 = cmbCategory3.SelectedItem == null ? null : cmbCategory3.SelectedItem.ToString();
+
+            // محاسبه Balance
             decimal bal;
             var balRaw = CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Trim()).Replace(",", "");
-            balRaw = Regex.Replace(balRaw, "[^0-9]", "");
+            balRaw = System.Text.RegularExpressions.Regex.Replace(balRaw, "[^0-9]", "");
             if (!decimal.TryParse(balRaw, out bal)) bal = 0m;
 
             bal = ApplyBalanceSignFromRadios(bal);
             model.Balance = bal;
 
-            // اطلاعات حساب بانکی
-            string cardNumber = CommonFunctions.ConvertPersianDigitsToEnglish(txtCardNumb.Text.Trim());
-            string shabaNumber = CommonFunctions.ConvertPersianDigitsToEnglish(txtShabaNumb.Text.Trim());
-
-            if (string.IsNullOrWhiteSpace(cardNumber))
-                cardNumber = "0";
-            else if (cardNumber.Length != 16 || !CommonFunctions.IsAllDigits(cardNumber))
-            {
-                MessageBox.Show("شماره کارت باید یک عدد ۱۶ رقمی باشد.");
-                return null;
-            }
-
-            if (string.IsNullOrWhiteSpace(shabaNumber))
-                shabaNumber = "0";
-            else if (shabaNumber.Length != 24 || !CommonFunctions.IsAllDigits(shabaNumber))
-            {
-                MessageBox.Show("شماره شبا باید یک عدد ۲۴ رقمی باشد.");
-                return null;
-            }
-
-            // AccountModel را بساز و به مدل فروشنده بده
-            model.Account = new AccountModel
-            {
-                ACCardNumber = cardNumber,
-                ACshabaNumber = shabaNumber,
-                ACBank = cmbBank.Text.Trim(),
-                // سایر فیلدهای حساب را اینجا مقداردهی کن
-            };
+            // ❌ حذف:  بخش Account - چون حساب بانکی در DefineBankAccountFRM مدیریت میشه
+            // مدل فروشنده فقط Owner خام می‌سازه
 
             return model;
         }
@@ -244,25 +226,26 @@ namespace MainProject.Forms
             var model = ReadFormToModel(false);
             if (model == null) return;
 
-            // مقادیر اولیه برای حساب (اختیاری اگر در مدل یا فرم مقداردهی نشده)
-            if (model.Account == null)
-                model.Account = new AccountModel();
-            model.Account.isActive = true;
-            model.Account.isPayer = false;
-            model.Account.isDeleted = false;
-
             string msg;
-            bool result = _sellerManager.InsertSellerAndAccount(model, _userID, _date, _dateValue, _dateDig, out msg);
+            bool result = _sellerManager.InsertSeller(
+                model,
+                _userID,
+                _date,
+                _dateValue,
+                _dateDig,
+                out string newSellerID,
+                out string newOWID,
+                out msg);
 
             if (result)
             {
-                MessageBox.Show("ثبت با موفقیت انجام شد.");
+                MessageBox.Show($"فروشنده با موفقیت ثبت شد.\nکد فروشنده: {newSellerID}\n\n💡 برای افزودن حساب بانکی، از فرم 'مدیریت حساب‌ها' استفاده کنید.");
                 LoadSellers();
                 ClearForm();
             }
             else
             {
-                MessageBox.Show(!string.IsNullOrWhiteSpace(msg) ? msg : "خطا در ثبت فروشنده و حساب!");
+                MessageBox.Show(!string.IsNullOrWhiteSpace(msg) ? msg : "خطا در ثبت فروشنده!");
             }
         }
 
@@ -283,13 +266,14 @@ namespace MainProject.Forms
             var model = ReadFormToModel(true);
             if (model == null) return;
 
-            // مقادیر حساب بانکی (اختیاری اگر در مدل نیست)
-            model.Account.isActive = true;
-            model.Account.isPayer = false;
-            model.Account.isDeleted = false;
-
             string msg;
-            bool ok = _sellerManager.UpdateSellerAndAccount(model, _userID, _date, _dateValue, _dateDig, out msg);
+            bool ok = _sellerManager.UpdateSeller(
+                model,
+                _userID,
+                _date,
+                _dateValue,
+                _dateDig,
+                out msg);
 
             if (ok)
             {
@@ -299,7 +283,7 @@ namespace MainProject.Forms
             }
             else
             {
-                MessageBox.Show(!string.IsNullOrWhiteSpace(msg) ? msg : "خطا در ویرایش فروشنده و حساب!");
+                MessageBox.Show(!string.IsNullOrWhiteSpace(msg) ? msg : "خطا در ویرایش فروشنده!");
             }
         }
 
