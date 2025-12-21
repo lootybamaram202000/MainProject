@@ -255,6 +255,103 @@ namespace MainProject.DataAccess
         }
 
         /// <summary>
+        /// دریافت تمام حساب‌ها (فیلتر بر اساس PERID prefix)
+        /// </summary>
+        public List<AccountModel> GetAllAccounts(string peridPrefix)
+        {
+            var accounts = new List<AccountModel>();
+
+            try
+            {
+                using (var con = new SqlConnection(_connectionString))
+                {
+                    string query = "SELECT * FROM tblAccounts WHERE isDeleted = 0";
+
+                    if (!string.IsNullOrWhiteSpace(peridPrefix))
+                    {
+                        query += " AND PERID LIKE @PERID";
+                    }
+
+                    using (var cmd = new SqlCommand(query, con))
+                    {
+                        if (!string.IsNullOrWhiteSpace(peridPrefix))
+                        {
+                            cmd.Parameters.AddWithValue("@PERID", peridPrefix + "%");
+                        }
+
+                        con.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                accounts.Add(MapReaderToAccount(reader));
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // در صورت خطا، لیست خالی برمیگردونه
+            }
+
+            return accounts;
+        }
+
+        /// <summary>
+        /// جستجوی حساب‌ها
+        /// </summary>
+        public List<AccountModel> SearchAccounts(string searchText, string peridPrefix)
+        {
+            var accounts = new List<AccountModel>();
+
+            try
+            {
+                using (var con = new SqlConnection(_connectionString))
+                {
+                    string query = @"SELECT * FROM tblAccounts 
+                                    WHERE isDeleted = 0 
+                                    AND (ACID LIKE @Search 
+                                         OR ACOwner LIKE @Search 
+                                         OR ACBank LIKE @Search 
+                                         OR ACNumber LIKE @Search)";
+
+                    if (!string.IsNullOrWhiteSpace(peridPrefix))
+                    {
+                        query += " AND PERID LIKE @PERID";
+                    }
+
+                    using (var cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Search", "%" + (searchText ?? "") + "%");
+
+                        if (!string.IsNullOrWhiteSpace(peridPrefix))
+                        {
+                            cmd.Parameters.AddWithValue("@PERID", peridPrefix + "%");
+                        }
+
+                        con.Open();
+
+                        using (var reader = cmd.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                accounts.Add(MapReaderToAccount(reader));
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // در صورت خطا، لیست خالی برمیگردونه
+            }
+
+            return accounts;
+        }
+
+        /// <summary>
         /// Map کردن SqlDataReader به AccountModel
         /// </summary>
         private AccountModel MapReaderToAccount(SqlDataReader reader)
