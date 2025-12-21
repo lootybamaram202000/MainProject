@@ -60,11 +60,10 @@ namespace MainProject.Core.Business
 
             try
             {
-                bool result = _dal.InsertAccount(account, userID, date, dateValue, dateDig);
+                bool result = _dal.InsertAccount(account, userID, date, dateValue, dateDig, out newACID, out message);
                 
                 if (result)
                 {
-                    newACID = account.ACID;
                     message = "حساب با موفقیت ثبت شد.";
                 }
                 else
@@ -96,7 +95,7 @@ namespace MainProject.Core.Business
 
             try
             {
-                bool result = _dal.UpdateAccount(account, userID, date, dateValue, dateDig);
+                bool result = _dal.UpdateAccount(account, userID, date, dateValue, dateDig, out message);
                 
                 if (result)
                 {
@@ -131,7 +130,7 @@ namespace MainProject.Core.Business
 
             try
             {
-                bool result = _dal.DeleteAccount(acid, userID, date, dateValue, dateDig);
+                bool result = _dal.DeleteAccount(acid, userID, date, dateValue, dateDig, out message);
                 
                 if (result)
                 {

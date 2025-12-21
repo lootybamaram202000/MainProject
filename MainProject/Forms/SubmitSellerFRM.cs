@@ -61,7 +61,6 @@ namespace MainProject.Forms
             SetupSellerListView();
             LoadCategories();
             LoadSellers();
-            LoadBanks();
             UpdateAccountButtonState();
             txtPhone1.TextChanged += txtPhone_TextChanged;
             txtBalance.TextChanged += txtBalance_TextChanged;
@@ -83,14 +82,6 @@ namespace MainProject.Forms
             lstSeller.Columns.Add("دسته‌بندی", 120, HorizontalAlignment.Center);
             lstSeller.Columns.Add("مانده", 110, HorizontalAlignment.Right);
         }
-        private void LoadBanks()
-        {
-            cmbBank.Items.Clear();
-            var infoDal = new InformationDAL();
-            var banks = infoDal.GetValuesByContext("Banks"); // فرض بر اینکه type مربوط به بانک‌ها در اطلاعات، "Banks" است
-            cmbBank.Items.AddRange(banks.ToArray());
-        }
-
         private void LoadCategories()
         {
             cmbCategory1.Items.Clear();
@@ -124,8 +115,8 @@ namespace MainProject.Forms
                 var it = new ListViewItem(s.SellerID);
                 it.SubItems.Add(s.SellerName);
                 it.SubItems.Add(s.CompanyName);
-                it.SubItems.Add(s.Phone);
-                it.SubItems.Add(string.IsNullOrWhiteSpace(s.Category) ? "—" : s.Category);
+                it.SubItems.Add(s.PhoneDisplay ?? "");
+                it.SubItems.Add(string.IsNullOrWhiteSpace(s.SellerCategory1) ? "—" : s.SellerCategory1);
                 it.SubItems.Add(s.Balance.ToString("0"));
                 it.Tag = s;
                 lstSeller.Items.Add(it);
@@ -148,14 +139,6 @@ namespace MainProject.Forms
             txtBalance.Text = "0";
             CommonFunctions.FormatTextBoxAsThousandSeparated(txtBalance);
             SetRadiosFromBalance(0m);
-
-            // اطلاعات حساب (Shaba/Card/Bank)
-            txtShabaNumb.Text = string.Empty;
-            txtCardNumb.Text = string.Empty;
-            cmbBank.Text = string.Empty;
-            SetBalanceFormattedFromDecimal(0m);
-            SetRadiosFromBalance(0m);
-            UpdateAccountButtonState();
         }
 
         // === Validation ===
@@ -301,13 +284,6 @@ namespace MainProject.Forms
             string message;
             if (_sellerManager.DeleteSeller(txtISellerCode.Text.Trim(), _userID, _date, _dateValue, _dateDig, out message))
             {
-                // حساب وابسته هم غیرفعال کن (حذف منطقی)
-                var model = lstSeller.SelectedItems[0].Tag as SellerModel;
-                if (model != null && !string.IsNullOrWhiteSpace(model.ACID))
-                {
-                    var accountManager = new AccountManager();
-                    accountManager.DeleteAccount(model.ACID, _userID, _date, _dateValue, _dateDig);
-                }
                 MessageBox.Show("حذف شد.");
                 LoadSellers();
             }
@@ -336,15 +312,10 @@ namespace MainProject.Forms
             txtISellerCode.Text = seller.SellerID;
             txtSellerName.Text = seller.SellerName;
             txtCompanyName.Text = seller.CompanyName;
-            txtAddress.Text = seller.Addtress;
-            txtPhone1.Text = seller.Phone;
+            txtAddress.Text = seller.Address ??  "";
+            txtPhone1.Text = seller.Phone1 ?? "";
             txtBalance.Text = seller.Balance.ToString("0");
-            cmbCategory1.SelectedItem = string.IsNullOrWhiteSpace(seller.Category) ? null : seller.Category;
-
-            // اطلاعات حساب بانکی
-            txtShabaNumb.Text = seller.Account?.ACshabaNumber ?? "";
-            txtCardNumb.Text = seller.Account?.ACCardNumber ?? "";
-            cmbBank.Text = seller.Account?.ACBank ?? "";
+            cmbCategory1.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory1) ? null : seller.SellerCategory1;
         }
 
         private void txtSearchSeller_TextChanged(object sender, EventArgs e)
@@ -360,50 +331,14 @@ namespace MainProject.Forms
                     var it = new ListViewItem(s.SellerID);
                     it.SubItems.Add(s.SellerName);
                     it.SubItems.Add(s.CompanyName);
-                    it.SubItems.Add(s.Phone);
-                    it.SubItems.Add(string.IsNullOrWhiteSpace(s.Category) ? "—" : s.Category);
+                    it.SubItems.Add(s.PhoneDisplay);
+                    it.SubItems.Add(string.IsNullOrWhiteSpace(s.CategoryDisplay) ? "—" : s.CategoryDisplay);
                     it.SubItems.Add(s.Balance.ToString("0"));
                     it.Tag = s;
                     lstSeller.Items.Add(it);
                 }
             }
         }
-        private void LoadAccountLabels(string acid)
-        {
-            if (string.IsNullOrWhiteSpace(acid) || acid == "NO-ACCOUNT")
-            {
-                txtShabaNumb.Text = "";
-                txtCardNumb.Text = "";
-                cmbBank.Text = "";
-                return;
-            }
-
-            try
-            {
-                var accDal = new AccountDAL();
-                AccountModel acc;
-                string m;
-                if (accDal.GetAccountByACID(acid, out acc, out m))
-                {
-                    txtShabaNumb.Text = string.IsNullOrWhiteSpace(acc.ACshabaNumber) ? "" : acc.ACshabaNumber;
-                    txtCardNumb.Text = string.IsNullOrWhiteSpace(acc.ACCardNumber) ? "" : acc.ACCardNumber;
-                    cmbBank.Text = string.IsNullOrWhiteSpace(acc.ACBank) ? "" : acc.ACBank;
-                }
-                else
-                {
-                    txtShabaNumb.Text = "";
-                    txtCardNumb.Text = "";
-                    cmbBank.Text = "";
-                }
-            }
-            catch
-            {
-                txtShabaNumb.Text = "";
-                txtCardNumb.Text = "";
-                cmbBank.Text = "";
-            }
-        }
-
         private void UpdateAccountButtonState()
         {
             btnDefineBankAccouant.Enabled = !string.IsNullOrWhiteSpace(txtISellerCode.Text);
@@ -423,7 +358,7 @@ namespace MainProject.Forms
                 if (lstSeller.SelectedItems.Count > 0)
                 {
                     var s = lstSeller.SelectedItems[0].Tag as SellerModel;
-                    if (s != null) LoadAccountLabels(s.ACID);
+                    if (s != null) ;
                 }
             }
             catch
