@@ -234,6 +234,8 @@ namespace MainProject.Forms
             txtBalance.Text = "0";
             CommonFunctions.FormatTextBoxAsThousandSeparated(txtBalance);
             SetRadiosFromBalance(0m);
+
+            UpdateAccountButtonState();
         }
 
         // === Validation ===
@@ -500,7 +502,10 @@ namespace MainProject.Forms
             sellerToolTip.SetToolTip(txtBalance, "مانده اولیه حساب فروشنده");
             sellerToolTip.SetToolTip(rdbdebtor, "بدهکار: فروشنده به ما پول بدهکار است");
             sellerToolTip.SetToolTip(rdbcreditor, "بستانکار: ما به فروشنده پول بدهکاریم");
-            sellerToolTip.SetToolTip(btnDefineBankAccouant, "برای مدیریت حساب‌های بانکی این فروشنده کلیک کنید");
+            sellerToolTip.SetToolTip(btnDefineBankAccouant,
+                "مدیریت حساب‌های بانکی فروشنده\n" +
+                "ابتدا یک فروشنده را از لیست انتخاب کنید\n" +
+                "می‌توانید حساب جدید اضافه یا حساب‌های موجود را ویرایش کنید");
         }
 
         private void UpdateAccountButtonState()
@@ -510,24 +515,58 @@ namespace MainProject.Forms
 
         private void btnDefineBankAccouant_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(txtISellerCode.Text)) return;
+            if (string.IsNullOrWhiteSpace(txtISellerCode.Text))
+            {
+                MessageBox.Show("ابتدا یک فروشنده را از لیست انتخاب کنید.",
+                    "هشدار",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                return;
+            }
 
             try
             {
-                // OwnerType = "Seller"
-         //       var frm = new DefineBankAccountFRM("Seller", txtISellerCode.Text.Trim());
-           //     frm.ShowDialog();
-
-                // بعد از بستن فرم حساب، اگر فروشنده انتخاب است، اطلاعات حساب را مجدد بخوان
-                if (lstSeller.SelectedItems.Count > 0)
+                if (lstSeller.SelectedItems.Count == 0)
                 {
-                    var s = lstSeller.SelectedItems[0].Tag as SellerModel;
-                    if (s != null) ;
+                    MessageBox.Show("ابتدا یک فروشنده را از لیست انتخاب کنید.",
+                        "هشدار",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var seller = lstSeller.SelectedItems[0].Tag as SellerModel;
+                if (seller == null)
+                {
+                    MessageBox.Show("خطا در بارگذاری اطلاعات فروشنده.", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                var frm = new DefineBankAccountFRM("Seller", txtISellerCode.Text.Trim(), seller.SellerName);
+                frm.ShowDialog();
+
+                string selectedId = txtISellerCode.Text.Trim();
+                LoadSellers();
+
+                if (!string.IsNullOrWhiteSpace(selectedId))
+                {
+                    foreach (ListViewItem item in lstSeller.Items)
+                    {
+                        if (item.Text == selectedId)
+                        {
+                            item.Selected = true;
+                            lstSeller.EnsureVisible(item.Index);
+                            break;
+                        }
+                    }
                 }
             }
-            catch
+            catch (Exception ex)
             {
-                MessageBox.Show("فرم حساب بانکی در این فاز در دسترس نیست.");
+                MessageBox.Show($"خطا در باز کردن فرم حساب بانکی:\n{ex.Message}",
+                    "خطا",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -591,9 +630,9 @@ namespace MainProject.Forms
         private decimal ApplyBalanceSignFromRadios(decimal balanceAbs)
         {
             var abs = Math.Abs(balanceAbs);
-            if (rdbcreditor.Checked) return -abs; // بستانکار = منفی
-            if (rdbdebtor.Checked) return abs; // بدهکار = مثبت
-            return abs; // اگر هیچ‌کدام، مثبت در نظر می‌گیریم
+            if (rdbdebtor.Checked) return -abs;
+            if (rdbcreditor.Checked) return abs;
+            return 0m;
         }
 
         private void cmbCategory_SelectedIndexChanged(object sender, EventArgs e)
