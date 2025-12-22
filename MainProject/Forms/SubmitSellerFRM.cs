@@ -108,6 +108,7 @@ namespace MainProject.Forms
             LoadSellerTypes();
             LoadSellers();
             UpdateAccountButtonState();
+
             txtPhone1.TextChanged += txtPhone_TextChanged;
             txtPhone2.TextChanged += txtPhone_TextChanged;
             txtPhone3.TextChanged += txtPhone_TextChanged;
@@ -119,10 +120,14 @@ namespace MainProject.Forms
             this.KeyPreview = true;
             this.KeyDown += SubmitSellerFRM_KeyDown;
 
-            // Handle resize برای ستون‌های ListView
+            // Handle resize
             lstSeller.SizeChanged += (s, ev) => ResizeListViewColumns();
-            // تنظیم اولیه عرض ستون‌ها بعد از Load
             ResizeListViewColumns();
+
+            // آپدیت متن دکمه‌ها با میانبرها
+            btnSubmitNewSeller.Text = "ثبت (F2)";
+            btnUpdateSeller.Text = "ویرایش (F3)";
+            btnDeletSeller.Text = "حذف (F4)";
         }
 
         // === UI Setup ===
