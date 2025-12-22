@@ -23,7 +23,7 @@ namespace MainProject.Forms
         {
             CommonFunctions.ScaleForm(this);
             InitializeComponent();
-            InitializeListViewUnits();
+            // InitializeListViewUnits();
             InitializeToolTips();
             InitializeErrorProvider();
             SetTabIndexes();

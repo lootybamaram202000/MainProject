@@ -8,6 +8,7 @@ using MainProject.Helpers;
 using System.Text.RegularExpressions;
 using System.Reflection;
 using MainProject.Core.Business;
+using System.Drawing;  // ← اضافه شد
 
 namespace MainProject.Forms
 {
@@ -35,6 +36,7 @@ namespace MainProject.Forms
 
             InitializeLoginInfo();
             InitializeServices();
+            InitializeListViewSellers();
         }
 
         private void InitializeLoginInfo()
@@ -56,10 +58,52 @@ namespace MainProject.Forms
             _sellerManager = new SellerManager();
         }
 
+        private void InitializeListViewSellers()
+        {
+            lstSeller.View = View.Details;
+            lstSeller.FullRowSelect = true;
+            lstSeller.GridLines = true;
+            lstSeller.HideSelection = false;
+            lstSeller.BackColor = Color.FromArgb(255, 255, 192);  // زرد روشن
+            lstSeller.Font = new Font("Tahoma", 9F, FontStyle.Regular);  // فونت کوچکتر
+            lstSeller.Columns.Clear();
+
+            lstSeller.Columns.Add("کد", 100, HorizontalAlignment.Center);
+            lstSeller.Columns.Add("نام فروشنده", 150, HorizontalAlignment.Right);
+            lstSeller.Columns.Add("نام شرکت", 150, HorizontalAlignment.Right);
+            lstSeller.Columns.Add("تلفن", 110, HorizontalAlignment.Center);
+            lstSeller.Columns.Add("دسته‌بندی", 200, HorizontalAlignment.Right);
+            lstSeller.Columns.Add("مانده (ریال)", 130, HorizontalAlignment.Right);
+
+            ResizeListViewColumns();
+        }
+
+        private void ResizeListViewColumns()
+        {
+            if (lstSeller.Columns.Count != 6) return;
+
+            int totalWidth = lstSeller.ClientSize.Width - SystemInformation.VerticalScrollBarWidth - 4;
+            if (totalWidth <= 0) return;
+
+            int colWidth1 = (int)(totalWidth * 0.10); // کد
+            int colWidth2 = (int)(totalWidth * 0.18); // نام
+            int colWidth3 = (int)(totalWidth * 0.18); // شرکت
+            int colWidth4 = (int)(totalWidth * 0.13); // تلفن
+            int colWidth5 = (int)(totalWidth * 0.25); // دسته
+            int colWidth6 = totalWidth - (colWidth1 + colWidth2 + colWidth3 + colWidth4 + colWidth5);
+
+            lstSeller.Columns[0].Width = colWidth1;
+            lstSeller.Columns[1].Width = colWidth2;
+            lstSeller.Columns[2].Width = colWidth3;
+            lstSeller.Columns[3].Width = colWidth4;
+            lstSeller.Columns[4].Width = colWidth5;
+            lstSeller.Columns[5].Width = colWidth6;
+        }
+
         // === Form Events ===
         private void SubmitSellerFRM_Load(object sender, EventArgs e)
         {
-            // Columns are defined in Designer
+            // Columns are defined in InitializeListViewSellers
             LoadCategories();
             LoadSellerTypes();
             LoadSellers();
@@ -74,6 +118,11 @@ namespace MainProject.Forms
 
             this.KeyPreview = true;
             this.KeyDown += SubmitSellerFRM_KeyDown;
+
+            // Handle resize برای ستون‌های ListView
+            lstSeller.SizeChanged += (s, ev) => ResizeListViewColumns();
+            // تنظیم اولیه عرض ستون‌ها بعد از Load
+            ResizeListViewColumns();
         }
 
         // === UI Setup ===
@@ -135,16 +184,29 @@ namespace MainProject.Forms
 
             foreach (var s in sellerList)
             {
-                var it = new ListViewItem(s.SellerID);
-                it.SubItems.Add(s.SellerName);
-                it.SubItems.Add(s.CompanyName);
-                it.SubItems.Add(s.PhoneDisplay ?? "");
-                it.SubItems.Add(string.IsNullOrWhiteSpace(s.SellerCategory1) ? "—" : s.SellerCategory1);
-                it.SubItems.Add(s.Balance.ToString("0"));
+                var it = new ListViewItem(s.SellerID ?? "");
+                it.SubItems.Add(s.SellerName ?? "");
+                it.SubItems.Add(s.CompanyName ?? "");
+                // فقط تلفن اصلی
+                it.SubItems.Add(s.Phone1 ?? "");
+                // دسته‌بندی ترکیبی
+                var categories = new List<string>();
+                if (!string.IsNullOrWhiteSpace(s.SellerCategory1)) categories.Add(s.SellerCategory1);
+                if (!string.IsNullOrWhiteSpace(s.SellerCategory2)) categories.Add(s.SellerCategory2);
+                if (!string.IsNullOrWhiteSpace(s.SellerCategory3)) categories.Add(s.SellerCategory3);
+                string categoryDisplay = categories.Count > 0 ? string.Join(", ", categories) : "—";
+                it.SubItems.Add(categoryDisplay);
+                // مانده با فرمت و رنگ
+                it.SubItems.Add(s.CurrentBalance.ToString("N0"));
+                if (s.CurrentBalance < 0)
+                    it.SubItems[5].ForeColor = Color.Red;
+                else if (s.CurrentBalance > 0)
+                    it.SubItems[5].ForeColor = Color.Green;
                 it.Tag = s;
                 lstSeller.Items.Add(it);
             }
-            ClearForm();
+
+            this.Text = $"اطلاعات فروشندگان - {sellerList.Count} فروشنده";
         }
 
 
@@ -343,16 +405,19 @@ namespace MainProject.Forms
             txtPhone1.Text = seller.Phone1 ?? "";
             txtPhone2.Text = seller.Phone2 ?? "";
             txtPhone3.Text = seller.Phone3 ?? "";
-            txtBalance.Text = seller.Balance.ToString("0");
+            txtBalance.Text = Math.Abs(seller.Balance).ToString("0");
+            CommonFunctions.FormatTextBoxAsThousandSeparated(txtBalance);
+            SetRadiosFromBalance(seller.Balance);
             cmbCategory1.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory1) ? null : seller.SellerCategory1;
             cmbCategory2.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory2) ? null : seller.SellerCategory2;
             cmbCategory3.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerCategory3) ? null : seller.SellerCategory3;
             cmbSellerType.SelectedItem = string.IsNullOrWhiteSpace(seller.SellerType) ? null : seller.SellerType;
+
+            UpdateAccountButtonState();
         }
 
         private void txtSearchSeller_TextChanged(object sender, EventArgs e)
         {
-
             lstSeller.Items.Clear();
             List<SellerModel> sellers;
             string msg;
@@ -360,17 +425,28 @@ namespace MainProject.Forms
             {
                 foreach (var s in sellers)
                 {
-                    var it = new ListViewItem(s.SellerID);
-                    it.SubItems.Add(s.SellerName);
-                    it.SubItems.Add(s.CompanyName);
-                    it.SubItems.Add(s.PhoneDisplay);
-                    it.SubItems.Add(string.IsNullOrWhiteSpace(s.CategoryDisplay) ? "—" : s.CategoryDisplay);
-                    it.SubItems.Add(s.Balance.ToString("0"));
+                    var it = new ListViewItem(s.SellerID ?? "");
+                    it.SubItems.Add(s.SellerName ?? "");
+                    it.SubItems.Add(s.CompanyName ?? "");
+                    // فقط تلفن اصلی
+                    it.SubItems.Add(s.Phone1 ?? "");
+                    // دسته‌بندی ترکیبی
+                    var categories = new List<string>();
+                    if (!string.IsNullOrWhiteSpace(s.SellerCategory1)) categories.Add(s.SellerCategory1);
+                    if (!string.IsNullOrWhiteSpace(s.SellerCategory2)) categories.Add(s.SellerCategory2);
+                    if (!string.IsNullOrWhiteSpace(s.SellerCategory3)) categories.Add(s.SellerCategory3);
+                    string categoryDisplay = categories.Count > 0 ? string.Join(", ", categories) : "—";
+                    it.SubItems.Add(categoryDisplay);
+                    // مانده با فرمت و رنگ
+                    it.SubItems.Add(s.CurrentBalance.ToString("N0"));
+                    if (s.CurrentBalance < 0)
+                        it.SubItems[5].ForeColor = Color.Red;
+                    else if (s.CurrentBalance > 0)
+                        it.SubItems[5].ForeColor = Color.Green;
                     it.Tag = s;
                     lstSeller.Items.Add(it);
                 }
             }
-
         }
 
         private void btnNew_Click(object sender, EventArgs e)
@@ -469,28 +545,23 @@ namespace MainProject.Forms
             if (_suppressRadioEvents) return;
             if (!rdbdebtor.Checked) return;
 
-    
-     
-            
             decimal bal;
-            if (!decimal.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Replace(",", "").Trim()), out bal)) bal = 0m;
-            if (bal < 0m) bal = -bal;
-            SetBalanceFormattedFromDecimal(bal);
+            if (!decimal.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Replace(",", "").Trim()), out bal))
+                bal = 0m;
+
+            SetBalanceFormattedFromDecimal(Math.Abs(bal));
         }
 
         private void rdbcreditor_CheckedChanged(object sender, EventArgs e)
         {
-          
+            if (_suppressRadioEvents) return;
             if (!rdbcreditor.Checked) return;
 
             decimal bal;
-            if (!decimal.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Trim()), out bal))
+            if (!decimal.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Replace(",", "").Trim()), out bal))
                 bal = 0m;
 
-            if (_suppressBalanceEvents) return;
-            if (!decimal.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtBalance.Text.Replace(",", "").Trim()), out bal)) bal = 0m;
-            if (bal > 0m) bal = -bal;
-            SetBalanceFormattedFromDecimal(System.Math.Abs(bal));
+            SetBalanceFormattedFromDecimal(Math.Abs(bal));
         }
 
         private void SetRadiosFromBalance(decimal balance)
@@ -498,8 +569,8 @@ namespace MainProject.Forms
             try
             {
                 _suppressRadioEvents = true;
-                rdbdebtor.Checked = balance > 0m;
-                rdbcreditor.Checked = balance < 0m;
+                rdbdebtor.Checked = balance < 0m;
+                rdbcreditor.Checked = balance > 0m;
                 if (balance == 0m)
                 {
                     rdbdebtor.Checked = false;
