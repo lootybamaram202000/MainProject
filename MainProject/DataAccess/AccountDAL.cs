@@ -356,24 +356,40 @@ namespace MainProject.DataAccess
         /// </summary>
         private AccountModel MapReaderToAccount(SqlDataReader reader)
         {
-            return new AccountModel
+            try
             {
-                ACID = reader["ACID"].ToString(),
-                OWID = reader["OWID"] != DBNull.Value ? reader["OWID"].ToString() : null,
-                PERID = reader["PERID"] != DBNull.Value ? reader["PERID"].ToString() : null,
-                ACOwner = reader["ACOwner"] != DBNull.Value ? reader["ACOwner"].ToString() : null,
-                ACBank = reader["ACBank"] != DBNull.Value ? reader["ACBank"].ToString() : null,
-                ACNumber = reader["ACNumber"] != DBNull.Value ? reader["ACNumber"].ToString() : null,
-                ACshabaNumber = reader["ACshabaNumber"] != DBNull.Value ? reader["ACshabaNumber"].ToString() : null,
-                ACCardNumber = reader["ACCardNumber"] != DBNull.Value ? reader["ACCardNumber"].ToString() : null,
-                ACType = reader["ACType"] != DBNull.Value ? reader["ACType"].ToString() : null,
-                ACCategory = reader["ACCategory"] != DBNull.Value ? reader["ACCategory"].ToString() : null,
-                isActive = reader["isActive"] != DBNull.Value && Convert.ToBoolean(reader["isActive"]),
-                isPayer = reader["isPayer"] != DBNull.Value && Convert.ToBoolean(reader["isPayer"]),
-                isDeleted = reader["isDeleted"] != DBNull.Value && Convert.ToBoolean(reader["isDeleted"]),
-                LastUpdate = reader["LastUpdate"] != DBNull.Value ? reader["LastUpdate"].ToString() : null,
-                isDefault = reader.GetOrdinal("isDefault") >= 0 && reader["isDefault"] != DBNull.Value && Convert.ToBoolean(reader["isDefault"])
-            };
+                var account = new AccountModel
+                {
+                    ACID = reader["ACID"] != DBNull.Value ? reader["ACID"].ToString() : null,
+                    OWID = reader["OWID"] != DBNull.Value ? reader["OWID"].ToString() : null,
+                    PERID = reader["PERID"] != DBNull.Value ? reader["PERID"].ToString() : null,
+                    ACOwner = reader["ACOwner"] != DBNull.Value ? reader["ACOwner"].ToString() : null,
+                    ACBank = reader["ACBank"] != DBNull.Value ? reader["ACBank"].ToString() : null,
+                    ACNumber = reader["ACNumber"] != DBNull.Value ? reader["ACNumber"].ToString() : null,
+                    ACshabaNumber = reader["ACshabaNumber"] != DBNull.Value ? reader["ACshabaNumber"].ToString() : null,
+                    ACCardNumber = reader["ACCardNumber"] != DBNull.Value ? reader["ACCardNumber"].ToString() : null,
+                    ACType = reader["ACType"] != DBNull.Value ? reader["ACType"].ToString() : null,
+                    ACCategory = reader["ACCategory"] != DBNull.Value ? reader["ACCategory"].ToString() : null,
+                    isActive = reader["isActive"] != DBNull.Value && Convert.ToBoolean(reader["isActive"]),
+                    isPayer = reader["isPayer"] != DBNull.Value && Convert.ToBoolean(reader["isPayer"]),
+                    isDeleted = reader["isDeleted"] != DBNull.Value && Convert.ToBoolean(reader["isDeleted"]),
+                    LastUpdate = reader["LastUpdate"] != DBNull.Value ? reader["LastUpdate"].ToString() : null
+                };
+
+                // ✅ خواندن isDefault فقط اگر در خروجی وجود داشته باشد
+                var schema = reader.GetSchemaTable();
+                if (schema != null && schema.Select("ColumnName = 'isDefault'").Length > 0)
+                {
+                    account.isDefault = reader["isDefault"] != DBNull.Value && Convert.ToBoolean(reader["isDefault"]);
+                }
+
+                return account;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show($"خطا در MapReaderToAccount:\n{ex.Message}", "Debug Map Error");
+                throw;
+            }
         }
     }
 }

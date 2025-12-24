@@ -590,12 +590,24 @@ namespace MainProject.Forms
                 return;
             }
 
+            // ✅ Debug: نمایش OWID قبل از فراخوانی DAL
+            MessageBox.Show($"در حال بارگذاری حساب‌ها...\nOWID: {ownerOWID}", "Debug - Before DAL");
+
             try
             {
                 List<AccountModel> accounts;
                 string msg;
 
-                if (!_accountManager.GetAccountsByOwner(ownerOWID, out accounts, out msg))
+                bool result = _accountManager.GetAccountsByOwner(ownerOWID, out accounts, out msg);
+
+                // ✅ Debug: نمایش نتیجه
+                MessageBox.Show($"نتیجه DAL:\n" +
+                                $"Result: {result}\n" +
+                                $"Message: {msg}\n" +
+                                $"Count: {accounts?.Count ?? 0}",
+                    "Debug - After DAL");
+
+                if (!result)
                 {
                     MessageBox.Show($"خطا در بارگذاری حساب‌ها:\nOWID: {ownerOWID}\nMessage: {msg}", "Debug");
                     return;
