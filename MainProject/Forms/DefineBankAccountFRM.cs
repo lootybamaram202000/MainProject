@@ -105,7 +105,6 @@ namespace MainProject.Forms
 
             // Load ComboBoxes
             LoadBanks();
-            LoadAccountTypes();
             LoadAccountCategories();
 
             // Event handlers
@@ -166,9 +165,6 @@ namespace MainProject.Forms
             if (cmbBankName != null)
                 accountToolTip.SetToolTip(cmbBankName, "نام بانک (اجباری)");
 
-            if (cmbAccountType != null)
-                accountToolTip.SetToolTip(cmbAccountType, "نوع حساب: پرداخت کننده یا دریافت کننده");
-
             if (cmbAccCategory != null)
                 accountToolTip.SetToolTip(cmbAccCategory, "دسته‌بندی: کارتخوان، حساب بانکی، حساب شخصی، حساب اصلی");
 
@@ -176,7 +172,9 @@ namespace MainProject.Forms
                 accountToolTip.SetToolTip(chbDefault, "تنظیم به عنوان حساب پیش‌فرض این صاحب حساب");
 
             if (chbPayer != null)
-                accountToolTip.SetToolTip(chbPayer, "حساب تنخواه (برای پرداخت‌های جزئی)");
+                accountToolTip.SetToolTip(chbPayer,
+                    "حساب تنخواه (پرداخت کننده)\n" +
+                    "اگه علامت نخورد، حساب دریافت کننده است");
 
             if (btnSubmitNewBankAccount != null)
                 accountToolTip.SetToolTip(btnSubmitNewBankAccount, "ثبت حساب بانکی جدید");
@@ -264,9 +262,6 @@ namespace MainProject.Forms
 
             if (cmbBankName != null)
                 cmbBankName.SelectedItem = account.ACBank;
-
-            if (cmbAccountType != null)
-                cmbAccountType.SelectedItem = account.ACType;
 
             if (cmbAccCategory != null)
                 cmbAccCategory.SelectedItem = account.ACCategory;
@@ -565,16 +560,22 @@ namespace MainProject.Forms
             {
                 txtAccountOwnerSearch.Enabled = false;
                 txtAccountOwnerSearch.BackColor = Color.LightGray;
+                txtAccountOwnerSearch.ReadOnly = true;
             }
 
             if (txtOwnnerCode != null)
             {
                 txtOwnnerCode.Enabled = false;
                 txtOwnnerCode.BackColor = Color.LightGray;
+                txtOwnnerCode.ReadOnly = true;
             }
 
-            // در صورت نیاز
-            // lstOwners.Enabled = false;
+            // قفل کردن لیست Owners - فقط نمایش، بدون امکان تغییر
+            if (lstOwners != null)
+            {
+                lstOwners.Enabled = false;
+                lstOwners.BackColor = Color.LightGray;
+            }
         }
 
         private void LoadAccountsForOwner(string ownerOWID)
@@ -585,6 +586,7 @@ namespace MainProject.Forms
 
             if (string.IsNullOrWhiteSpace(ownerOWID))
             {
+                MessageBox.Show("OWID خالی است!", "Debug");
                 return;
             }
 
@@ -595,6 +597,13 @@ namespace MainProject.Forms
 
                 if (!_accountManager.GetAccountsByOwner(ownerOWID, out accounts, out msg))
                 {
+                    MessageBox.Show($"خطا در بارگذاری حساب‌ها:\nOWID: {ownerOWID}\nMessage: {msg}", "Debug");
+                    return;
+                }
+
+                if (accounts == null || accounts.Count == 0)
+                {
+                    MessageBox.Show($"هیچ حسابی برای این Owner یافت نشد.\nOWID: {ownerOWID}", "اطلاع");
                     return;
                 }
 
@@ -628,7 +637,7 @@ namespace MainProject.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بارگذاری حساب‌ها:\n{ex.Message}",
+                MessageBox.Show($"خطا در بارگذاری حساب‌ها:\n{ex.Message}\n\nStackTrace:\n{ex.StackTrace}",
                     "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
