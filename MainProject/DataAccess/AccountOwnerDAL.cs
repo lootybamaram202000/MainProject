@@ -14,6 +14,39 @@ namespace MainProject.DataAccess
         private readonly string _connectionString = Config.ConnectionString;
 
         /// <summary>
+        /// دریافت تمام Owners
+        /// </summary>
+        public bool GetAllOwners(out List<AccountOwnerModel> owners, out string message)
+        {
+            owners = new List<AccountOwnerModel>();
+            message = string.Empty;
+
+            try
+            {
+                using (var con = new SqlConnection(_connectionString))
+                using (var cmd = new SqlCommand("SELECT * FROM tblAccountOwners WHERE isDeleted = 0 ORDER BY OWID", con))
+                {
+                    con.Open();
+
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            owners.Add(MapReaderToOwner(reader));
+                        }
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                message = ex.Message;
+                return false;
+            }
+        }
+
+        /// <summary>
         /// دریافت Owner بر اساس OWID
         /// </summary>
         public bool GetOwnerByOWID(string owid, out AccountOwnerModel owner, out string message)

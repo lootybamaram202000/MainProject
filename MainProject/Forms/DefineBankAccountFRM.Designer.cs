@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.ListViewItem listViewItem21 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem22 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem23 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem24 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem25 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem26 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem27 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem28 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem29 = new System.Windows.Forms.ListViewItem("");
-            System.Windows.Forms.ListViewItem listViewItem30 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem5 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem6 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem7 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem9 = new System.Windows.Forms.ListViewItem("");
+            System.Windows.Forms.ListViewItem listViewItem10 = new System.Windows.Forms.ListViewItem("");
             this.cmbAccountState = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtAccountCard = new System.Windows.Forms.TextBox();
@@ -180,16 +180,16 @@
             this.lstBankAccount.GridLines = true;
             this.lstBankAccount.HideSelection = false;
             this.lstBankAccount.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem21,
-            listViewItem22,
-            listViewItem23,
-            listViewItem24,
-            listViewItem25});
-            this.lstBankAccount.Location = new System.Drawing.Point(4, 524);
+            listViewItem1,
+            listViewItem2,
+            listViewItem3,
+            listViewItem4,
+            listViewItem5});
+            this.lstBankAccount.Location = new System.Drawing.Point(13, 476);
             this.lstBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.lstBankAccount.MultiSelect = false;
             this.lstBankAccount.Name = "lstBankAccount";
-            this.lstBankAccount.Size = new System.Drawing.Size(1041, 336);
+            this.lstBankAccount.Size = new System.Drawing.Size(1025, 336);
             this.lstBankAccount.TabIndex = 53;
             this.lstBankAccount.UseCompatibleStateImageBehavior = false;
             // 
@@ -252,7 +252,7 @@
             // 
             this.btnUpdateBankAccount.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnUpdateBankAccount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnUpdateBankAccount.Location = new System.Drawing.Point(207, 474);
+            this.btnUpdateBankAccount.Location = new System.Drawing.Point(216, 427);
             this.btnUpdateBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateBankAccount.Name = "btnUpdateBankAccount";
             this.btnUpdateBankAccount.Size = new System.Drawing.Size(100, 42);
@@ -265,7 +265,7 @@
             // 
             this.btnSubmitNewBankAccount.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnSubmitNewBankAccount.ForeColor = System.Drawing.Color.Green;
-            this.btnSubmitNewBankAccount.Location = new System.Drawing.Point(945, 475);
+            this.btnSubmitNewBankAccount.Location = new System.Drawing.Point(938, 427);
             this.btnSubmitNewBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitNewBankAccount.Name = "btnSubmitNewBankAccount";
             this.btnSubmitNewBankAccount.Size = new System.Drawing.Size(100, 42);
@@ -278,7 +278,7 @@
             // 
             this.btnDeletBankAccount.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnDeletBankAccount.ForeColor = System.Drawing.Color.Red;
-            this.btnDeletBankAccount.Location = new System.Drawing.Point(4, 474);
+            this.btnDeletBankAccount.Location = new System.Drawing.Point(13, 427);
             this.btnDeletBankAccount.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeletBankAccount.Name = "btnDeletBankAccount";
             this.btnDeletBankAccount.Size = new System.Drawing.Size(195, 42);
@@ -466,16 +466,16 @@
             this.lstOwners.GridLines = true;
             this.lstOwners.HideSelection = false;
             this.lstOwners.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem26,
-            listViewItem27,
-            listViewItem28,
-            listViewItem29,
-            listViewItem30});
-            this.lstOwners.Location = new System.Drawing.Point(13, 10);
+            listViewItem6,
+            listViewItem7,
+            listViewItem8,
+            listViewItem9,
+            listViewItem10});
+            this.lstOwners.Location = new System.Drawing.Point(13, 19);
             this.lstOwners.Margin = new System.Windows.Forms.Padding(4);
             this.lstOwners.MultiSelect = false;
             this.lstOwners.Name = "lstOwners";
-            this.lstOwners.Size = new System.Drawing.Size(581, 249);
+            this.lstOwners.Size = new System.Drawing.Size(581, 195);
             this.lstOwners.TabIndex = 61;
             this.lstOwners.UseCompatibleStateImageBehavior = false;
             // 
@@ -588,7 +588,7 @@
             this.gbxBankAccouant.Controls.Add(this.txtBACode);
             this.gbxBankAccouant.Controls.Add(this.label1);
             this.gbxBankAccouant.Font = new System.Drawing.Font("B Nazanin", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.gbxBankAccouant.Location = new System.Drawing.Point(12, 266);
+            this.gbxBankAccouant.Location = new System.Drawing.Point(13, 221);
             this.gbxBankAccouant.Name = "gbxBankAccouant";
             this.gbxBankAccouant.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.gbxBankAccouant.Size = new System.Drawing.Size(1025, 202);
@@ -603,10 +603,10 @@
             this.groupBox1.Controls.Add(this.txtOwnnerCode);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Font = new System.Drawing.Font("B Nazanin", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.groupBox1.Location = new System.Drawing.Point(606, 21);
+            this.groupBox1.Location = new System.Drawing.Point(606, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.groupBox1.Size = new System.Drawing.Size(424, 205);
+            this.groupBox1.Size = new System.Drawing.Size(424, 154);
             this.groupBox1.TabIndex = 63;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "جستجو در لیست صاحبان حساب";
@@ -616,7 +616,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.AppWorkspace;
-            this.ClientSize = new System.Drawing.Size(1050, 868);
+            this.ClientSize = new System.Drawing.Size(1050, 830);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbxBankAccouant);
             this.Controls.Add(this.lstOwners);

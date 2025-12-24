@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-
             this.txtSearchSeller = new System.Windows.Forms.TextBox();
             this.lstSeller = new System.Windows.Forms.ListView();
             this.colSellerID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -79,7 +78,7 @@
             // 
             this.txtSearchSeller.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.txtSearchSeller.Font = new System.Drawing.Font("B Nazanin", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtSearchSeller.Location = new System.Drawing.Point(546, 426);
+            this.txtSearchSeller.Location = new System.Drawing.Point(550, 365);
             this.txtSearchSeller.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearchSeller.Name = "txtSearchSeller";
             this.txtSearchSeller.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -101,12 +100,11 @@
             this.lstSeller.FullRowSelect = true;
             this.lstSeller.GridLines = true;
             this.lstSeller.HideSelection = false;
-
-            this.lstSeller.Location = new System.Drawing.Point(13, 467);
+            this.lstSeller.Location = new System.Drawing.Point(14, 405);
             this.lstSeller.Margin = new System.Windows.Forms.Padding(4);
             this.lstSeller.MultiSelect = false;
             this.lstSeller.Name = "lstSeller";
-            this.lstSeller.Size = new System.Drawing.Size(1073, 471);
+            this.lstSeller.Size = new System.Drawing.Size(1073, 320);
             this.lstSeller.TabIndex = 64;
             this.lstSeller.UseCompatibleStateImageBehavior = false;
             this.lstSeller.SelectedIndexChanged += new System.EventHandler(this.lstSeller_SelectedIndexChanged);
@@ -150,7 +148,7 @@
             // 
             this.btnUpdateSeller.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnUpdateSeller.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnUpdateSeller.Location = new System.Drawing.Point(124, 416);
+            this.btnUpdateSeller.Location = new System.Drawing.Point(128, 355);
             this.btnUpdateSeller.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateSeller.Name = "btnUpdateSeller";
             this.btnUpdateSeller.Size = new System.Drawing.Size(100, 42);
@@ -163,7 +161,7 @@
             // 
             this.btnSubmitNewSeller.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnSubmitNewSeller.ForeColor = System.Drawing.Color.Green;
-            this.btnSubmitNewSeller.Location = new System.Drawing.Point(438, 418);
+            this.btnSubmitNewSeller.Location = new System.Drawing.Point(442, 357);
             this.btnSubmitNewSeller.Margin = new System.Windows.Forms.Padding(4);
             this.btnSubmitNewSeller.Name = "btnSubmitNewSeller";
             this.btnSubmitNewSeller.Size = new System.Drawing.Size(100, 40);
@@ -176,7 +174,7 @@
             // 
             this.btnDeletSeller.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnDeletSeller.ForeColor = System.Drawing.Color.Red;
-            this.btnDeletSeller.Location = new System.Drawing.Point(17, 416);
+            this.btnDeletSeller.Location = new System.Drawing.Point(21, 355);
             this.btnDeletSeller.Margin = new System.Windows.Forms.Padding(4);
             this.btnDeletSeller.Name = "btnDeletSeller";
             this.btnDeletSeller.Size = new System.Drawing.Size(100, 42);
@@ -189,7 +187,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("B Nazanin", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label7.Location = new System.Drawing.Point(884, 425);
+            this.label7.Location = new System.Drawing.Point(888, 364);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(202, 30);
@@ -330,7 +328,7 @@
             this.cmbCategory1.BackColor = System.Drawing.Color.GhostWhite;
             this.cmbCategory1.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbCategory1.FormattingEnabled = true;
-            this.cmbCategory1.Location = new System.Drawing.Point(607, 48);
+            this.cmbCategory1.Location = new System.Drawing.Point(789, 44);
             this.cmbCategory1.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory1.Name = "cmbCategory1";
             this.cmbCategory1.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -342,7 +340,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label9.Location = new System.Drawing.Point(576, 354);
+            this.label9.Location = new System.Drawing.Point(576, 315);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -354,7 +352,7 @@
             // 
             this.txtBalance.BackColor = System.Drawing.Color.LavenderBlush;
             this.txtBalance.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtBalance.Location = new System.Drawing.Point(370, 353);
+            this.txtBalance.Location = new System.Drawing.Point(370, 314);
             this.txtBalance.Margin = new System.Windows.Forms.Padding(4);
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.RightToLeft = System.Windows.Forms.RightToLeft.No;
@@ -367,7 +365,7 @@
             // 
             this.rdbdebtor.AutoSize = true;
             this.rdbdebtor.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.rdbdebtor.Location = new System.Drawing.Point(235, 352);
+            this.rdbdebtor.Location = new System.Drawing.Point(235, 313);
             this.rdbdebtor.Name = "rdbdebtor";
             this.rdbdebtor.Size = new System.Drawing.Size(72, 31);
             this.rdbdebtor.TabIndex = 70;
@@ -380,7 +378,7 @@
             // 
             this.rdbcreditor.AutoSize = true;
             this.rdbcreditor.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.rdbcreditor.Location = new System.Drawing.Point(146, 352);
+            this.rdbcreditor.Location = new System.Drawing.Point(146, 313);
             this.rdbcreditor.Name = "rdbcreditor";
             this.rdbcreditor.Size = new System.Drawing.Size(82, 31);
             this.rdbcreditor.TabIndex = 70;
@@ -393,7 +391,7 @@
             // 
             this.btnDefineBankAccouant.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnDefineBankAccouant.ForeColor = System.Drawing.Color.DarkGoldenrod;
-            this.btnDefineBankAccouant.Location = new System.Drawing.Point(21, 351);
+            this.btnDefineBankAccouant.Location = new System.Drawing.Point(21, 312);
             this.btnDefineBankAccouant.Margin = new System.Windows.Forms.Padding(4);
             this.btnDefineBankAccouant.Name = "btnDefineBankAccouant";
             this.btnDefineBankAccouant.Size = new System.Drawing.Size(125, 35);
@@ -407,7 +405,7 @@
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.label13.ForeColor = System.Drawing.SystemColors.MenuHighlight;
-            this.label13.Location = new System.Drawing.Point(320, 354);
+            this.label13.Location = new System.Drawing.Point(320, 315);
             this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
             this.label13.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -468,7 +466,7 @@
             this.cmbCategory2.BackColor = System.Drawing.Color.GhostWhite;
             this.cmbCategory2.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbCategory2.FormattingEnabled = true;
-            this.cmbCategory2.Location = new System.Drawing.Point(317, 48);
+            this.cmbCategory2.Location = new System.Drawing.Point(499, 44);
             this.cmbCategory2.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory2.Name = "cmbCategory2";
             this.cmbCategory2.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -481,7 +479,7 @@
             this.button1.BackColor = System.Drawing.Color.Lavender;
             this.button1.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(28, 90);
+            this.button1.Location = new System.Drawing.Point(22, 47);
             this.button1.Margin = new System.Windows.Forms.Padding(4);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(112, 35);
@@ -495,7 +493,7 @@
             this.cmbSellerType.BackColor = System.Drawing.Color.Lavender;
             this.cmbSellerType.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbSellerType.FormattingEnabled = true;
-            this.cmbSellerType.Location = new System.Drawing.Point(815, 349);
+            this.cmbSellerType.Location = new System.Drawing.Point(815, 310);
             this.cmbSellerType.Margin = new System.Windows.Forms.Padding(4);
             this.cmbSellerType.Name = "cmbSellerType";
             this.cmbSellerType.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -506,7 +504,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label14.Location = new System.Drawing.Point(1003, 351);
+            this.label14.Location = new System.Drawing.Point(1003, 312);
             this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
             this.label14.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -518,7 +516,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label15.Location = new System.Drawing.Point(798, 51);
+            this.label15.Location = new System.Drawing.Point(980, 47);
             this.label15.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label15.Name = "label15";
             this.label15.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -530,7 +528,7 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label12.Location = new System.Drawing.Point(508, 50);
+            this.label12.Location = new System.Drawing.Point(690, 46);
             this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
             this.label12.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -543,7 +541,7 @@
             this.cmbCategory3.BackColor = System.Drawing.Color.GhostWhite;
             this.cmbCategory3.Font = new System.Drawing.Font("B Nazanin", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.cmbCategory3.FormattingEnabled = true;
-            this.cmbCategory3.Location = new System.Drawing.Point(28, 48);
+            this.cmbCategory3.Location = new System.Drawing.Point(210, 44);
             this.cmbCategory3.Margin = new System.Windows.Forms.Padding(4);
             this.cmbCategory3.Name = "cmbCategory3";
             this.cmbCategory3.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -555,7 +553,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.label16.Location = new System.Drawing.Point(219, 50);
+            this.label16.Location = new System.Drawing.Point(401, 46);
             this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
             this.label16.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -577,7 +575,7 @@
             this.gbxSellerCategories.Font = new System.Drawing.Font("B Nazanin", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.gbxSellerCategories.Location = new System.Drawing.Point(12, 201);
             this.gbxSellerCategories.Name = "gbxSellerCategories";
-            this.gbxSellerCategories.Size = new System.Drawing.Size(1079, 138);
+            this.gbxSellerCategories.Size = new System.Drawing.Size(1079, 104);
             this.gbxSellerCategories.TabIndex = 75;
             this.gbxSellerCategories.TabStop = false;
             this.gbxSellerCategories.Text = "دسته‌بندی های فروش";
@@ -587,7 +585,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Gainsboro;
-            this.ClientSize = new System.Drawing.Size(1099, 953);
+            this.ClientSize = new System.Drawing.Size(1099, 744);
             this.Controls.Add(this.cmbSellerType);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
