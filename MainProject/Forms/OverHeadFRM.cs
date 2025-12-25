@@ -24,6 +24,17 @@ namespace MainProject.Forms
         private bool _isFillingFromList = false;
         private decimal _currentFixedOverhead = 0;
         private decimal _currentVariableOverhead = 0;
+
+        // Column indices for lstSubSection ListView
+        // Update these if column order changes in Designer
+        private const int SUBSECTION_COL_ROW = 0;
+        private const int SUBSECTION_COL_SSID = 1;
+        private const int SUBSECTION_COL_SSTITLE = 2;
+        private const int SUBSECTION_COL_SECID = 3;
+        private const int SUBSECTION_COL_OVERHEAD = 4;
+        private const int SUBSECTION_COL_PERCENTAGE = 5;
+        private const int SUBSECTION_COL_COUNTOFSELL = 6;
+
         public OverHeadFRM()
         {
             CommonFunctions.ScaleForm(this);
@@ -996,6 +1007,146 @@ namespace MainProject.Forms
         private void panel10_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void btnSubmitSectionDraft_Click(object sender, EventArgs e)
+        {
+            if (sectionList == null || sectionList.Count == 0)
+            {
+                MessageBox.Show("لیست سکشن‌ها خالی است.");
+                return;
+            }
+
+            var sectionTable = new DataTable();
+            sectionTable.Columns.Add("SecID", typeof(string));
+            sectionTable.Columns.Add("SecTitle", typeof(string));
+            sectionTable.Columns.Add("OverHead", typeof(decimal));
+            sectionTable.Columns.Add("PerCentage", typeof(byte));
+            sectionTable.Columns.Add("CountOfSell", typeof(short));
+
+            foreach (var sec in sectionList.Where(s => !s.isDeleted))
+            {
+                sectionTable.Rows.Add(sec.SecID, sec.SecTitle, sec.OverHead, sec.PerCentage, sec.CountOfSell);
+            }
+
+            bool success = _manager.SubmitSectionDraft(sectionTable, out string errorMsg);
+
+            if (success)
+            {
+                MessageBox.Show("پیش‌نویس ورودی سکشن با موفقیت ثبت شد.");
+            }
+            else
+            {
+                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSubmitSubSectionDraft_Click(object sender, EventArgs e)
+        {
+            if (lstSubSection.Items.Count == 0)
+            {
+                MessageBox.Show("لیست زیرسکشن‌ها خالی است.");
+                return;
+            }
+
+            var subSectionTable = new DataTable();
+            subSectionTable.Columns.Add("SSID", typeof(string));
+            subSectionTable.Columns.Add("SSTitle", typeof(string));
+            subSectionTable.Columns.Add("SecID", typeof(string));
+            subSectionTable.Columns.Add("OverHead", typeof(decimal));
+            subSectionTable.Columns.Add("PerCentage", typeof(byte));
+            subSectionTable.Columns.Add("CountOfSell", typeof(short));
+
+            bool hasErrors = false;
+            List<string> parseErrors = new List<string>();
+
+            foreach (ListViewItem item in lstSubSection.Items)
+            {
+                string ssid = item.SubItems[SUBSECTION_COL_SSID].Text;
+                string sstitle = item.SubItems[SUBSECTION_COL_SSTITLE].Text;
+                string secid = item.SubItems[SUBSECTION_COL_SECID].Text;
+                
+                if (!decimal.TryParse(item.SubItems[SUBSECTION_COL_OVERHEAD].Text, out decimal overhead))
+                {
+                    parseErrors.Add($"سربار نامعتبر برای {sstitle}");
+                    overhead = 0;
+                    hasErrors = true;
+                }
+                
+                if (!byte.TryParse(item.SubItems[SUBSECTION_COL_PERCENTAGE].Text, out byte percentage))
+                {
+                    parseErrors.Add($"درصد نامعتبر برای {sstitle}");
+                    percentage = 0;
+                    hasErrors = true;
+                }
+                
+                if (!short.TryParse(item.SubItems[SUBSECTION_COL_COUNTOFSELL].Text, out short countOfSell))
+                {
+                    parseErrors.Add($"تعداد فروش نامعتبر برای {sstitle}");
+                    countOfSell = 0;
+                    hasErrors = true;
+                }
+
+                subSectionTable.Rows.Add(ssid, sstitle, secid, overhead, percentage, countOfSell);
+            }
+
+            if (hasErrors)
+            {
+                string errorMsg = "خطاهای اعتبارسنجی:\n" + string.Join("\n", parseErrors) + 
+                                 "\n\nمقادیر نامعتبر با 0 جایگزین شده‌اند. آیا مایل به ادامه هستید؟";
+                var result = MessageBox.Show(errorMsg, "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                    return;
+            }
+
+            bool success = _manager.SubmitSubSectionDraft(subSectionTable, out string errorMessage);
+
+            if (success)
+            {
+                MessageBox.Show("پیش‌نویس ورودی زیرسکشن با موفقیت ثبت شد.");
+            }
+            else
+            {
+                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMessage, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCalculateAllocation_Click(object sender, EventArgs e)
+        {
+            var results = _manager.CalculateAllocation(out string errorMsg);
+
+            if (!string.IsNullOrEmpty(errorMsg))
+            {
+                MessageBox.Show("خطا در محاسبه تخصیص سربار:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (results == null || results.Rows.Count == 0)
+            {
+                MessageBox.Show("نتیجه‌ای برای نمایش وجود ندارد.");
+                return;
+            }
+
+            DisplayCalculationResults(results);
+        }
+
+        private void DisplayCalculationResults(DataTable results)
+        {
+            if (results == null || results.Rows.Count == 0)
+                return;
+
+            // TODO (ISSUE-001): Future Enhancement - Replace MessageBox with DataGridView
+            // Implementation Plan:
+            // 1. Add a DataGridView control to the form (e.g., dgvCalculationResults)
+            // 2. Replace this method content with: dgvCalculationResults.DataSource = results;
+            // 3. Add column formatting for better readability
+            // 4. Optionally: Create a modal results dialog with export functionality
+            // Estimated Effort: 2-4 hours
+            string message = $"محاسبه تخصیص سربار با موفقیت انجام شد.\n\n" +
+                           $"تعداد ردیف‌های نتیجه: {results.Rows.Count}\n\n" +
+                           $"نتایج آماده نمایش در گرید می‌باشند.";
+            
+            MessageBox.Show(message, "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

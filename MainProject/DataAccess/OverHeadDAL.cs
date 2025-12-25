@@ -288,6 +288,133 @@ namespace MainProject.DataAccess
 
             return list;
         }
+
+        public bool SubmitOHSectionInputDraft(DataTable sectionInputs, out string errorMessage)
+        {
+            errorMessage = null;
+
+            if (sectionInputs == null)
+            {
+                errorMessage = "داده‌های ورودی سکشن نامعتبر است.";
+                return false;
+            }
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_SubmitOHSectionInputDraft", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    var param = cmd.Parameters.AddWithValue("@SectionInputs", sectionInputs);
+                    param.SqlDbType = SqlDbType.Structured;
+                    param.TypeName = "dbo.OHSectionInputTVP";
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public bool SubmitOHSubSectionInputDraft(DataTable subSectionInputs, out string errorMessage)
+        {
+            errorMessage = null;
+
+            if (subSectionInputs == null)
+            {
+                errorMessage = "داده‌های ورودی زیرسکشن نامعتبر است.";
+                return false;
+            }
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_SubmitOHSubSectionInputDraft", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    var param = cmd.Parameters.AddWithValue("@SubSectionInputs", subSectionInputs);
+                    param.SqlDbType = SqlDbType.Structured;
+                    param.TypeName = "dbo.OHSubSectionInputTVP";
+
+                    con.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+            }
+            catch (SqlException ex)
+            {
+                errorMessage = ex.Message;
+                return false;
+            }
+        }
+
+        public DataTable CalcOverheadAllocation(out string errorMessage)
+        {
+            errorMessage = null;
+            DataTable results = new DataTable();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_CalcOverheadAllocation", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        results.Load(reader);
+                    }
+                    return results;
+                }
+            }
+            catch (SqlException ex)
+            {
+                errorMessage = ex.Message;
+                return results;
+            }
+        }
+
+        public DataTable GetOHPerItemBySSID(string ssid, out string errorMessage)
+        {
+            errorMessage = null;
+            DataTable results = new DataTable();
+
+            if (string.IsNullOrWhiteSpace(ssid))
+            {
+                errorMessage = "شناسه زیرسکشن نامعتبر است.";
+                return results;
+            }
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(_connectionString))
+                using (SqlCommand cmd = new SqlCommand("dbo.sp_GetOHPerItemBySSID", con))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@SSID", ssid);
+
+                    con.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        results.Load(reader);
+                    }
+                    return results;
+                }
+            }
+            catch (SqlException ex)
+            {
+                errorMessage = ex.Message;
+                return results;
+            }
+        }
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -61,5 +62,24 @@ namespace MainProject.Core.Business
             return _dal.GetOverHeadsByFilter(ohType, year, month, category);
         }
 
+        public bool SubmitSectionDraft(DataTable sectionInputs, out string errorMessage)
+        {
+            return _dal.SubmitOHSectionInputDraft(sectionInputs, out errorMessage);
+        }
+
+        public bool SubmitSubSectionDraft(DataTable subSectionInputs, out string errorMessage)
+        {
+            return _dal.SubmitOHSubSectionInputDraft(subSectionInputs, out errorMessage);
+        }
+
+        public DataTable CalculateAllocation(out string errorMessage)
+        {
+            return _dal.CalcOverheadAllocation(out errorMessage);
+        }
+
+        public DataTable GetOHPerItemBySSID(string ssid, out string errorMessage)
+        {
+            return _dal.GetOHPerItemBySSID(ssid, out errorMessage);
+        }
     }
 }
