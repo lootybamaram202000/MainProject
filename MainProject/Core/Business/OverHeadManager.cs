@@ -61,5 +61,24 @@ namespace MainProject.Core.Business
             return _dal.GetOverHeadsByFilter(ohType, year, month, category);
         }
 
+        public bool SubmitSectionDraft(System.Data.DataTable sectionInputs, out string errorMessage)
+        {
+            return _dal.SubmitOHSectionInputDraft(sectionInputs, out errorMessage);
+        }
+
+        public bool SubmitSubSectionDraft(System.Data.DataTable subSectionInputs, out string errorMessage)
+        {
+            return _dal.SubmitOHSubSectionInputDraft(subSectionInputs, out errorMessage);
+        }
+
+        public System.Data.DataTable CalculateAllocation(out string errorMessage)
+        {
+            return _dal.CalcOverheadAllocation(out errorMessage);
+        }
+
+        public System.Data.DataTable GetOHPerItemBySSID(string ssid, out string errorMessage)
+        {
+            return _dal.GetOHPerItemBySSID(ssid, out errorMessage);
+        }
     }
 }

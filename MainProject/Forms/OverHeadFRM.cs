@@ -997,5 +997,109 @@ namespace MainProject.Forms
         {
 
         }
+
+        private void btnSubmitSectionDraft_Click(object sender, EventArgs e)
+        {
+            if (sectionList == null || sectionList.Count == 0)
+            {
+                MessageBox.Show("لیست سکشن‌ها خالی است.");
+                return;
+            }
+
+            var sectionTable = new DataTable();
+            sectionTable.Columns.Add("SecID", typeof(string));
+            sectionTable.Columns.Add("SecTitle", typeof(string));
+            sectionTable.Columns.Add("OverHead", typeof(decimal));
+            sectionTable.Columns.Add("PerCentage", typeof(byte));
+            sectionTable.Columns.Add("CountOfSell", typeof(short));
+
+            foreach (var sec in sectionList.Where(s => !s.isDeleted))
+            {
+                sectionTable.Rows.Add(sec.SecID, sec.SecTitle, sec.OverHead, sec.PerCentage, sec.CountOfSell);
+            }
+
+            var manager = new OverHeadManager();
+            bool success = manager.SubmitSectionDraft(sectionTable, out string errorMsg);
+
+            if (success)
+            {
+                MessageBox.Show("پیش‌نویس ورودی سکشن با موفقیت ثبت شد.");
+            }
+            else
+            {
+                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSubmitSubSectionDraft_Click(object sender, EventArgs e)
+        {
+            if (lstSubSection.Items.Count == 0)
+            {
+                MessageBox.Show("لیست زیرسکشن‌ها خالی است.");
+                return;
+            }
+
+            var subSectionTable = new DataTable();
+            subSectionTable.Columns.Add("SSID", typeof(string));
+            subSectionTable.Columns.Add("SSTitle", typeof(string));
+            subSectionTable.Columns.Add("SecID", typeof(string));
+            subSectionTable.Columns.Add("OverHead", typeof(decimal));
+            subSectionTable.Columns.Add("PerCentage", typeof(byte));
+            subSectionTable.Columns.Add("CountOfSell", typeof(short));
+
+            foreach (ListViewItem item in lstSubSection.Items)
+            {
+                string ssid = item.SubItems[1].Text;
+                string sstitle = item.SubItems[2].Text;
+                string secid = item.SubItems[3].Text;
+                decimal overhead = decimal.TryParse(item.SubItems[4].Text, out var oh) ? oh : 0;
+                byte percentage = byte.TryParse(item.SubItems[5].Text, out var pct) ? pct : (byte)0;
+                short countOfSell = short.TryParse(item.SubItems[6].Text, out var cos) ? cos : (short)0;
+
+                subSectionTable.Rows.Add(ssid, sstitle, secid, overhead, percentage, countOfSell);
+            }
+
+            var manager = new OverHeadManager();
+            bool success = manager.SubmitSubSectionDraft(subSectionTable, out string errorMsg);
+
+            if (success)
+            {
+                MessageBox.Show("پیش‌نویس ورودی زیرسکشن با موفقیت ثبت شد.");
+            }
+            else
+            {
+                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCalculateAllocation_Click(object sender, EventArgs e)
+        {
+            var manager = new OverHeadManager();
+            var results = manager.CalculateAllocation(out string errorMsg);
+
+            if (!string.IsNullOrEmpty(errorMsg))
+            {
+                MessageBox.Show("خطا در محاسبه تخصیص سربار:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (results == null || results.Rows.Count == 0)
+            {
+                MessageBox.Show("نتیجه‌ای برای نمایش وجود ندارد.");
+                return;
+            }
+
+            DisplayCalculationResults(results);
+            MessageBox.Show("محاسبه تخصیص سربار با موفقیت انجام شد.");
+        }
+
+        private void DisplayCalculationResults(DataTable results)
+        {
+            if (results == null || results.Rows.Count == 0)
+                return;
+
+            MessageBox.Show($"نتایج محاسبه:\n{results.Rows.Count} ردیف بازگشت داده شد.\n\nلطفاً نتایج را در گرید یا کنترل مناسب بررسی کنید.", 
+                "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
