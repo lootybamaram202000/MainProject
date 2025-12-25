@@ -1094,7 +1094,6 @@ namespace MainProject.Forms
             }
 
             DisplayCalculationResults(results);
-            MessageBox.Show("محاسبه تخصیص سربار با موفقیت انجام شد.");
         }
 
         private void DisplayCalculationResults(DataTable results)
@@ -1102,10 +1101,14 @@ namespace MainProject.Forms
             if (results == null || results.Rows.Count == 0)
                 return;
 
-            // TODO: Replace MessageBox with proper DataGridView or dedicated results form
-            // for better data presentation and user experience
-            MessageBox.Show($"نتایج محاسبه:\n{results.Rows.Count} ردیف بازگشت داده شد.\n\nلطفاً نتایج را در گرید یا کنترل مناسب بررسی کنید.", 
-                "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // TODO: Future enhancement - Replace MessageBox with DataGridView or dedicated results form
+            // Suggested approach: Create a new form with DataGridView bound to results DataTable
+            // or populate an existing grid control on the form with calculation details
+            string message = $"محاسبه تخصیص سربار با موفقیت انجام شد.\n\n" +
+                           $"تعداد ردیف‌های نتیجه: {results.Rows.Count}\n\n" +
+                           $"نتایج آماده نمایش در گرید می‌باشند.";
+            
+            MessageBox.Show(message, "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }
