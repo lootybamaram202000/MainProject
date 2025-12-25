@@ -73,6 +73,7 @@
     <Compile Include="DataAccess\ProductDAL.cs" />
     <Compile Include="DataAccess\SectionDAL.cs" />
     <Compile Include="DataAccess\SellerDAL.cs" />
+    <Compile Include="DataAccess\SubSectionDAL.cs" />
     <Compile Include="DataAccess\UnitDAL.cs" />
     <Compile Include="DataAccess\UserPanelDAL.cs" />
     <Compile Include="Entities\AccountModel.cs" />

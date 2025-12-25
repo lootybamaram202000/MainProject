@@ -12,6 +12,25 @@ namespace MainProject.Forms
 {
     public partial class OverHeadFRM : Form
     {
+        private sealed class SubSectionRef
+        {
+            public string SSID { get; set; }
+            public string SecID { get; set; }
+            public string SSTitle { get; set; }
+
+            public override string ToString() => SSTitle;
+        }
+
+        // Keep the existing constants but remap to the new visible column positions
+        // Columns: Row, Title, OverHead, Percentage, CountOfSell
+        private const int SUBSECTION_COL_ROW = 0;
+        private const int SUBSECTION_COL_SSTITLE = 1;
+        private const int SUBSECTION_COL_OVERHEAD = 2;
+        private const int SUBSECTION_COL_PERCENTAGE = 3;
+        private const int SUBSECTION_COL_COUNTOFSELL = 4;
+
+        private readonly SubSectionDAL _subSectionDal = new SubSectionDAL();
+
         private string _userName;
         private string _userID;
         private List<OverHeadModel> allOverHeads = new List<OverHeadModel>();
@@ -24,16 +43,6 @@ namespace MainProject.Forms
         private bool _isFillingFromList = false;
         private decimal _currentFixedOverhead = 0;
         private decimal _currentVariableOverhead = 0;
-
-        // Column indices for lstSubSection ListView
-        // Update these if column order changes in Designer
-        private const int SUBSECTION_COL_ROW = 0;
-        private const int SUBSECTION_COL_SSID = 1;
-        private const int SUBSECTION_COL_SSTITLE = 2;
-        private const int SUBSECTION_COL_SECID = 3;
-        private const int SUBSECTION_COL_OVERHEAD = 4;
-        private const int SUBSECTION_COL_PERCENTAGE = 5;
-        private const int SUBSECTION_COL_COUNTOFSELL = 6;
 
         public OverHeadFRM()
         {
@@ -509,159 +518,316 @@ namespace MainProject.Forms
 
         private void btnSubmitSectionOVERHEAD_Click(object sender, EventArgs e)
         {
-            if (sectionList == null || sectionList.Count == 0)
-            {
-                MessageBox.Show("لیست سکشن‌ها خالی است.");
-                return;
-            }
+            // keep existing validation behavior
+            int totalSell;
+            if (!int.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtAVGTotalSell.Text ?? "").Trim(), out totalSell))
+                totalSell = 0;
 
-            if (!int.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtTotalSellsCount.Text.Trim()), out int totalSell) || totalSell <= 0)
-            {
-                MessageBox.Show("تعداد کل فروش معتبر نیست.");
-                return;
-            }
-
-            if (!CommonFunctions.ValidateSectionList(sectionList, totalSell, out string errorMsg))
+            if (!CommonFunctions.ValidateSectionList(sectionList ?? new List<SectionModel>(), totalSell, out var errorMsg))
             {
                 MessageBox.Show(errorMsg);
                 return;
             }
 
-            var manager = new OverHeadManager();
-            bool success = manager.SubmitSectionOverHeads(sectionList, out string dbError);
+            // Step 1: Submit Section Draft
+            if (!SubmitSectionDraftInternal(out var msg1))
+            {
+                MessageBox.Show(string.IsNullOrWhiteSpace(msg1) ? "خطا در ثبت پیش‌نویس سکشن." : msg1);
+                return;
+            }
+
+            // Step 2: Submit SubSection Draft
+            if (!SubmitSubSectionDraftInternal(out var msg2))
+            {
+                MessageBox.Show(string.IsNullOrWhiteSpace(msg2) ? "خطا در ثبت پیش‌نویس زیرسکشن." : msg2);
+                return;
+            }
+
+            // Step 3: Calculate Allocation
+            var results = _manager.CalculateAllocation(out var msg3);
+            if (!string.IsNullOrWhiteSpace(msg3))
+            {
+                MessageBox.Show(msg3);
+                return;
+            }
+
+            DisplayCalculationResults(results);
+        }
+
+        private void btnSubmitSectionDraft_Click(object sender, EventArgs e)
+        {
+            if (!SubmitSectionDraftInternal(out var msg))
+            {
+                MessageBox.Show(string.IsNullOrWhiteSpace(msg) ? "خطا در ثبت پیش‌نویس سکشن." : msg);
+                return;
+            }
+
+            MessageBox.Show("پیش‌نویس سکشن با موفقیت ثبت شد.");
+        }
+
+        private void btnSubmitSubSectionDraft_Click(object sender, EventArgs e)
+        {
+            if (!SubmitSubSectionDraftInternal(out var msg))
+            {
+                MessageBox.Show(string.IsNullOrWhiteSpace(msg) ? "خطا در ثبت پیش‌نویس زیرسکشن." : msg);
+                return;
+            }
+
+            MessageBox.Show("پیش‌نویس زیرسکشن با موفقیت ثبت شد.");
+        }
+
+        private void tpgSubmitOH_Click_Duplicate1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdateSOH_Click(object sender, EventArgs e)
+        {
+            if (lstOverHead1.SelectedItems.Count == 0)
+            {
+                MessageBox.Show("لطفاً یک آیتم برای ویرایش انتخاب کنید.");
+                return;
+            }
+
+            var selected = lstOverHead1.SelectedItems[0];
+            string ohid = selected.SubItems[1].Text;
+            var oldModel = allOverHeads.FirstOrDefault(x => x.OHID == ohid);
+            if (oldModel == null)
+            {
+                MessageBox.Show("اطلاعات انتخاب‌شده نامعتبر است.");
+                return;
+            }
+
+            // بررسی اعتبارسنجی
+            if (string.IsNullOrWhiteSpace(txtTitleSOH.Text) ||
+                cmbOHType.SelectedIndex == -1 ||
+                cmbCurrentYear1.SelectedIndex == -1 ||
+                cmbOHCategory1.SelectedIndex == -1)
+            {
+                MessageBox.Show("لطفاً تمام فیلدهای ضروری را تکمیل کنید.");
+                return;
+            }
+
+            string costYearStr = CommonFunctions.ConvertPersianDigitsToEnglish(txtYearlyCostSOH.Text.Trim());
+            string costMonthStr = CommonFunctions.ConvertPersianDigitsToEnglish(txtMonthlyCostSOH.Text.Trim());
+            string yearStr = CommonFunctions.ConvertPersianDigitsToEnglish(cmbCurrentYear1.SelectedItem.ToString());
+            int monthValue = 13; // پیش‌فرض برای همه ماه‌ها
+            if (cmbCurrentMounth.SelectedItem != null)
+            {
+                var raw = cmbCurrentMounth.SelectedItem.ToString().Trim();
+                raw = CommonFunctions.ConvertPersianDigitsToEnglish(raw);
+                int.TryParse(raw, out monthValue); // اگر نشد، همون 13 باقی می‌مونه
+            }
+
+
+            var model = new OverHeadModel
+            {
+                OHID = ohid,
+                OHTitle = txtTitleSOH.Text.Trim(),
+                OHType = cmbOHType.SelectedItem.ToString(),
+                FinancialYear = int.Parse(yearStr),
+                FinancialMounth = monthValue,
+                OHCategory = cmbOHCategory1.SelectedItem.ToString(),
+                Describtion = textBox1.Text.Trim(),
+                LastUpdate = $"Updated by '{_userName}' : {CommonFunctions.GetPersianDate()}",
+                isDeleted = false
+            };
+
+            if (model.OHType == "ثابت")
+            {
+                if (!decimal.TryParse(costYearStr, out decimal ycost))
+                {
+                    MessageBox.Show("هزینه سالیانه نامعتبر است.");
+                    return;
+                }
+                model.YearlyCost = ycost;
+                model.MonthlyCost = ycost / 12;
+                model.FinancialMounth = 13;
+            }
+            else if (model.OHType == "متغیر")
+            {
+                if (!decimal.TryParse(costMonthStr, out decimal mcost))
+                {
+                    MessageBox.Show("هزینه ماهیانه نامعتبر است.");
+                    return;
+                }
+                model.MonthlyCost = mcost;
+                model.YearlyCost = 0;
+            }
+
+            var dal = new OverHeadDAL();
+            bool success = dal.UpdateOverHead(model);
 
             if (success)
             {
-                MessageBox.Show("اطلاعات سربار سکشن‌ها با موفقیت ثبت شد.");
+                MessageBox.Show("ویرایش با موفقیت انجام شد.");
+                ResetOverHeadEntryAndRefreshList();
             }
             else
             {
-                MessageBox.Show("خطا در ثبت اطلاعات: " + dbError);
+                MessageBox.Show("خطا در هنگام بروزرسانی اطلاعات.");
             }
             ReloadOverHeadFormData();
-            DisplaySectionsInListView(sectionList);
-            CommonFunctions.RecalculateOverHeadPerItemForAllSections(sectionList, _currentFixedOverhead);
-
-
         }
 
-        private void btnSubmitTotalSellsCount_Click(object sender, EventArgs e)
+        private void btnRefreshForm_Click(object sender, EventArgs e)
         {
-            if (!decimal.TryParse(txtTotalSellsCount.Text, out decimal count) || count < 0)
-            {
-                MessageBox.Show("تعداد فروش باید عددی مثبت باشد.");
-                return;
-            }
-
-            var manager = new InformationsManager();
-            var info = manager.GetForComboBox("TotalCountOfSellOfItems").FirstOrDefault();
-            if (info == null)
-            {
-                MessageBox.Show("مقدار اولیه TotalCountOfSellOfItems پیدا نشد.");
-                return;
-            }
-
-            info.DigitalValue = count;
-            manager.EditInformation(info);
-            MessageBox.Show("تعداد فروش روزانه با موفقیت ثبت شد.");
             ReloadOverHeadFormData();
         }
 
-        private void btnSetFinancialYear_Click(object sender, EventArgs e)
+        private void tpgDefineCalculation_Click(object sender, EventArgs e)
         {
-            if (cmbCurrentYearSource.SelectedItem == null)
+
+        }
+
+        private void LoadSubSectionsForSelectedSection(string secId)
+        {
+            cmbSubSection.DataSource = null;
+            cmbSubSection.Items.Clear();
+
+            if (string.IsNullOrWhiteSpace(secId))
             {
-                MessageBox.Show("لطفاً یک سال مالی انتخاب کنید.");
+                cmbSubSection.SelectedIndex = -1;
                 return;
             }
 
-            string selectedYear = cmbCurrentYearSource.SelectedItem.ToString();
-            var manager = new InformationsManager();
-            var info = manager.GetForComboBox("CurentYear").FirstOrDefault();
-            if (info == null)
+            var dt = _subSectionDal.GetSubSectionsBySectionId(secId);
+            var list = new List<SubSectionRef>();
+
+            foreach (DataRow row in dt.Rows)
             {
-                MessageBox.Show("مقدار اولیه CurentYear پیدا نشد.");
+                list.Add(new SubSectionRef
+                {
+                    SSID = row["SSID"]?.ToString(),
+                    SecID = row["SecID"]?.ToString(),
+                    SSTitle = row["SSTitle"]?.ToString()
+                });
+            }
+
+            cmbSubSection.DisplayMember = nameof(SubSectionRef.SSTitle);
+            cmbSubSection.ValueMember = nameof(SubSectionRef.SSID);
+            cmbSubSection.DataSource = list;
+            cmbSubSection.SelectedIndex = -1;
+        }
+
+        private void lstSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstSection.SelectedItems.Count == 0)
+            {
+                LoadSubSectionsForSelectedSection(null);
                 return;
             }
 
-            info.StringValuePer = selectedYear;
-            manager.EditInformation(info);
-            MessageBox.Show("سال مالی جاری با موفقیت تنظیم شد.");
-            ReloadOverHeadFormData();
+            var selected = lstSection.SelectedItems[0].Tag as SectionModel;
+            LoadSubSectionsForSelectedSection(selected?.SecID);
         }
 
-        private void btnAddNewYear_Click(object sender, EventArgs e)
+        private void btnAddToSSList_Click(object sender, EventArgs e)
         {
-            InfoEditorForm infoEditorForm = new InfoEditorForm("FinancialYears");
-            infoEditorForm.ShowDialog();
-            ReloadOverHeadFormData();
-        }
-
-        private void btnSubmitVAT_Click(object sender, EventArgs e)
-        {
-            if (!decimal.TryParse(txtVAT.Text, out decimal vat) || vat < 0 || vat > 40)
+            if (cmbSubSection.SelectedItem == null)
             {
-                MessageBox.Show("مقدار مالیات بر ارزش افزوده باید بین ۰ تا ۴۰ باشد.");
+                MessageBox.Show("ابتدا یک زیرسکشن را انتخاب کنید.");
                 return;
             }
 
-            var manager = new InformationsManager();
-            var info = manager.GetForComboBox("VAT").FirstOrDefault();
-            if (info == null)
+            var selectedSubSectionRef = cmbSubSection.SelectedItem as SubSectionRef;
+            if (selectedSubSectionRef == null || string.IsNullOrWhiteSpace(selectedSubSectionRef.SSID) || string.IsNullOrWhiteSpace(selectedSubSectionRef.SecID))
             {
-                MessageBox.Show("مقدار اولیه VAT پیدا نشد.");
+                MessageBox.Show("زیرسکشن انتخاب‌شده معتبر نیست.");
                 return;
             }
 
-            info.DigitalValue = vat;
-            manager.EditInformation(info);
-            MessageBox.Show("مقدار VAT با موفقیت به‌روزرسانی شد.");
-            LoadVAT();
+            // Parse numeric inputs
+            string overheadText = CommonFunctions.ConvertPersianDigitsToEnglish(txtOHPerSubSectionItems.Text ?? "").Replace(",", "").Trim();
+            string percentText = CommonFunctions.ConvertPersianDigitsToEnglish(txtPartOfOH.Text ?? "").Trim();
+            string countText = CommonFunctions.ConvertPersianDigitsToEnglish(txtDailtySells.Text ?? "").Trim();
+
+            if (!decimal.TryParse(overheadText, out var overhead)) overhead = 0m;
+            if (!byte.TryParse(percentText, out var percentage)) percentage = 0;
+            if (!short.TryParse(countText, out var countOfSell)) countOfSell = 0;
+
+            int row = lstSubSection.Items.Count + 1;
+
+            // Visible columns only: Row, Title, OverHead, Percentage, CountOfSell
+            var item = new ListViewItem(row.ToString());
+            item.SubItems.Add(selectedSubSectionRef.SSTitle ?? "-");
+            item.SubItems.Add(overhead.ToString("0"));
+            item.SubItems.Add(percentage.ToString());
+            item.SubItems.Add(countOfSell.ToString());
+
+            // Store IDs in Tag (not in columns)
+            item.Tag = selectedSubSectionRef;
+
+            lstSubSection.Items.Add(item);
         }
 
-        private void btnSubmitTAX_Click(object sender, EventArgs e)
+        private bool SubmitSectionDraftInternal(out string errorMessage)
         {
-            if (!decimal.TryParse(txtTax.Text, out decimal tax) || tax < 0 || tax > 40)
+            errorMessage = null;
+
+            if (sectionList == null || sectionList.Count == 0)
             {
-                MessageBox.Show("مقدار مالیات باید بین ۰ تا ۴۰ باشد.");
-                return;
+                errorMessage = "لیست سکشن‌ها خالی است.";
+                return false;
             }
 
-            var manager = new InformationsManager();
-            var info = manager.GetForComboBox("Tax").FirstOrDefault();
-            if (info == null)
+            var sectionTable = new DataTable();
+            sectionTable.Columns.Add("SecID", typeof(string));
+            sectionTable.Columns.Add("SecTitle", typeof(string));
+            sectionTable.Columns.Add("OverHead", typeof(decimal));
+            sectionTable.Columns.Add("PerCentage", typeof(byte));
+            sectionTable.Columns.Add("CountOfSell", typeof(short));
+
+            foreach (var sec in sectionList.Where(s => s != null && !s.isDeleted))
             {
-                MessageBox.Show("مقدار اولیه Tax پیدا نشد.");
-                return;
+                sectionTable.Rows.Add(sec.SecID, sec.SecTitle, sec.OverHead, sec.PerCentage, sec.CountOfSell);
             }
 
-            info.DigitalValue = tax;
-            manager.EditInformation(info);
-            MessageBox.Show("مقدار Tax با موفقیت به‌روزرسانی شد.");
-            LoadTax();
+            return _manager.SubmitSectionDraft(sectionTable, out errorMessage);
         }
 
-        private void btnAddNewOHCategory_Click(object sender, EventArgs e)
+        private bool SubmitSubSectionDraftInternal(out string errorMessage)
         {
-            InfoEditorForm infoEditorForm = new InfoEditorForm("OHCategories");  
-            infoEditorForm.ShowDialog();
-            ReloadOverHeadFormData();
+            errorMessage = null;
 
+            if (lstSubSection == null || lstSubSection.Items.Count == 0)
+            {
+                errorMessage = "لیست زیرسکشن‌ها خالی است.";
+                return false;
+            }
+
+            var dt = new DataTable();
+            dt.Columns.Add("SSID", typeof(string));
+            dt.Columns.Add("SSTitle", typeof(string));
+            dt.Columns.Add("SecID", typeof(string));
+            dt.Columns.Add("OverHead", typeof(decimal));
+            dt.Columns.Add("PerCentage", typeof(byte));
+            dt.Columns.Add("CountOfSell", typeof(short));
+
+            foreach (ListViewItem item in lstSubSection.Items)
+            {
+                if (!(item.Tag is SubSectionRef tag) || string.IsNullOrWhiteSpace(tag.SSID) || string.IsNullOrWhiteSpace(tag.SecID))
+                {
+                    errorMessage = "زیرسکشن‌های لیست، شناسه معتبر ندارند. لطفاً لیست را از ابتدا بسازید.";
+                    return false;
+                }
+
+                // Numeric values only are read from SubItems
+                string overheadText = CommonFunctions.ConvertPersianDigitsToEnglish(item.SubItems[SUBSECTION_COL_OVERHEAD].Text ?? "").Replace(",", "").Trim();
+                string percentText = CommonFunctions.ConvertPersianDigitsToEnglish(item.SubItems[SUBSECTION_COL_PERCENTAGE].Text ?? "").Trim();
+                string countText = CommonFunctions.ConvertPersianDigitsToEnglish(item.SubItems[SUBSECTION_COL_COUNTOFSELL].Text ?? "").Trim();
+
+                if (!decimal.TryParse(overheadText, out var overhead)) overhead = 0m;
+                if (!byte.TryParse(percentText, out var perc)) perc = 0;
+                if (!short.TryParse(countText, out var count)) count = 0;
+
+                dt.Rows.Add(tag.SSID, tag.SSTitle, tag.SecID, overhead, perc, count);
+            }
+
+            return _manager.SubmitSubSectionDraft(dt, out errorMessage);
         }
 
-        private void btnSubmitNewSection_Click(object sender, EventArgs e)
-        {
-            DefineSectionsFRM defineSectionsFRM = new DefineSectionsFRM();
-            defineSectionsFRM.ShowDialog();
-            ReloadOverHeadFormData();
-        }
-
-        private void txtAVGSectionSell_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtPercentage_TextChanged(object sender, EventArgs e)
+        private void tpgSubmitOH_Click_Duplicate2(object sender, EventArgs e)
         {
 
         }
@@ -804,7 +970,7 @@ namespace MainProject.Forms
 
         }
 
-        private void btnUpdateSOH_Click(object sender, EventArgs e)
+        private void btnUpdateSOH_Click_Duplicate(object sender, EventArgs e)
         {
             if (lstOverHead1.SelectedItems.Count == 0)
             {
@@ -893,241 +1059,14 @@ namespace MainProject.Forms
             ReloadOverHeadFormData();
         }
 
-        private void btnRefreshForm_Click(object sender, EventArgs e)
+        private void btnRefreshForm_Click_Duplicate(object sender, EventArgs e)
         {
             ReloadOverHeadFormData();
         }
 
-        private void tpgDefineCalculation_Click(object sender, EventArgs e)
+        private void tpgDefineCalculation_Click_Duplicate(object sender, EventArgs e)
         {
 
-        }
-
-        private void lstSection_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lstSection.SelectedItems.Count == 0)
-                return;
-
-            var selected = lstSection.SelectedItems[0];
-
-            string secID = selected.SubItems[1].Text;
-            string secTitle = selected.SubItems[2].Text;
-            string countOfSell = selected.SubItems[4].Text;
-            string percentage = selected.SubItems[3].Text;
-
-            cmbSection.SelectedItem = secTitle;
-            txtAVGSectionSell.Text = countOfSell;
-            txtPercentage.Text = percentage;
-
-            // مقداردهی به سربار هر آیتم
-            var section = sectionList.FirstOrDefault(x => x.SecID == secID);
-            if (section != null)
-            {
-                txtOverHeadPerItem.Text = section.OverHead.ToString("0");
-                CommonFunctions.FormatTextBoxAsThousandSeparated(txtOverHeadPerItem);
-            }
-        }
-
-        private void btnAddToList_Click(object sender, EventArgs e)
-        {
-            if (cmbSection.SelectedIndex < 0)
-            {
-                MessageBox.Show("لطفاً یک سکشن را انتخاب کنید.");
-                return;
-            }
-
-            string selectedSection = cmbSection.SelectedItem.ToString().Trim();
-            var section = sectionList.FirstOrDefault(s => s.SecTitle == selectedSection);
-            if (section == null)
-            {
-                MessageBox.Show("سکشن انتخاب‌شده یافت نشد.");
-                return;
-            }
-
-            // تبدیل فارسی به انگلیسی
-            string percentageText = CommonFunctions.ConvertPersianDigitsToEnglish(txtPercentage.Text.Trim());
-            string countText = CommonFunctions.ConvertPersianDigitsToEnglish(txtAVGSectionSell.Text.Trim());
-
-            if (!byte.TryParse(percentageText, out byte percent) || percent > 100)
-            {
-                MessageBox.Show("درصد وارد شده معتبر نیست (بین 0 تا 100).");
-                return;
-            }
-
-            if (!short.TryParse(countText, out short count) || count < 0)
-            {
-                MessageBox.Show("تعداد فروش وارد شده معتبر نیست.");
-                return;
-            }
-
-            int totalSell = int.TryParse(CommonFunctions.ConvertPersianDigitsToEnglish(txtTotalSellsCount.Text.Trim()), out int tsc) ? tsc : 0;
-            int currentSum = sectionList.Where(s => !s.isDeleted && s.SecID != section.SecID).Sum(s => s.CountOfSell) + count;
-
-            if (currentSum > totalSell)
-            {
-                MessageBox.Show("مجموع فروش سکشن‌ها از کل فروش بیشتر شده است.");
-                return;
-            }
-
-            // مقداردهی جدید
-            section.PerCentage = percent;
-            section.CountOfSell = count;
-
-            // محاسبه با سربار ثابت فقط
-            section.OverHead = CommonFunctions.CalculateOverHeadPerItem(_currentFixedOverhead, percent, count);
-            CommonFunctions.RecalculateOverHeadPerItemForAllSections(sectionList, _currentFixedOverhead);
-            DisplaySectionsInListView(sectionList);
-        }
-
-        private void label17_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label50_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label49_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label16_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel10_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void btnSubmitSectionDraft_Click(object sender, EventArgs e)
-        {
-            if (sectionList == null || sectionList.Count == 0)
-            {
-                MessageBox.Show("لیست سکشن‌ها خالی است.");
-                return;
-            }
-
-            var sectionTable = new DataTable();
-            sectionTable.Columns.Add("SecID", typeof(string));
-            sectionTable.Columns.Add("SecTitle", typeof(string));
-            sectionTable.Columns.Add("OverHead", typeof(decimal));
-            sectionTable.Columns.Add("PerCentage", typeof(byte));
-            sectionTable.Columns.Add("CountOfSell", typeof(short));
-
-            foreach (var sec in sectionList.Where(s => !s.isDeleted))
-            {
-                sectionTable.Rows.Add(sec.SecID, sec.SecTitle, sec.OverHead, sec.PerCentage, sec.CountOfSell);
-            }
-
-            bool success = _manager.SubmitSectionDraft(sectionTable, out string errorMsg);
-
-            if (success)
-            {
-                MessageBox.Show("پیش‌نویس ورودی سکشن با موفقیت ثبت شد.");
-            }
-            else
-            {
-                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnSubmitSubSectionDraft_Click(object sender, EventArgs e)
-        {
-            if (lstSubSection.Items.Count == 0)
-            {
-                MessageBox.Show("لیست زیرسکشن‌ها خالی است.");
-                return;
-            }
-
-            var subSectionTable = new DataTable();
-            subSectionTable.Columns.Add("SSID", typeof(string));
-            subSectionTable.Columns.Add("SSTitle", typeof(string));
-            subSectionTable.Columns.Add("SecID", typeof(string));
-            subSectionTable.Columns.Add("OverHead", typeof(decimal));
-            subSectionTable.Columns.Add("PerCentage", typeof(byte));
-            subSectionTable.Columns.Add("CountOfSell", typeof(short));
-
-            bool hasErrors = false;
-            List<string> parseErrors = new List<string>();
-
-            foreach (ListViewItem item in lstSubSection.Items)
-            {
-                string ssid = item.SubItems[SUBSECTION_COL_SSID].Text;
-                string sstitle = item.SubItems[SUBSECTION_COL_SSTITLE].Text;
-                string secid = item.SubItems[SUBSECTION_COL_SECID].Text;
-                
-                if (!decimal.TryParse(item.SubItems[SUBSECTION_COL_OVERHEAD].Text, out decimal overhead))
-                {
-                    parseErrors.Add($"سربار نامعتبر برای {sstitle}");
-                    overhead = 0;
-                    hasErrors = true;
-                }
-                
-                if (!byte.TryParse(item.SubItems[SUBSECTION_COL_PERCENTAGE].Text, out byte percentage))
-                {
-                    parseErrors.Add($"درصد نامعتبر برای {sstitle}");
-                    percentage = 0;
-                    hasErrors = true;
-                }
-                
-                if (!short.TryParse(item.SubItems[SUBSECTION_COL_COUNTOFSELL].Text, out short countOfSell))
-                {
-                    parseErrors.Add($"تعداد فروش نامعتبر برای {sstitle}");
-                    countOfSell = 0;
-                    hasErrors = true;
-                }
-
-                subSectionTable.Rows.Add(ssid, sstitle, secid, overhead, percentage, countOfSell);
-            }
-
-            if (hasErrors)
-            {
-                string errorMsg = "خطاهای اعتبارسنجی:\n" + string.Join("\n", parseErrors) + 
-                                 "\n\nمقادیر نامعتبر با 0 جایگزین شده‌اند. آیا مایل به ادامه هستید؟";
-                var result = MessageBox.Show(errorMsg, "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-                if (result != DialogResult.Yes)
-                    return;
-            }
-
-            bool success = _manager.SubmitSubSectionDraft(subSectionTable, out string errorMessage);
-
-            if (success)
-            {
-                MessageBox.Show("پیش‌نویس ورودی زیرسکشن با موفقیت ثبت شد.");
-            }
-            else
-            {
-                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMessage, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnCalculateAllocation_Click(object sender, EventArgs e)
-        {
-            var results = _manager.CalculateAllocation(out string errorMsg);
-
-            if (!string.IsNullOrEmpty(errorMsg))
-            {
-                MessageBox.Show("خطا در محاسبه تخصیص سربار:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            if (results == null || results.Rows.Count == 0)
-            {
-                MessageBox.Show("نتیجه‌ای برای نمایش وجود ندارد.");
-                return;
-            }
-
-            DisplayCalculationResults(results);
         }
 
         private void DisplayCalculationResults(DataTable results)

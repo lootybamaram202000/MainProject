@@ -94,6 +94,7 @@
             this.txtOHPerSubSectionItems = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.btnAddToSSList = new System.Windows.Forms.Button();
+            this.btnSubmitSubSectionDraft = new System.Windows.Forms.Button();
             this.lstSubSection = new System.Windows.Forms.ListView();
             this.columnHeader11 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader12 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -102,9 +103,6 @@
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cmbSubSection = new System.Windows.Forms.ComboBox();
             this.txtBenefitPercentage = new System.Windows.Forms.TextBox();
             this.txtPartOfSection = new System.Windows.Forms.TextBox();
@@ -125,6 +123,7 @@
             this.txtOverHeadPerItem = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.btnAddToList = new System.Windows.Forms.Button();
+            this.btnSubmitSectionDraft = new System.Windows.Forms.Button();
             this.btnSubmitNewSection = new System.Windows.Forms.Button();
             this.lstSection = new System.Windows.Forms.ListView();
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -165,6 +164,7 @@
             this.label33 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.btnCalculateAllocation = new System.Windows.Forms.Button();
             this.btnSubmitSectionOVERHEAD = new System.Windows.Forms.Button();
             this.txtAVGTotalSell = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
@@ -620,6 +620,7 @@
             this.tpgDefineCalculation.Controls.Add(this.panel9);
             this.tpgDefineCalculation.Controls.Add(this.panel5);
             this.tpgDefineCalculation.Controls.Add(this.panel4);
+            this.tpgDefineCalculation.Controls.Add(this.btnCalculateAllocation);
             this.tpgDefineCalculation.Controls.Add(this.btnSubmitSectionOVERHEAD);
             this.tpgDefineCalculation.Controls.Add(this.txtAVGTotalSell);
             this.tpgDefineCalculation.Controls.Add(this.label19);
@@ -638,6 +639,7 @@
             this.panel10.Controls.Add(this.txtOHPerSubSectionItems);
             this.panel10.Controls.Add(this.label47);
             this.panel10.Controls.Add(this.btnAddToSSList);
+            this.panel10.Controls.Add(this.btnSubmitSubSectionDraft);
             this.panel10.Controls.Add(this.lstSubSection);
             this.panel10.Controls.Add(this.cmbSubSection);
             this.panel10.Controls.Add(this.txtBenefitPercentage);
@@ -706,7 +708,20 @@
             this.btnAddToSSList.TabIndex = 137;
             this.btnAddToSSList.Text = "ثبت موقت در لیست";
             this.btnAddToSSList.UseVisualStyleBackColor = true;
-            this.btnAddToSSList.Click += new System.EventHandler(this.btnAddToList_Click);
+            this.btnAddToSSList.Click += new System.EventHandler(this.btnAddToSSList_Click);
+            // 
+            // btnSubmitSubSectionDraft
+            // 
+            this.btnSubmitSubSectionDraft.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSubmitSubSectionDraft.ForeColor = System.Drawing.Color.Green;
+            this.btnSubmitSubSectionDraft.Location = new System.Drawing.Point(160, 40);
+            this.btnSubmitSubSectionDraft.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSubmitSubSectionDraft.Name = "btnSubmitSubSectionDraft";
+            this.btnSubmitSubSectionDraft.Size = new System.Drawing.Size(180, 45);
+            this.btnSubmitSubSectionDraft.TabIndex = 176;
+            this.btnSubmitSubSectionDraft.Text = "ثبت پیش‌نویس زیرسکشن";
+            this.btnSubmitSubSectionDraft.UseVisualStyleBackColor = true;
+            this.btnSubmitSubSectionDraft.Click += new System.EventHandler(this.btnSubmitSubSectionDraft_Click);
             // 
             // lstSubSection
             // 
@@ -718,10 +733,7 @@
             this.columnHeader14,
             this.columnHeader15,
             this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19,
-            this.columnHeader20});
+            this.columnHeader17});
             this.lstSubSection.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstSubSection.FullRowSelect = true;
             this.lstSubSection.GridLines = true;
@@ -739,66 +751,49 @@
             this.lstSubSection.Size = new System.Drawing.Size(1133, 196);
             this.lstSubSection.TabIndex = 130;
             this.lstSubSection.UseCompatibleStateImageBehavior = false;
-            this.lstSubSection.SelectedIndexChanged += new System.EventHandler(this.lstSection_SelectedIndexChanged);
+            this.lstSubSection.View = System.Windows.Forms.View.Details;
+            this.lstSubSection.SelectedIndexChanged += new System.EventHandler(this.lstSubSection_SelectedIndexChanged);
             // 
             // columnHeader11
             // 
-            this.columnHeader11.DisplayIndex = 9;
             this.columnHeader11.Text = "ردیف";
+            this.columnHeader11.Width = 55;
             // 
             // columnHeader12
             // 
-            this.columnHeader12.DisplayIndex = 0;
-            this.columnHeader12.Text = "کد کالا";
-            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader12.Text = "SSID";
+            this.columnHeader12.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader12.Width = 90;
             // 
             // columnHeader13
             // 
-            this.columnHeader13.DisplayIndex = 1;
-            this.columnHeader13.Text = "نام کالا";
+            this.columnHeader13.Text = "عنوان زیرسکشن";
             this.columnHeader13.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader13.Width = 220;
             // 
             // columnHeader14
             // 
-            this.columnHeader14.DisplayIndex = 2;
-            this.columnHeader14.Text = "قیمت خرید";
-            this.columnHeader14.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader14.Text = "SecID";
+            this.columnHeader14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader14.Width = 90;
             // 
             // columnHeader15
             // 
-            this.columnHeader15.DisplayIndex = 3;
-            this.columnHeader15.Text = "فروشنده";
+            this.columnHeader15.Text = "سربار";
             this.columnHeader15.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader15.Width = 120;
             // 
             // columnHeader16
             // 
-            this.columnHeader16.DisplayIndex = 4;
-            this.columnHeader16.Text = "واحد خرید";
-            this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader16.Text = "درصد";
+            this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader16.Width = 80;
             // 
             // columnHeader17
             // 
-            this.columnHeader17.DisplayIndex = 5;
-            this.columnHeader17.Text = "واحد خرید";
-            this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.DisplayIndex = 6;
-            this.columnHeader18.Text = "مکوجودی بحرانی";
-            this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.DisplayIndex = 7;
-            this.columnHeader19.Text = "دورریز";
-            this.columnHeader19.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // columnHeader20
-            // 
-            this.columnHeader20.DisplayIndex = 8;
-            this.columnHeader20.Text = "وضعیت";
-            this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.columnHeader17.Text = "تعداد فروش";
+            this.columnHeader17.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader17.Width = 100;
             // 
             // cmbSubSection
             // 
@@ -952,6 +947,7 @@
             this.panel9.Controls.Add(this.txtOverHeadPerItem);
             this.panel9.Controls.Add(this.label8);
             this.panel9.Controls.Add(this.btnAddToList);
+            this.panel9.Controls.Add(this.btnSubmitSectionDraft);
             this.panel9.Controls.Add(this.btnSubmitNewSection);
             this.panel9.Controls.Add(this.lstSection);
             this.panel9.Controls.Add(this.label17);
@@ -1014,6 +1010,19 @@
             this.btnAddToList.Text = "ثبت موقت در لیست";
             this.btnAddToList.UseVisualStyleBackColor = true;
             this.btnAddToList.Click += new System.EventHandler(this.btnAddToList_Click);
+            // 
+            // btnSubmitSectionDraft
+            // 
+            this.btnSubmitSectionDraft.Font = new System.Drawing.Font("B Nazanin", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnSubmitSectionDraft.ForeColor = System.Drawing.Color.Green;
+            this.btnSubmitSectionDraft.Location = new System.Drawing.Point(160, 41);
+            this.btnSubmitSectionDraft.Margin = new System.Windows.Forms.Padding(4);
+            this.btnSubmitSectionDraft.Name = "btnSubmitSectionDraft";
+            this.btnSubmitSectionDraft.Size = new System.Drawing.Size(160, 45);
+            this.btnSubmitSectionDraft.TabIndex = 176;
+            this.btnSubmitSectionDraft.Text = "ثبت پیش‌نویس سکشن";
+            this.btnSubmitSectionDraft.UseVisualStyleBackColor = true;
+            this.btnSubmitSectionDraft.Click += new System.EventHandler(this.btnSubmitSectionDraft_Click);
             // 
             // btnSubmitNewSection
             // 
@@ -1151,13 +1160,13 @@
             // 
             // txtAVGSectionSell
             // 
+            this.txtAVGSectionSell.Enabled = false;
             this.txtAVGSectionSell.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
-            this.txtAVGSectionSell.Location = new System.Drawing.Point(11, 13);
+            this.txtAVGSectionSell.Location = new System.Drawing.Point(875, 9);
             this.txtAVGSectionSell.Name = "txtAVGSectionSell";
             this.txtAVGSectionSell.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.txtAVGSectionSell.Size = new System.Drawing.Size(66, 32);
             this.txtAVGSectionSell.TabIndex = 8;
-            this.txtAVGSectionSell.TextChanged += new System.EventHandler(this.txtAVGSectionSell_TextChanged);
             // 
             // label3
             // 
@@ -1364,7 +1373,6 @@
             this.label34.TabIndex = 172;
             this.label34.Text = "تومان";
             // 
-            // label30
             // 
             this.label30.AutoSize = true;
             this.label30.Font = new System.Drawing.Font("B Nazanin", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
@@ -1447,6 +1455,20 @@
             this.label32.Size = new System.Drawing.Size(161, 26);
             this.label32.TabIndex = 167;
             this.label32.Text = "مجموع کل سربار ثابت ماهانه";
+            // 
+            // btnCalculateAllocation
+            // 
+            this.btnCalculateAllocation.BackColor = System.Drawing.Color.LightGreen;
+            this.btnCalculateAllocation.Font = new System.Drawing.Font("B Nazanin", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
+            this.btnCalculateAllocation.ForeColor = System.Drawing.Color.DarkBlue;
+            this.btnCalculateAllocation.Location = new System.Drawing.Point(5, 44);
+            this.btnCalculateAllocation.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCalculateAllocation.Name = "btnCalculateAllocation";
+            this.btnCalculateAllocation.Size = new System.Drawing.Size(148, 85);
+            this.btnCalculateAllocation.TabIndex = 187;
+            this.btnCalculateAllocation.Text = "محاسبه\r\n تخصیص سربار";
+            this.btnCalculateAllocation.UseVisualStyleBackColor = false;
+            this.btnCalculateAllocation.Click += new System.EventHandler(this.btnCalculateAllocation_Click);
             // 
             // btnSubmitSectionOVERHEAD
             // 
@@ -1910,10 +1932,10 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.ComboBox cmbSection;
         private System.Windows.Forms.TextBox txtPercentage;
-        private System.Windows.Forms.TextBox txtAVGTotalSell;
         private System.Windows.Forms.TextBox txtAVGSectionSell;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtAVGTotalSell;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label15;
@@ -1980,21 +2002,18 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Button btnRefreshForm;
         private System.Windows.Forms.Button btnAddToList;
+        private System.Windows.Forms.Button btnSubmitSectionDraft;
         private System.Windows.Forms.ListView lstSubSection;
         public System.Windows.Forms.ColumnHeader columnHeader11;
-        private System.Windows.Forms.ColumnHeader columnHeader12;
         private System.Windows.Forms.ColumnHeader columnHeader13;
-        private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader18;
-        private System.Windows.Forms.ColumnHeader columnHeader19;
-        private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.TextBox txtOHPerSubSectionItems;
         private System.Windows.Forms.Label label47;
         private System.Windows.Forms.Button btnAddToSSList;
+        private System.Windows.Forms.Button btnSubmitSubSectionDraft;
         private System.Windows.Forms.ComboBox cmbSubSection;
         private System.Windows.Forms.TextBox txtPartOfOH;
         private System.Windows.Forms.TextBox txtCountOfCrew;
@@ -2014,8 +2033,14 @@
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TextBox txtYearlyOverHeadD;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.TextBox txtDailyOverHeadD;
+        private System.Windows.Forms.TextBox txtMonthlyOverHeadD;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.Label label27;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label34;
@@ -2026,11 +2051,7 @@
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.Label label31;
         private System.Windows.Forms.Label label32;
-        private System.Windows.Forms.TextBox txtYearlyOverHeadD;
-        private System.Windows.Forms.TextBox txtDailyOverHeadD;
-        private System.Windows.Forms.TextBox txtMonthlyOverHeadD;
-        private System.Windows.Forms.Label label41;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Button btnCalculateAllocation;
+        // NOTE: duplicate field declarations removed (these fields are already declared above)
     }
 }
