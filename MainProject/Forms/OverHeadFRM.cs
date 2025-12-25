@@ -24,6 +24,17 @@ namespace MainProject.Forms
         private bool _isFillingFromList = false;
         private decimal _currentFixedOverhead = 0;
         private decimal _currentVariableOverhead = 0;
+
+        // Column indices for lstSubSection ListView
+        // Update these if column order changes in Designer
+        private const int SUBSECTION_COL_ROW = 0;
+        private const int SUBSECTION_COL_SSID = 1;
+        private const int SUBSECTION_COL_SSTITLE = 2;
+        private const int SUBSECTION_COL_SECID = 3;
+        private const int SUBSECTION_COL_OVERHEAD = 4;
+        private const int SUBSECTION_COL_PERCENTAGE = 5;
+        private const int SUBSECTION_COL_COUNTOFSELL = 6;
+
         public OverHeadFRM()
         {
             CommonFunctions.ScaleForm(this);
@@ -1046,26 +1057,49 @@ namespace MainProject.Forms
             subSectionTable.Columns.Add("PerCentage", typeof(byte));
             subSectionTable.Columns.Add("CountOfSell", typeof(short));
 
-            const int COL_SSID = 1;
-            const int COL_SSTITLE = 2;
-            const int COL_SECID = 3;
-            const int COL_OVERHEAD = 4;
-            const int COL_PERCENTAGE = 5;
-            const int COL_COUNTOFSELL = 6;
+            bool hasErrors = false;
+            List<string> parseErrors = new List<string>();
 
             foreach (ListViewItem item in lstSubSection.Items)
             {
-                string ssid = item.SubItems[COL_SSID].Text;
-                string sstitle = item.SubItems[COL_SSTITLE].Text;
-                string secid = item.SubItems[COL_SECID].Text;
-                decimal overhead = decimal.TryParse(item.SubItems[COL_OVERHEAD].Text, out var oh) ? oh : 0;
-                byte percentage = byte.TryParse(item.SubItems[COL_PERCENTAGE].Text, out var pct) ? pct : (byte)0;
-                short countOfSell = short.TryParse(item.SubItems[COL_COUNTOFSELL].Text, out var cos) ? cos : (short)0;
+                string ssid = item.SubItems[SUBSECTION_COL_SSID].Text;
+                string sstitle = item.SubItems[SUBSECTION_COL_SSTITLE].Text;
+                string secid = item.SubItems[SUBSECTION_COL_SECID].Text;
+                
+                if (!decimal.TryParse(item.SubItems[SUBSECTION_COL_OVERHEAD].Text, out decimal overhead))
+                {
+                    parseErrors.Add($"سربار نامعتبر برای {sstitle}");
+                    overhead = 0;
+                    hasErrors = true;
+                }
+                
+                if (!byte.TryParse(item.SubItems[SUBSECTION_COL_PERCENTAGE].Text, out byte percentage))
+                {
+                    parseErrors.Add($"درصد نامعتبر برای {sstitle}");
+                    percentage = 0;
+                    hasErrors = true;
+                }
+                
+                if (!short.TryParse(item.SubItems[SUBSECTION_COL_COUNTOFSELL].Text, out short countOfSell))
+                {
+                    parseErrors.Add($"تعداد فروش نامعتبر برای {sstitle}");
+                    countOfSell = 0;
+                    hasErrors = true;
+                }
 
                 subSectionTable.Rows.Add(ssid, sstitle, secid, overhead, percentage, countOfSell);
             }
 
-            bool success = _manager.SubmitSubSectionDraft(subSectionTable, out string errorMsg);
+            if (hasErrors)
+            {
+                string errorMsg = "خطاهای اعتبارسنجی:\n" + string.Join("\n", parseErrors) + 
+                                 "\n\nمقادیر نامعتبر با 0 جایگزین شده‌اند. آیا مایل به ادامه هستید؟";
+                var result = MessageBox.Show(errorMsg, "هشدار", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (result != DialogResult.Yes)
+                    return;
+            }
+
+            bool success = _manager.SubmitSubSectionDraft(subSectionTable, out string errorMessage);
 
             if (success)
             {
@@ -1073,7 +1107,7 @@ namespace MainProject.Forms
             }
             else
             {
-                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMsg, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("خطا در ثبت پیش‌نویس:\n" + errorMessage, "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -1101,9 +1135,13 @@ namespace MainProject.Forms
             if (results == null || results.Rows.Count == 0)
                 return;
 
-            // TODO: Future enhancement - Replace MessageBox with DataGridView or dedicated results form
-            // Suggested approach: Create a new form with DataGridView bound to results DataTable
-            // or populate an existing grid control on the form with calculation details
+            // TODO (ISSUE-001): Future Enhancement - Replace MessageBox with DataGridView
+            // Implementation Plan:
+            // 1. Add a DataGridView control to the form (e.g., dgvCalculationResults)
+            // 2. Replace this method content with: dgvCalculationResults.DataSource = results;
+            // 3. Add column formatting for better readability
+            // 4. Optionally: Create a modal results dialog with export functionality
+            // Estimated Effort: 2-4 hours
             string message = $"محاسبه تخصیص سربار با موفقیت انجام شد.\n\n" +
                            $"تعداد ردیف‌های نتیجه: {results.Rows.Count}\n\n" +
                            $"نتایج آماده نمایش در گرید می‌باشند.";
