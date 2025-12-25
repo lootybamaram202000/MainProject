@@ -1018,8 +1018,7 @@ namespace MainProject.Forms
                 sectionTable.Rows.Add(sec.SecID, sec.SecTitle, sec.OverHead, sec.PerCentage, sec.CountOfSell);
             }
 
-            var manager = new OverHeadManager();
-            bool success = manager.SubmitSectionDraft(sectionTable, out string errorMsg);
+            bool success = _manager.SubmitSectionDraft(sectionTable, out string errorMsg);
 
             if (success)
             {
@@ -1059,8 +1058,7 @@ namespace MainProject.Forms
                 subSectionTable.Rows.Add(ssid, sstitle, secid, overhead, percentage, countOfSell);
             }
 
-            var manager = new OverHeadManager();
-            bool success = manager.SubmitSubSectionDraft(subSectionTable, out string errorMsg);
+            bool success = _manager.SubmitSubSectionDraft(subSectionTable, out string errorMsg);
 
             if (success)
             {
@@ -1074,8 +1072,7 @@ namespace MainProject.Forms
 
         private void btnCalculateAllocation_Click(object sender, EventArgs e)
         {
-            var manager = new OverHeadManager();
-            var results = manager.CalculateAllocation(out string errorMsg);
+            var results = _manager.CalculateAllocation(out string errorMsg);
 
             if (!string.IsNullOrEmpty(errorMsg))
             {

@@ -293,6 +293,12 @@ namespace MainProject.DataAccess
         {
             errorMessage = null;
 
+            if (sectionInputs == null)
+            {
+                errorMessage = "داده‌های ورودی سکشن نامعتبر است.";
+                return false;
+            }
+
             try
             {
                 using (SqlConnection con = new SqlConnection(_connectionString))
@@ -319,6 +325,12 @@ namespace MainProject.DataAccess
         public bool SubmitOHSubSectionInputDraft(DataTable subSectionInputs, out string errorMessage)
         {
             errorMessage = null;
+
+            if (subSectionInputs == null)
+            {
+                errorMessage = "داده‌های ورودی زیرسکشن نامعتبر است.";
+                return false;
+            }
 
             try
             {
@@ -374,6 +386,12 @@ namespace MainProject.DataAccess
         {
             errorMessage = null;
             DataTable results = new DataTable();
+
+            if (string.IsNullOrWhiteSpace(ssid))
+            {
+                errorMessage = "شناسه زیرسکشن نامعتبر است.";
+                return results;
+            }
 
             try
             {
