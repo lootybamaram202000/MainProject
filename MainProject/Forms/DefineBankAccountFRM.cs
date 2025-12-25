@@ -375,21 +375,65 @@ namespace MainProject.Forms
             var account = new AccountModel
             {
                 OWID = _currentOwnerOWID,
-                ACBank = cmbBankName?.SelectedItem?.ToString(),
-                ACNumber = txtAccountNumber?.Text?.Trim(),
-                ACCardNumber = txtAccountCard?.Text?.Trim(),
-                ACshabaNumber = textBox1?.Text?.Trim(),
-                ACType = cmbAccountType?.SelectedItem?.ToString(),
-                ACCategory = cmbAccCategory?.SelectedItem?.ToString(),
+                PERID = _ownerID ?? "SE00000000",
+                ACOwner = _ownerName ?? "پیش‌فرض",
+                ACBank = cmbBankName?.SelectedItem?.ToString() ?? "بانک پیش‌فرض",
+                ACCategory = cmbAccCategory?.SelectedItem?.ToString() ?? "دسته‌بندی پیش‌فرض",
                 isDefault = chbDefault?.Checked ?? false,
                 isPayer = chbPayer?.Checked ?? false,
                 isActive = true
             };
 
-            if (!string.IsNullOrWhiteSpace(account.ACshabaNumber) &&
-                !account.ACshabaNumber.StartsWith("IR", StringComparison.OrdinalIgnoreCase))
+            // ✅ پر کردن فیلدهای خالی با مقادیر پیش‌فرض
+            string accountNumber = txtAccountNumber?.Text.Trim();
+            string cardNumber = txtAccountCard?.Text.Trim();
+            string shabaNumber = textBox1?.Text.Trim();
+
+            // اگه شماره حساب خالی باشه
+            if (string.IsNullOrWhiteSpace(accountNumber))
             {
-                account.ACshabaNumber = "IR" + account.ACshabaNumber;
+                account.ACNumber = "000000000000000000000000000";
+            }
+            else
+            {
+                account.ACNumber = accountNumber;
+            }
+
+            // اگه شماره کارت خالی باشه
+            if (string.IsNullOrWhiteSpace(cardNumber))
+            {
+                account.ACCardNumber = "0000000000000000";
+            }
+            else
+            {
+                account.ACCardNumber = cardNumber;
+            }
+
+            // اگه شماره شبا خالی باشه
+            if (string.IsNullOrWhiteSpace(shabaNumber))
+            {
+                account.ACshabaNumber = "IR000000000000000000000000";
+            }
+            else
+            {
+                account.ACshabaNumber = shabaNumber;
+
+                // اگه IR نداره، اضافه کن
+                if (!account.ACshabaNumber.StartsWith("IR") &&
+                    !account.ACshabaNumber.StartsWith("ir"))
+                {
+                    account.ACshabaNumber = "IR" + account.ACshabaNumber;
+                }
+            }
+
+            // ✅ ACType با گزینه‌های پیش‌فرض ۱ و ۲
+            if (account.isPayer)
+            {
+                account.ACType = "پیش‌فرض ۱"; // تنخواه
+            }
+            else
+            {
+                account.ACType = "پیش‌فرض ۲"; // عادی
             }
 
             return account;
@@ -586,12 +630,8 @@ namespace MainProject.Forms
 
             if (string.IsNullOrWhiteSpace(ownerOWID))
             {
-                MessageBox.Show("OWID خالی است!", "Debug");
                 return;
             }
-
-            // ✅ Debug: نمایش OWID قبل از فراخوانی DAL
-            MessageBox.Show($"در حال بارگذاری حساب‌ها...\nOWID: {ownerOWID}", "Debug - Before DAL");
 
             try
             {
@@ -600,22 +640,17 @@ namespace MainProject.Forms
 
                 bool result = _accountManager.GetAccountsByOwner(ownerOWID, out accounts, out msg);
 
-                // ✅ Debug: نمایش نتیجه
-                MessageBox.Show($"نتیجه DAL:\n" +
-                                $"Result: {result}\n" +
-                                $"Message: {msg}\n" +
-                                $"Count: {accounts?.Count ?? 0}",
-                    "Debug - After DAL");
-
                 if (!result)
                 {
-                    MessageBox.Show($"خطا در بارگذاری حساب‌ها:\nOWID: {ownerOWID}\nMessage: {msg}", "Debug");
+                    if (!string.IsNullOrWhiteSpace(msg))
+                    {
+                        MessageBox.Show($"خطا در بارگذاری حساب‌ها:\n{msg}", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                     return;
                 }
 
                 if (accounts == null || accounts.Count == 0)
                 {
-                    MessageBox.Show($"هیچ حسابی برای این Owner یافت نشد.\nOWID: {ownerOWID}", "اطلاع");
                     return;
                 }
 
@@ -649,7 +684,7 @@ namespace MainProject.Forms
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"خطا در بارگذاری حساب‌ها:\n{ex.Message}\n\nStackTrace:\n{ex.StackTrace}",
+                MessageBox.Show($"خطا در بارگذاری حساب‌ها:\n{ex.Message}",
                     "خطا", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
@@ -912,7 +947,6 @@ namespace MainProject.Forms
 
         private void btnSubmitNewBankAccount_Click(object sender, EventArgs e)
         {
-
             string errorMsg;
             if (!ValidateAccountInputs(out errorMsg))
             {
