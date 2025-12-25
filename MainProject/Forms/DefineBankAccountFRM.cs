@@ -108,13 +108,19 @@ namespace MainProject.Forms
             LoadAccountCategories();
 
             // Event handlers
+            lstOwners.SelectedIndexChanged -= lstOwners_SelectedIndexChanged;
+            lstBankAccount.SelectedIndexChanged -= lstBankAccount_SelectedIndexChanged;
+            txtAccountOwnerSearch.TextChanged -= txtAccountOwnerSearch_TextChanged;
+
             lstOwners.SelectedIndexChanged += lstOwners_SelectedIndexChanged;
             lstBankAccount.SelectedIndexChanged += lstBankAccount_SelectedIndexChanged;
             txtAccountOwnerSearch.TextChanged += txtAccountOwnerSearch_TextChanged;
 
             // Handle resize
-            lstOwners.SizeChanged += (s, ev) => ResizeListViewOwners();
-            lstBankAccount.SizeChanged += (s, ev) => ResizeListViewAccounts();
+            lstOwners.SizeChanged -= lstOwners_SizeChanged;
+            lstBankAccount.SizeChanged -= lstBankAccount_SizeChanged;
+            lstOwners.SizeChanged += lstOwners_SizeChanged;
+            lstBankAccount.SizeChanged += lstBankAccount_SizeChanged;
             ResizeListViewOwners();
             ResizeListViewAccounts();
 
@@ -154,13 +160,13 @@ namespace MainProject.Forms
                         : "جستجو در صاحبان حساب - بر اساس نام یا کد");
 
             if (txtAccountNumber != null)
-                accountToolTip.SetToolTip(txtAccountNumber, "شماره حساب بانکی (اجباری)");
+                accountToolTip.SetToolTip(txtAccountNumber, "شماره حساب بانکی - حداقل یکی از سه فیلد حساب/کارت/شبا باید پر شود");
 
             if (txtAccountCard != null)
-                accountToolTip.SetToolTip(txtAccountCard, "شماره کارت 16 رقمی (اختیاری)");
+                accountToolTip.SetToolTip(txtAccountCard, "شماره کارت 16 رقمی - حداقل یکی از سه فیلد باید پر شود");
 
             if (textBox1 != null)
-                accountToolTip.SetToolTip(textBox1, "شماره شبا 24 رقمی بدون IR (اختیاری)");
+                accountToolTip.SetToolTip(textBox1, "شماره شبا 24 رقمی بدون IR - حداقل یکی از سه فیلد باید پر شود");
 
             if (cmbBankName != null)
                 accountToolTip.SetToolTip(cmbBankName, "نام بانک (اجباری)");
@@ -174,16 +180,17 @@ namespace MainProject.Forms
             if (chbPayer != null)
                 accountToolTip.SetToolTip(chbPayer,
                     "حساب تنخواه (پرداخت کننده)\n" +
-                    "اگه علامت نخورد، حساب دریافت کننده است");
+                    "✓ = پرداخت کننده (تنخواه)\n" +
+                    "✗ = دریافت کننده (عادی)");
 
             if (btnSubmitNewBankAccount != null)
-                accountToolTip.SetToolTip(btnSubmitNewBankAccount, "ثبت حساب بانکی جدید");
+                accountToolTip.SetToolTip(btnSubmitNewBankAccount, "ثبت حساب بانکی جدید (F2)");
 
             if (btnUpdateBankAccount != null)
-                accountToolTip.SetToolTip(btnUpdateBankAccount, "ویرایش حساب انتخاب‌شده");
+                accountToolTip.SetToolTip(btnUpdateBankAccount, "ویرایش حساب انتخاب‌شده (F3)");
 
             if (btnDeletBankAccount != null)
-                accountToolTip.SetToolTip(btnDeletBankAccount, "حذف حساب انتخاب‌شده");
+                accountToolTip.SetToolTip(btnDeletBankAccount, "حذف حساب انتخاب‌شده (F4) - اگر پیش‌فرض باشد، حساب بعدی پیش‌فرض می‌شود");
 
             if (lstOwners != null)
                 accountToolTip.SetToolTip(lstOwners, "لیست صاحبان حساب - کلیک برای مشاهده حساب‌های بانکی");
@@ -335,33 +342,60 @@ namespace MainProject.Forms
 
             if (cmbBankName == null || cmbBankName.SelectedIndex == -1)
             {
-                errorMessage = "بانک را انتخاب کنید. ";
+                errorMessage = "بانک را انتخاب کنید.";
                 return false;
             }
 
-            if (txtAccountNumber != null && string.IsNullOrWhiteSpace(txtAccountNumber.Text))
+            string accountNumber = txtAccountNumber?.Text.Trim();
+            string cardNumber = txtAccountCard?.Text.Trim();
+            string shabaNumber = textBox1?.Text.Trim();
+
+            bool hasValidAccountNumber = !string.IsNullOrWhiteSpace(accountNumber)
+                                      && accountNumber != "000000000000000000000000000";
+
+            bool hasValidCardNumber = !string.IsNullOrWhiteSpace(cardNumber)
+                                      && cardNumber != "0000000000000000";
+
+            bool hasValidShabaNumber = !string.IsNullOrWhiteSpace(shabaNumber)
+                                       && shabaNumber != "IR000000000000000000000000"
+                                       && shabaNumber != "000000000000000000000000";
+
+            if (!hasValidAccountNumber && !hasValidCardNumber && !hasValidShabaNumber)
             {
-                errorMessage = "شماره حساب نباید خالی باشد.";
+                errorMessage = "حداقل یکی از فیلدهای شماره حساب، شماره کارت یا شماره شبا باید پر شود.";
                 return false;
             }
 
-            if (textBox1 != null && !string.IsNullOrWhiteSpace(textBox1.Text))
+            if (hasValidShabaNumber)
             {
-                string shaba = textBox1.Text.Trim();
-                shaba = shaba.Replace("ir", "").Replace("IR", "");
+                string shaba = shabaNumber.Replace("IR", "").Replace("ir", "");
+
                 if (shaba.Length != 24)
                 {
                     errorMessage = "شماره شبا باید 24 رقم باشد (بدون IR).";
                     return false;
                 }
+
+                if (!shaba.All(char.IsDigit))
+                {
+                    errorMessage = "شماره شبا فقط باید شامل اعداد باشد.";
+                    return false;
+                }
             }
 
-            if (txtAccountCard != null && !string.IsNullOrWhiteSpace(txtAccountCard.Text))
+            if (hasValidCardNumber)
             {
-                string card = txtAccountCard.Text.Trim().Replace("-", "").Replace(" ", "");
+                string card = cardNumber.Replace("-", "").Replace(" ", "");
+
                 if (card.Length != 16)
                 {
                     errorMessage = "شماره کارت باید 16 رقم باشد. ";
+                    return false;
+                }
+
+                if (!card.All(char.IsDigit))
+                {
+                    errorMessage = "شماره کارت فقط باید شامل اعداد باشد.";
                     return false;
                 }
             }
@@ -384,60 +418,54 @@ namespace MainProject.Forms
                 isActive = true
             };
 
-            // ✅ پر کردن فیلدهای خالی با مقادیر پیش‌فرض
             string accountNumber = txtAccountNumber?.Text.Trim();
             string cardNumber = txtAccountCard?.Text.Trim();
             string shabaNumber = textBox1?.Text.Trim();
 
-            // اگه شماره حساب خالی باشه
-            if (string.IsNullOrWhiteSpace(accountNumber))
-            {
-                account.ACNumber = "000000000000000000000000000";
-            }
-            else
+            if (!string.IsNullOrWhiteSpace(accountNumber) && accountNumber != "000000000000000000000000000")
             {
                 account.ACNumber = accountNumber;
             }
-
-            // اگه شماره کارت خالی باشه
-            if (string.IsNullOrWhiteSpace(cardNumber))
-            {
-                account.ACCardNumber = "0000000000000000";
-            }
             else
+            {
+                account.ACNumber = "000000000000000000000000000";
+            }
+
+            if (!string.IsNullOrWhiteSpace(cardNumber) && cardNumber != "0000000000000000")
             {
                 account.ACCardNumber = cardNumber;
             }
+            else
+            {
+                account.ACCardNumber = "0000000000000000";
+            }
 
-            // اگه شماره شبا خالی باشه
-            if (string.IsNullOrWhiteSpace(shabaNumber))
+            if (!string.IsNullOrWhiteSpace(shabaNumber) &&
+                shabaNumber != "IR000000000000000000000000" &&
+                shabaNumber != "000000000000000000000000")
+            {
+                if (!shabaNumber.StartsWith("IR") && !shabaNumber.StartsWith("ir"))
+                {
+                    account.ACshabaNumber = "IR" + shabaNumber;
+                }
+                else
+                {
+                    account.ACshabaNumber = shabaNumber;
+                }
+            }
+            else
             {
                 account.ACshabaNumber = "IR000000000000000000000000";
             }
-            else
-            {
-                account.ACshabaNumber = shabaNumber;
 
-                // اگه IR نداره، اضافه کن
-                if (!account.ACshabaNumber.StartsWith("IR") &&
-                    !account.ACshabaNumber.StartsWith("ir"))
-                {
-                    account.ACshabaNumber = "IR" + account.ACshabaNumber;
-                }
-            }
-
-            // ✅ ACType با گزینه‌های پیش‌فرض ۱ و ۲
-            if (account.isPayer)
-            {
-                account.ACType = "پیش‌فرض ۱"; // تنخواه
-            }
-            else
-            {
-                account.ACType = "پیش‌فرض ۲"; // عادی
-            }
+            account.ACType = account.isPayer ? "پیش‌فرض ۱" : "پیش‌فرض ۲";
 
             return account;
         }
+
+        private void lstOwners_SizeChanged(object sender, EventArgs e) => ResizeListViewOwners();
+
+        private void lstBankAccount_SizeChanged(object sender, EventArgs e) => ResizeListViewAccounts();
 
         private void InitializeListViewOwners()
         {

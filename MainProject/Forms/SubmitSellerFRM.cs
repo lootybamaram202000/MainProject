@@ -39,6 +39,25 @@ namespace MainProject.Forms
             InitializeListViewSellers();
         }
 
+        private void UpdateButtonCaptions()
+        {
+            if (btnSubmitNewSeller != null)
+                btnSubmitNewSeller.Text = "ثبت (F2)";
+
+            if (btnUpdateSeller != null)
+                btnUpdateSeller.Text = "ویرایش (F3)";
+
+            if (btnDeletSeller != null)
+                btnDeletSeller.Text = "حذف (F4)";
+
+            // این فرم دکمه "جدید" ندارد؛ نزدیک‌ترین گزینه دکمه دسته‌بندی جدید است
+            if (button1 != null)
+                button1.Text = "دسته‌بندی جدید";
+
+            if (btnDefineBankAccouant != null)
+                btnDefineBankAccouant.Text = "تعریف حساب بانکی (F5)";
+        }
+
         private void InitializeLoginInfo()
         {
             _userID = LoginInfo.Instance.UserID;
@@ -117,6 +136,8 @@ namespace MainProject.Forms
 
             InitializeToolTips();
 
+            UpdateButtonCaptions();
+
             this.KeyPreview = true;
             this.KeyDown += SubmitSellerFRM_KeyDown;
 
@@ -124,10 +145,7 @@ namespace MainProject.Forms
             lstSeller.SizeChanged += (s, ev) => ResizeListViewColumns();
             ResizeListViewColumns();
 
-            // آپدیت متن دکمه‌ها با میانبرها
-            btnSubmitNewSeller.Text = "ثبت (F2)";
-            btnUpdateSeller.Text = "ویرایش (F3)";
-            btnDeletSeller.Text = "حذف (F4)";
+            // متن دکمه‌ها در UpdateButtonCaptions انجام می‌شود
         }
 
         // === UI Setup ===
@@ -478,6 +496,10 @@ namespace MainProject.Forms
                     if (btnDeletSeller.Enabled)
                         btnDeletSeller_Click(sender, e);
                     break;
+                case Keys.F5:
+                    if (btnDefineBankAccouant != null && btnDefineBankAccouant.Enabled)
+                        btnDefineBankAccouant_Click(sender, e);
+                    break;
                 case Keys.Escape:
                     ClearForm();
                     break;
@@ -486,26 +508,73 @@ namespace MainProject.Forms
 
         private void InitializeToolTips()
         {
-            sellerToolTip = new ToolTip
-            {
-                AutoPopDelay = 5000,
-                InitialDelay = 300,
-                ReshowDelay = 200,
-                ShowAlways = true
-            };
+            if (sellerToolTip == null)
+                sellerToolTip = new ToolTip();
 
-            sellerToolTip.SetToolTip(txtSellerName, "نام فروشنده (اجباری)");
-            sellerToolTip.SetToolTip(txtCompanyName, "نام شرکت (اجباری)");
-            sellerToolTip.SetToolTip(txtPhone1, "شماره تماس اصلی (اجباری) - 11 رقم");
-            sellerToolTip.SetToolTip(txtPhone2, "شماره تماس دوم (اختیاری)");
-            sellerToolTip.SetToolTip(txtPhone3, "شماره تماس سوم (اختیاری)");
-            sellerToolTip.SetToolTip(txtBalance, "مانده اولیه حساب فروشنده");
-            sellerToolTip.SetToolTip(rdbdebtor, "بدهکار: فروشنده به ما پول بدهکار است");
-            sellerToolTip.SetToolTip(rdbcreditor, "بستانکار: ما به فروشنده پول بدهکاریم");
-            sellerToolTip.SetToolTip(btnDefineBankAccouant,
-                "مدیریت حساب‌های بانکی فروشنده\n" +
-                "ابتدا یک فروشنده را از لیست انتخاب کنید\n" +
-                "می‌توانید حساب جدید اضافه یا حساب‌های موجود را ویرایش کنید");
+            sellerToolTip.AutoPopDelay = 5000;
+            sellerToolTip.InitialDelay = 300;
+            sellerToolTip.ReshowDelay = 200;
+            sellerToolTip.ShowAlways = true;
+
+            if (txtISellerCode != null)
+                sellerToolTip.SetToolTip(txtISellerCode, "کد فروشنده (خودکار)");
+
+            if (txtSellerName != null)
+                sellerToolTip.SetToolTip(txtSellerName, "نام فروشنده (اجباری)");
+
+            if (txtCompanyName != null)
+                sellerToolTip.SetToolTip(txtCompanyName, "نام شرکت (اجباری)");
+
+            if (txtPhone1 != null)
+                sellerToolTip.SetToolTip(txtPhone1, "شماره تلفن اصلی");
+
+            if (txtPhone2 != null)
+                sellerToolTip.SetToolTip(txtPhone2, "شماره تلفن دوم (اختیاری)");
+
+            if (txtPhone3 != null)
+                sellerToolTip.SetToolTip(txtPhone3, "شماره تلفن سوم (اختیاری)");
+
+            if (cmbCategory1 != null)
+                sellerToolTip.SetToolTip(cmbCategory1, "دسته‌بندی اصلی فروشنده");
+
+            if (cmbCategory2 != null)
+                sellerToolTip.SetToolTip(cmbCategory2, "دسته‌بندی دوم (اختیاری)");
+
+            if (cmbCategory3 != null)
+                sellerToolTip.SetToolTip(cmbCategory3, "دسته‌بندی سوم (اختیاری)");
+
+            if (cmbSellerType != null)
+                sellerToolTip.SetToolTip(cmbSellerType, "نوع فروشنده");
+
+            if (txtBalance != null)
+                sellerToolTip.SetToolTip(txtBalance, "مانده اولیه حساب فروشنده");
+
+            if (rdbdebtor != null)
+                sellerToolTip.SetToolTip(rdbdebtor, "بدهکار - مبلغی که ما به فروشنده بدهکاریم");
+
+            if (rdbcreditor != null)
+                sellerToolTip.SetToolTip(rdbcreditor, "بستانکار - مبلغی که فروشنده به ما بدهکار است");
+
+            if (btnSubmitNewSeller != null)
+                sellerToolTip.SetToolTip(btnSubmitNewSeller, "ثبت فروشنده جدید (F2)");
+
+            if (btnUpdateSeller != null)
+                sellerToolTip.SetToolTip(btnUpdateSeller, "ویرایش فروشنده انتخاب‌شده (F3)");
+
+            if (btnDeletSeller != null)
+                sellerToolTip.SetToolTip(btnDeletSeller, "حذف فروشنده انتخاب‌شده (F4)");
+
+            if (button1 != null)
+                sellerToolTip.SetToolTip(button1, "ثبت دسته‌بندی جدید فروشنده");
+
+            if (btnDefineBankAccouant != null)
+                sellerToolTip.SetToolTip(btnDefineBankAccouant, "مدیریت حساب‌های بانکی فروشنده انتخاب‌شده (F5)");
+
+            if (txtSearchSeller != null)
+                sellerToolTip.SetToolTip(txtSearchSeller, "جستجو در نام، کد یا تلفن فروشندگان");
+
+            if (lstSeller != null)
+                sellerToolTip.SetToolTip(lstSeller, "لیست فروشندگان - دوبار کلیک برای ویرایش");
         }
 
         private void UpdateAccountButtonState()
