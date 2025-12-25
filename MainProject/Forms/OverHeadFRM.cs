@@ -1046,14 +1046,21 @@ namespace MainProject.Forms
             subSectionTable.Columns.Add("PerCentage", typeof(byte));
             subSectionTable.Columns.Add("CountOfSell", typeof(short));
 
+            const int COL_SSID = 1;
+            const int COL_SSTITLE = 2;
+            const int COL_SECID = 3;
+            const int COL_OVERHEAD = 4;
+            const int COL_PERCENTAGE = 5;
+            const int COL_COUNTOFSELL = 6;
+
             foreach (ListViewItem item in lstSubSection.Items)
             {
-                string ssid = item.SubItems[1].Text;
-                string sstitle = item.SubItems[2].Text;
-                string secid = item.SubItems[3].Text;
-                decimal overhead = decimal.TryParse(item.SubItems[4].Text, out var oh) ? oh : 0;
-                byte percentage = byte.TryParse(item.SubItems[5].Text, out var pct) ? pct : (byte)0;
-                short countOfSell = short.TryParse(item.SubItems[6].Text, out var cos) ? cos : (short)0;
+                string ssid = item.SubItems[COL_SSID].Text;
+                string sstitle = item.SubItems[COL_SSTITLE].Text;
+                string secid = item.SubItems[COL_SECID].Text;
+                decimal overhead = decimal.TryParse(item.SubItems[COL_OVERHEAD].Text, out var oh) ? oh : 0;
+                byte percentage = byte.TryParse(item.SubItems[COL_PERCENTAGE].Text, out var pct) ? pct : (byte)0;
+                short countOfSell = short.TryParse(item.SubItems[COL_COUNTOFSELL].Text, out var cos) ? cos : (short)0;
 
                 subSectionTable.Rows.Add(ssid, sstitle, secid, overhead, percentage, countOfSell);
             }
@@ -1095,6 +1102,8 @@ namespace MainProject.Forms
             if (results == null || results.Rows.Count == 0)
                 return;
 
+            // TODO: Replace MessageBox with proper DataGridView or dedicated results form
+            // for better data presentation and user experience
             MessageBox.Show($"نتایج محاسبه:\n{results.Rows.Count} ردیف بازگشت داده شد.\n\nلطفاً نتایج را در گرید یا کنترل مناسب بررسی کنید.", 
                 "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
