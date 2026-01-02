@@ -1098,19 +1098,27 @@ namespace MainProject.Forms
                 return;
             }
 
-            var infoDAL = new InformationDAL();
-            bool success = infoDAL.AddValueToContext("OHCategories", txtOHCategory.Text.Trim());
-
-            if (success)
+            try
             {
+                var infoDAL = new InformationDAL();
+                var newInfo = new InformationDto
+                {
+                    Context = "OHCategories",
+                    PersianTitle = txtOHCategory.Text.Trim(),
+                    StringValuePer = txtOHCategory.Text.Trim(),
+                    StringValueEng = "",
+                    DigitalValue = 0
+                };
+                infoDAL.InsertInformation(newInfo);
+
                 MessageBox.Show("دسته‌بندی جدید با موفقیت ثبت شد.");
                 txtOHCategory.Text = "";
                 LoadOHCategories();
                 LoadOHCategoriesToList();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("خطا در ثبت دسته‌بندی.");
+                MessageBox.Show($"خطا در ثبت دسته‌بندی: {ex.Message}");
             }
         }
 
@@ -1123,25 +1131,34 @@ namespace MainProject.Forms
                 return;
             }
 
-            var infoDAL = new InformationDAL();
-            var existingYears = infoDAL.GetInformationByContext("FinancialYears");
-            if (existingYears.Any(y => y.DigitalValue == year))
+            try
             {
-                MessageBox.Show("این سال مالی قبلاً ثبت شده است.");
-                return;
-            }
+                var infoDAL = new InformationDAL();
+                var existingYears = infoDAL.GetInformationByContext("FinancialYears");
+                if (existingYears.Any(y => y.DigitalValue == year))
+                {
+                    MessageBox.Show("این سال مالی قبلاً ثبت شده است.");
+                    return;
+                }
 
-            bool success = infoDAL.AddFinancialYear(year);
-            if (success)
-            {
+                var newInfo = new InformationDto
+                {
+                    Context = "FinancialYears",
+                    PersianTitle = yearText,
+                    StringValuePer = yearText,
+                    StringValueEng = yearText,
+                    DigitalValue = year
+                };
+                infoDAL.InsertInformation(newInfo);
+
                 MessageBox.Show("سال مالی جدید با موفقیت ثبت شد.");
                 txtNewYear.Text = "";
                 LoadFinancialYears();
                 LoadCurrentYearSource();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("خطا در ثبت سال مالی.");
+                MessageBox.Show($"خطا در ثبت سال مالی: {ex.Message}");
             }
         }
 
@@ -1165,18 +1182,43 @@ namespace MainProject.Forms
                 return;
             }
 
-            string selectedYear = cmbCurrentYearSource.SelectedItem.ToString();
-            var infoDAL = new InformationDAL();
-            bool success = infoDAL.SetCurrentYear(selectedYear);
-
-            if (success)
+            try
             {
+                string selectedYear = cmbCurrentYearSource.SelectedItem.ToString();
+                var infoDAL = new InformationDAL();
+                
+                // Get existing CurentYear entry
+                var currentYearInfoList = infoDAL.GetInformationByContext("CurentYear");
+                
+                if (currentYearInfoList.Any())
+                {
+                    // Update existing entry
+                    var currentYearInfo = currentYearInfoList.First();
+                    currentYearInfo.StringValuePer = selectedYear;
+                    currentYearInfo.StringValueEng = selectedYear;
+                    currentYearInfo.DigitalValue = int.Parse(selectedYear);
+                    infoDAL.UpdateInformation(currentYearInfo);
+                }
+                else
+                {
+                    // Insert new entry
+                    var newInfo = new InformationDto
+                    {
+                        Context = "CurentYear",
+                        PersianTitle = "سال مالی جاری",
+                        StringValuePer = selectedYear,
+                        StringValueEng = selectedYear,
+                        DigitalValue = int.Parse(selectedYear)
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
                 MessageBox.Show($"سال مالی جاری به {selectedYear} تنظیم شد.");
                 ReloadOverHeadFormData();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("خطا در تنظیم سال مالی جاری.");
+                MessageBox.Show($"خطا در تنظیم سال مالی جاری: {ex.Message}");
             }
         }
 
@@ -1198,16 +1240,35 @@ namespace MainProject.Forms
                 return;
             }
 
-            var infoDAL = new InformationDAL();
-            bool success = infoDAL.UpdateInformationValue("Tax", taxValue);
-
-            if (success)
+            try
             {
+                var infoDAL = new InformationDAL();
+                var taxInfoList = infoDAL.GetInformationByContext("Tax");
+
+                if (taxInfoList.Any())
+                {
+                    var taxInfo = taxInfoList.First();
+                    taxInfo.DigitalValue = taxValue;
+                    infoDAL.UpdateInformation(taxInfo);
+                }
+                else
+                {
+                    var newInfo = new InformationDto
+                    {
+                        Context = "Tax",
+                        PersianTitle = "مالیات بر درآمد",
+                        StringValuePer = taxValue.ToString(),
+                        StringValueEng = taxValue.ToString(),
+                        DigitalValue = taxValue
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
                 MessageBox.Show("مالیات با موفقیت بروزرسانی شد.");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("خطا در بروزرسانی مالیات.");
+                MessageBox.Show($"خطا در بروزرسانی مالیات: {ex.Message}");
             }
         }
 
@@ -1220,18 +1281,37 @@ namespace MainProject.Forms
                 return;
             }
 
-            var infoDAL = new InformationDAL();
-            bool success = infoDAL.UpdateInformationValue("TotalCountOfSellOfItems", count);
-
-            if (success)
+            try
             {
+                var infoDAL = new InformationDAL();
+                var sellCountInfoList = infoDAL.GetInformationByContext("TotalCountOfSellOfItems");
+
+                if (sellCountInfoList.Any())
+                {
+                    var sellCountInfo = sellCountInfoList.First();
+                    sellCountInfo.DigitalValue = count;
+                    infoDAL.UpdateInformation(sellCountInfo);
+                }
+                else
+                {
+                    var newInfo = new InformationDto
+                    {
+                        Context = "TotalCountOfSellOfItems",
+                        PersianTitle = "متوسط تعداد فروش آیتم در روز",
+                        StringValuePer = count.ToString(),
+                        StringValueEng = count.ToString(),
+                        DigitalValue = count
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
                 MessageBox.Show("متوسط فروش آیتم در روز با موفقیت بروزرسانی شد.");
                 txtAVGTotalSell.Text = count.ToString();
                 LoadSectionsToList();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("خطا در بروزرسانی.");
+                MessageBox.Show($"خطا در بروزرسانی: {ex.Message}");
             }
         }
 
@@ -1244,16 +1324,35 @@ namespace MainProject.Forms
                 return;
             }
 
-            var infoDAL = new InformationDAL();
-            bool success = infoDAL.UpdateInformationValue("VAT", vatValue);
-
-            if (success)
+            try
             {
+                var infoDAL = new InformationDAL();
+                var vatInfoList = infoDAL.GetInformationByContext("VAT");
+
+                if (vatInfoList.Any())
+                {
+                    var vatInfo = vatInfoList.First();
+                    vatInfo.DigitalValue = vatValue;
+                    infoDAL.UpdateInformation(vatInfo);
+                }
+                else
+                {
+                    var newInfo = new InformationDto
+                    {
+                        Context = "VAT",
+                        PersianTitle = "مالیات بر ارزش افزوده",
+                        StringValuePer = vatValue.ToString(),
+                        StringValueEng = vatValue.ToString(),
+                        DigitalValue = vatValue
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
                 MessageBox.Show("مالیات بر ارزش افزوده با موفقیت بروزرسانی شد.");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("خطا در بروزرسانی مالیات بر ارزش افزوده.");
+                MessageBox.Show($"خطا در بروزرسانی مالیات بر ارزش افزوده: {ex.Message}");
             }
         }
 
