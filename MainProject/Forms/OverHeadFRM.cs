@@ -1171,6 +1171,8 @@ namespace MainProject.Forms
 
         private void btnCalculateAllocation_Click(object sender, EventArgs e)
         {
+            // Delegate to the main submission handler
+            // This button provides an alternative way to trigger the same operation
             btnSubmitSectionOVERHEAD_Click(sender, e);
         }
 
@@ -1357,44 +1359,46 @@ namespace MainProject.Forms
         }
 
         // Label click handlers - minimal implementation
+        // NOTE: These handlers exist because the WinForms designer has wired these events.
+        // They can be removed from the designer if not needed, but are harmless empty handlers.
         private void label16_Click(object sender, EventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void label17_Click(object sender, EventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void label49_Click(object sender, EventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void label50_Click(object sender, EventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void label9_Click(object sender, EventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void panel10_Paint(object sender, PaintEventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void txtAVGSectionSell_TextChanged(object sender, EventArgs e)
         {
-            // Empty handler - designer generated
+            // Empty handler - designer generated, can be removed from designer if not needed
         }
 
         private void lstSubSection_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Empty handler for now - can be enhanced later if needed
+            // Placeholder handler - can be enhanced if subsection selection needs special handling
         }
     }
 }
