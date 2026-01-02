@@ -164,5 +164,11 @@ namespace MainProject.Forms
             txtCountOfSell.Text = section.CountOfSell.ToString();
         }
 
+        private void lstSubSections_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder handler for lstSubSections
+            // Can be implemented if needed for future functionality
+        }
+
     }
 }

@@ -1087,5 +1087,215 @@ namespace MainProject.Forms
             
             MessageBox.Show(message, "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        // Missing event handlers - added to fix designer/code-behind mismatches
+        
+        private void btnAddNewOHCategory_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtOHCategory.Text))
+            {
+                MessageBox.Show("لطفاً عنوان دسته‌بندی را وارد کنید.");
+                return;
+            }
+
+            var infoDAL = new InformationDAL();
+            bool success = infoDAL.AddValueToContext("OHCategories", txtOHCategory.Text.Trim());
+
+            if (success)
+            {
+                MessageBox.Show("دسته‌بندی جدید با موفقیت ثبت شد.");
+                txtOHCategory.Text = "";
+                LoadOHCategories();
+                LoadOHCategoriesToList();
+            }
+            else
+            {
+                MessageBox.Show("خطا در ثبت دسته‌بندی.");
+            }
+        }
+
+        private void btnAddNewYear_Click(object sender, EventArgs e)
+        {
+            string yearText = CommonFunctions.ConvertPersianDigitsToEnglish(txtNewYear.Text?.Trim() ?? "");
+            if (string.IsNullOrWhiteSpace(yearText) || !int.TryParse(yearText, out int year))
+            {
+                MessageBox.Show("لطفاً سال مالی معتبر وارد کنید.");
+                return;
+            }
+
+            var infoDAL = new InformationDAL();
+            var existingYears = infoDAL.GetInformationByContext("FinancialYears");
+            if (existingYears.Any(y => y.DigitalValue == year))
+            {
+                MessageBox.Show("این سال مالی قبلاً ثبت شده است.");
+                return;
+            }
+
+            bool success = infoDAL.AddFinancialYear(year);
+            if (success)
+            {
+                MessageBox.Show("سال مالی جدید با موفقیت ثبت شد.");
+                txtNewYear.Text = "";
+                LoadFinancialYears();
+                LoadCurrentYearSource();
+            }
+            else
+            {
+                MessageBox.Show("خطا در ثبت سال مالی.");
+            }
+        }
+
+        private void btnAddToList_Click(object sender, EventArgs e)
+        {
+            // This button is for sections - not used in current implementation
+            // The actual section list is populated from database
+            MessageBox.Show("لیست سکشن‌ها از دیتابیس لود می‌شود.");
+        }
+
+        private void btnCalculateAllocation_Click(object sender, EventArgs e)
+        {
+            btnSubmitSectionOVERHEAD_Click(sender, e);
+        }
+
+        private void btnSetFinancialYear_Click(object sender, EventArgs e)
+        {
+            if (cmbCurrentYearSource.SelectedItem == null)
+            {
+                MessageBox.Show("لطفاً سال مالی را انتخاب کنید.");
+                return;
+            }
+
+            string selectedYear = cmbCurrentYearSource.SelectedItem.ToString();
+            var infoDAL = new InformationDAL();
+            bool success = infoDAL.SetCurrentYear(selectedYear);
+
+            if (success)
+            {
+                MessageBox.Show($"سال مالی جاری به {selectedYear} تنظیم شد.");
+                ReloadOverHeadFormData();
+            }
+            else
+            {
+                MessageBox.Show("خطا در تنظیم سال مالی جاری.");
+            }
+        }
+
+        private void btnSubmitNewSection_Click(object sender, EventArgs e)
+        {
+            // Opens the DefineSectionsFRM form
+            var defineSectionsFrm = new DefineSectionsFRM();
+            defineSectionsFrm.ShowDialog();
+            LoadSectionsToCombo();
+            LoadSectionsToList();
+        }
+
+        private void btnSubmitTAX_Click(object sender, EventArgs e)
+        {
+            string taxText = CommonFunctions.ConvertPersianDigitsToEnglish(txtTax.Text?.Trim() ?? "");
+            if (!decimal.TryParse(taxText, out decimal taxValue))
+            {
+                MessageBox.Show("لطفاً مقدار معتبر برای مالیات وارد کنید.");
+                return;
+            }
+
+            var infoDAL = new InformationDAL();
+            bool success = infoDAL.UpdateInformationValue("Tax", taxValue);
+
+            if (success)
+            {
+                MessageBox.Show("مالیات با موفقیت بروزرسانی شد.");
+            }
+            else
+            {
+                MessageBox.Show("خطا در بروزرسانی مالیات.");
+            }
+        }
+
+        private void btnSubmitTotalSellsCount_Click(object sender, EventArgs e)
+        {
+            string countText = CommonFunctions.ConvertPersianDigitsToEnglish(txtTotalSellsCount.Text?.Trim() ?? "");
+            if (!int.TryParse(countText, out int count))
+            {
+                MessageBox.Show("لطفاً تعداد معتبر وارد کنید.");
+                return;
+            }
+
+            var infoDAL = new InformationDAL();
+            bool success = infoDAL.UpdateInformationValue("TotalCountOfSellOfItems", count);
+
+            if (success)
+            {
+                MessageBox.Show("متوسط فروش آیتم در روز با موفقیت بروزرسانی شد.");
+                txtAVGTotalSell.Text = count.ToString();
+                LoadSectionsToList();
+            }
+            else
+            {
+                MessageBox.Show("خطا در بروزرسانی.");
+            }
+        }
+
+        private void btnSubmitVAT_Click(object sender, EventArgs e)
+        {
+            string vatText = CommonFunctions.ConvertPersianDigitsToEnglish(txtVAT.Text?.Trim() ?? "");
+            if (!decimal.TryParse(vatText, out decimal vatValue))
+            {
+                MessageBox.Show("لطفاً مقدار معتبر برای مالیات بر ارزش افزوده وارد کنید.");
+                return;
+            }
+
+            var infoDAL = new InformationDAL();
+            bool success = infoDAL.UpdateInformationValue("VAT", vatValue);
+
+            if (success)
+            {
+                MessageBox.Show("مالیات بر ارزش افزوده با موفقیت بروزرسانی شد.");
+            }
+            else
+            {
+                MessageBox.Show("خطا در بروزرسانی مالیات بر ارزش افزوده.");
+            }
+        }
+
+        // Label click handlers - minimal implementation
+        private void label16_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void label49_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void label50_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void txtAVGSectionSell_TextChanged(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated
+        }
+
+        private void lstSubSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Empty handler for now - can be enhanced later if needed
+        }
     }
 }
