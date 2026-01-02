@@ -1087,5 +1087,318 @@ namespace MainProject.Forms
             
             MessageBox.Show(message, "نتایج محاسبه", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        // Missing event handlers - added to fix designer/code-behind mismatches
+        
+        private void btnAddNewOHCategory_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtOHCategory.Text))
+            {
+                MessageBox.Show("لطفاً عنوان دسته‌بندی را وارد کنید.");
+                return;
+            }
+
+            try
+            {
+                var infoDAL = new InformationDAL();
+                var newInfo = new InformationDto
+                {
+                    Context = "OHCategories",
+                    PersianTitle = txtOHCategory.Text.Trim(),
+                    StringValuePer = txtOHCategory.Text.Trim(),
+                    StringValueEng = "",
+                    DigitalValue = 0
+                };
+                infoDAL.InsertInformation(newInfo);
+
+                MessageBox.Show("دسته‌بندی جدید با موفقیت ثبت شد.");
+                txtOHCategory.Text = "";
+                LoadOHCategories();
+                LoadOHCategoriesToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در ثبت دسته‌بندی: {ex.Message}");
+            }
+        }
+
+        private void btnAddNewYear_Click(object sender, EventArgs e)
+        {
+            string yearText = CommonFunctions.ConvertPersianDigitsToEnglish(txtNewYear.Text?.Trim() ?? "");
+            if (string.IsNullOrWhiteSpace(yearText) || !int.TryParse(yearText, out int year))
+            {
+                MessageBox.Show("لطفاً سال مالی معتبر وارد کنید.");
+                return;
+            }
+
+            try
+            {
+                var infoDAL = new InformationDAL();
+                var existingYears = infoDAL.GetInformationByContext("FinancialYears");
+                if (existingYears.Any(y => y.DigitalValue == year))
+                {
+                    MessageBox.Show("این سال مالی قبلاً ثبت شده است.");
+                    return;
+                }
+
+                var newInfo = new InformationDto
+                {
+                    Context = "FinancialYears",
+                    PersianTitle = yearText,
+                    StringValuePer = yearText,
+                    StringValueEng = yearText,
+                    DigitalValue = year
+                };
+                infoDAL.InsertInformation(newInfo);
+
+                MessageBox.Show("سال مالی جدید با موفقیت ثبت شد.");
+                txtNewYear.Text = "";
+                LoadFinancialYears();
+                LoadCurrentYearSource();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در ثبت سال مالی: {ex.Message}");
+            }
+        }
+
+        private void btnAddToList_Click(object sender, EventArgs e)
+        {
+            // This button is for sections - not used in current implementation
+            // The actual section list is populated from database
+            MessageBox.Show("لیست سکشن‌ها از دیتابیس لود می‌شود.");
+        }
+
+        private void btnCalculateAllocation_Click(object sender, EventArgs e)
+        {
+            // Delegate to the main submission handler
+            // This button provides an alternative way to trigger the same operation
+            btnSubmitSectionOVERHEAD_Click(sender, e);
+        }
+
+        private void btnSetFinancialYear_Click(object sender, EventArgs e)
+        {
+            if (cmbCurrentYearSource.SelectedItem == null)
+            {
+                MessageBox.Show("لطفاً سال مالی را انتخاب کنید.");
+                return;
+            }
+
+            try
+            {
+                string selectedYear = cmbCurrentYearSource.SelectedItem.ToString();
+                var infoDAL = new InformationDAL();
+                
+                // Get existing CurentYear entry
+                var currentYearInfoList = infoDAL.GetInformationByContext("CurentYear");
+                
+                if (currentYearInfoList.Any())
+                {
+                    // Update existing entry
+                    var currentYearInfo = currentYearInfoList.First();
+                    currentYearInfo.StringValuePer = selectedYear;
+                    currentYearInfo.StringValueEng = selectedYear;
+                    currentYearInfo.DigitalValue = int.Parse(selectedYear);
+                    infoDAL.UpdateInformation(currentYearInfo);
+                }
+                else
+                {
+                    // Insert new entry
+                    var newInfo = new InformationDto
+                    {
+                        Context = "CurentYear",
+                        PersianTitle = "سال مالی جاری",
+                        StringValuePer = selectedYear,
+                        StringValueEng = selectedYear,
+                        DigitalValue = int.Parse(selectedYear)
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
+                MessageBox.Show($"سال مالی جاری به {selectedYear} تنظیم شد.");
+                ReloadOverHeadFormData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در تنظیم سال مالی جاری: {ex.Message}");
+            }
+        }
+
+        private void btnSubmitNewSection_Click(object sender, EventArgs e)
+        {
+            // Opens the DefineSectionsFRM form
+            var defineSectionsFrm = new DefineSectionsFRM();
+            defineSectionsFrm.ShowDialog();
+            LoadSectionsToCombo();
+            LoadSectionsToList();
+        }
+
+        private void btnSubmitTAX_Click(object sender, EventArgs e)
+        {
+            string taxText = CommonFunctions.ConvertPersianDigitsToEnglish(txtTax.Text?.Trim() ?? "");
+            if (!decimal.TryParse(taxText, out decimal taxValue))
+            {
+                MessageBox.Show("لطفاً مقدار معتبر برای مالیات وارد کنید.");
+                return;
+            }
+
+            try
+            {
+                var infoDAL = new InformationDAL();
+                var taxInfoList = infoDAL.GetInformationByContext("Tax");
+
+                if (taxInfoList.Any())
+                {
+                    var taxInfo = taxInfoList.First();
+                    taxInfo.DigitalValue = taxValue;
+                    infoDAL.UpdateInformation(taxInfo);
+                }
+                else
+                {
+                    var newInfo = new InformationDto
+                    {
+                        Context = "Tax",
+                        PersianTitle = "مالیات بر درآمد",
+                        StringValuePer = taxValue.ToString(),
+                        StringValueEng = taxValue.ToString(),
+                        DigitalValue = taxValue
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
+                MessageBox.Show("مالیات با موفقیت بروزرسانی شد.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در بروزرسانی مالیات: {ex.Message}");
+            }
+        }
+
+        private void btnSubmitTotalSellsCount_Click(object sender, EventArgs e)
+        {
+            string countText = CommonFunctions.ConvertPersianDigitsToEnglish(txtTotalSellsCount.Text?.Trim() ?? "");
+            if (!int.TryParse(countText, out int count))
+            {
+                MessageBox.Show("لطفاً تعداد معتبر وارد کنید.");
+                return;
+            }
+
+            try
+            {
+                var infoDAL = new InformationDAL();
+                var sellCountInfoList = infoDAL.GetInformationByContext("TotalCountOfSellOfItems");
+
+                if (sellCountInfoList.Any())
+                {
+                    var sellCountInfo = sellCountInfoList.First();
+                    sellCountInfo.DigitalValue = count;
+                    infoDAL.UpdateInformation(sellCountInfo);
+                }
+                else
+                {
+                    var newInfo = new InformationDto
+                    {
+                        Context = "TotalCountOfSellOfItems",
+                        PersianTitle = "متوسط تعداد فروش آیتم در روز",
+                        StringValuePer = count.ToString(),
+                        StringValueEng = count.ToString(),
+                        DigitalValue = count
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
+                MessageBox.Show("متوسط فروش آیتم در روز با موفقیت بروزرسانی شد.");
+                txtAVGTotalSell.Text = count.ToString();
+                LoadSectionsToList();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در بروزرسانی: {ex.Message}");
+            }
+        }
+
+        private void btnSubmitVAT_Click(object sender, EventArgs e)
+        {
+            string vatText = CommonFunctions.ConvertPersianDigitsToEnglish(txtVAT.Text?.Trim() ?? "");
+            if (!decimal.TryParse(vatText, out decimal vatValue))
+            {
+                MessageBox.Show("لطفاً مقدار معتبر برای مالیات بر ارزش افزوده وارد کنید.");
+                return;
+            }
+
+            try
+            {
+                var infoDAL = new InformationDAL();
+                var vatInfoList = infoDAL.GetInformationByContext("VAT");
+
+                if (vatInfoList.Any())
+                {
+                    var vatInfo = vatInfoList.First();
+                    vatInfo.DigitalValue = vatValue;
+                    infoDAL.UpdateInformation(vatInfo);
+                }
+                else
+                {
+                    var newInfo = new InformationDto
+                    {
+                        Context = "VAT",
+                        PersianTitle = "مالیات بر ارزش افزوده",
+                        StringValuePer = vatValue.ToString(),
+                        StringValueEng = vatValue.ToString(),
+                        DigitalValue = vatValue
+                    };
+                    infoDAL.InsertInformation(newInfo);
+                }
+
+                MessageBox.Show("مالیات بر ارزش افزوده با موفقیت بروزرسانی شد.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در بروزرسانی مالیات بر ارزش افزوده: {ex.Message}");
+            }
+        }
+
+        // Label click handlers - minimal implementation
+        // NOTE: These handlers exist because the WinForms designer has wired these events.
+        // They can be removed from the designer if not needed, but are harmless empty handlers.
+        private void label16_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void label17_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void label49_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void label50_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void panel10_Paint(object sender, PaintEventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void txtAVGSectionSell_TextChanged(object sender, EventArgs e)
+        {
+            // Empty handler - designer generated, can be removed from designer if not needed
+        }
+
+        private void lstSubSection_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // Placeholder handler - can be enhanced if subsection selection needs special handling
+        }
     }
 }

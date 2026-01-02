@@ -279,7 +279,7 @@
             this.lstSubSections.Size = new System.Drawing.Size(490, 180);
             this.lstSubSections.TabIndex = 87;
             this.lstSubSections.UseCompatibleStateImageBehavior = false;
-            this.lstSubSections.SelectedIndexChanged += new System.EventHandler(this.lstSection_SelectedIndexChanged);
+            this.lstSubSections.SelectedIndexChanged += new System.EventHandler(this.lstSubSections_SelectedIndexChanged);
             // 
             // columnHeader1
             // 
